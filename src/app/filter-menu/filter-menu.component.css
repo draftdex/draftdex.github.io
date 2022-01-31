@@ -1,0 +1,46 @@
+.ability-select-active:hover {
+    background-color: #1E90FF;
+    color: white;
+}
+
+select, input[type="text"]{
+    width:150px;
+    box-sizing:border-box;
+}
+
+.filter_button {
+    background-color: #FFB700 !important;
+    color: black;
+}
+
+.dropdown-scroll {
+    overflow: scroll;
+    height: 50vh;
+}
+
+.banner-format{
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+}
+
+.is-info{
+    background-color: #6c6c76;
+}
+
+.filter-font{
+    font-size: 15px;
+}
+
+.filter-menu-height {
+    min-width: 75%;
+    max-height: 200px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+@media screen and (max-width: 770px) {
+    .column-squeeze {
+        align-items: center !important;
+        justify-content: center !important;
+    }
+}

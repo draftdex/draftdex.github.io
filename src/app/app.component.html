@@ -1,0 +1,22 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DraftDex | W&W</title>
+</head>
+
+<body class="background">
+    <!-- Page Header Section -->
+    <app-header></app-header>
+
+    <!-- Filter Menu -->
+    <app-filter-menu (onFilterUpdate)="getFilterUpdate($event)"></app-filter-menu>
+
+    <!-- Table to Display Pokemon Matching Query -->
+    <div class="pt-4 pb-5">
+        <app-query-table [pkmnList]="pkmnList" [queryProcessing]="queryProcessing"></app-query-table>
+    </div>
+
+    <div class="bottom-banner">
+        <p><span class="bottom-text-big">Made for the W&W PDL&emsp;</span><span class="bottom-text-small">| Ruleset | Current Season | Help | Credits</span></p>
+    </div>
+</body>

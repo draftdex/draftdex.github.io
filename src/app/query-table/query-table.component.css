@@ -1,0 +1,32 @@
+th, td {
+    border-bottom-width: 1px !important;
+}
+
+.remove-hyperlink {
+    color: black !important;
+}
+
+table {
+    display: block;
+    max-height: 63vh;
+    overflow-y: scroll;
+    font-size: 13px;
+}
+
+th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    opacity: 1;
+    background-color: white;
+    border-top: none !important;
+}
+
+.table-div {
+    max-width: 95%;
+    overflow-x: auto;
+}
+
+.query-table-container {
+    background-color: #8D9AAD;
+}

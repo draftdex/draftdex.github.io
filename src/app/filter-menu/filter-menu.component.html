@@ -1,0 +1,125 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="container pt-4 is-flex is-justify-content-center">
+  <div class="border filter-menu-height">
+    <div class="hero is-info is-small banner-format">
+      <div class="hero-body banner banner-format">
+        <p class="subtitle">Search Filters</p>
+      </div>
+    </div>
+    <form class="box" autocomplete="off">  
+      <div class="columns">
+        <!--First Column-->
+        <div class="column is-flex is-align-items-flex-end is-flex-direction-column column-squeeze">
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label filter-font">Type 1</label>
+            </div>
+            <div class="field">
+              <div class="control">
+                <div class="select">
+                  <select [(ngModel)]="type1" name="type1">
+                    <option></option>
+                    <option *ngFor="let type of typeList" [value]="type">{{type}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label filter-font">Type 2</label>
+            </div>
+            <div class="field">
+              <div class="control">
+                <div class="select">
+                  <select [(ngModel)]="type2" name="type2">
+                    <option></option>
+                    <option *ngFor="let type of typeList">{{type}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Second Column-->
+        <div class="column is-flex is-align-items-flex-end is-flex-direction-column column-squeeze">
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label filter-font">Ability</label>
+            </div>
+            <div class="dropdown" [ngClass]="{'is-active' : abilityActive, '' : !abilityActive}">
+              <div class="dropdown-trigger">
+                <div class="control">
+                  <input id="ability_input" class="input" [(ngModel)]="ability" name="ability" type="text" (focus)="setAbilityActive()" (keyup)="searchAbilities($event)" placeholder="Find an ability">
+                </div>
+              </div>
+              <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                <div class="dropdown-content dropdown-scroll">
+                  <a id="ability_choice" *ngFor="let ability of abilityList" (click)="selectAbility(ability)" class="dropdown-item ability-select-active">
+                    {{ability}}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label filter-font">Tier</label>
+            </div>
+            <div class="field">
+              <div class="control">
+                <div class="select">
+                  <select [(ngModel)]="tier" name="tier">
+                    <option></option>
+                    <option *ngFor="let tier of tierList">{{tier}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Third Column-->
+        <div class="column is-flex is-align-items-center is-justify-content-center is-flex-direction-column column-squeeze">
+          <div class="field is-horizontal">
+            <div class="field-label">
+              <label class="label filter-font">Dual-Type&nbsp; </label>
+            </div>
+            <div class="field">
+              <div class="control">
+                <div class="checkbox">
+                  <input type="checkbox" [(ngModel)]="dualType" name="dualType">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field is-horizontal">
+            <div class="field-label">
+              <label class="label filter-font">Free Agent</label>
+            </div>
+            <div class="field">
+              <div class="control">
+                <div class="checkbox">
+                  <input type="checkbox" [(ngModel)]="available" name="available">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--4th column-->
+        <div class="column is-flex is-align-items-center column-squeeze">
+          <div class="pt-4 pb-4">
+            <div class="buttons">
+                <a class="button is-warning filter_button" id="getPokemon" (click)="sendFilterVals()">Get Pokemon</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

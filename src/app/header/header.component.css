@@ -1,0 +1,26 @@
+.logo {
+    width: 12vh;
+}
+
+.logo-display {
+    padding-left: 20px !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center;
+}
+
+@media screen and (max-width: 770px) {
+    .logo-display {
+        padding-left: 12px !important;
+        justify-content: center !important;
+    }
+}
+
+
+.title {
+    width: 369px;
+}
+
+.header-height {
+    min-height: 12vh;
+}

@@ -1,0 +1,24 @@
+::ng-deep * {
+    margin: 0;
+    padding: 0;
+}
+
+.bottom-banner {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    color: black;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    background-color: #8D9AAD;
+}
+
+.bottom-text-small {
+    font-size: 14px;
+}
+
+.bottom-text-big {
+    font-size: 14px;
+    font-family: "Gameboy";
+}
