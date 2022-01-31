@@ -43,6 +43,7 @@ export class AppComponent {
   // Query database using filter values
   getPokemon() {
     this.getPokemonTest();
+    /*
     this.queryProcessing = true;  // Initiate start of query processing
     this.pkmnList = [];           // Reset pokemon list when new filters applied
 
@@ -98,7 +99,7 @@ export class AppComponent {
       this.queryProcessing = false;
       console.log(event)
       alert(`An error has occurred. Please try again or contact the dev team with the following information: \n${event}`);
-    })
+    })*/
   }
 
   // Assign pokemonList to database query results
