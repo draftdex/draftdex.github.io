@@ -1,11 +1,37 @@
 import { Component } from '@angular/core';
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
+  /* 
+    Firebase Config
+  */
+  firebaseConfig = {
+    apiKey: "AIzaSyAE-POqe7JhHNEXXBLcLO1i-lKiiBKZAr4",
+    authDomain: "draftdex-39a23.firebaseapp.com",
+    projectId: "draftdex-39a23",
+    storageBucket: "draftdex-39a23.appspot.com",
+    messagingSenderId: "961962497554",
+    appId: "1:961962497554:web:4f87742983885e2f71aacb",
+    measurementId: "G-J12SJ7VWP4"
+  };
+
+  // Initialize Firebase
+  app = initializeApp(this.firebaseConfig);
+  db = getFirestore(this.app);
+  async getPokemonTest() {
+    const pokemonCol = collection(this.db, 'pokemonInfo');
+    const pokemonSnapshot = await getDocs(pokemonCol);
+    const pokemonList = pokemonSnapshot.docs.map(doc => doc.data());
+    console.log(pokemonList);
+  }
+
   /*
     Define component properties
   */
@@ -16,6 +42,7 @@ export class AppComponent {
 
   // Query database using filter values
   getPokemon() {
+    this.getPokemonTest();
     this.queryProcessing = true;  // Initiate start of query processing
     this.pkmnList = [];           // Reset pokemon list when new filters applied
 
