@@ -15,7 +15,7 @@ select, input[type="text"]{
 
 .dropdown-scroll {
     overflow: scroll;
-    height: 50vh;
+    max-height: 50vh;
 }
 
 .banner-format{
@@ -34,13 +34,19 @@ select, input[type="text"]{
 .filter-menu-height {
     min-width: 75%;
     max-height: 200px;
-    overflow-x: auto;
-    overflow-y: auto;
 }
 
 @media screen and (max-width: 770px) {
     .column-squeeze {
         align-items: center !important;
         justify-content: center !important;
+    }
+
+    .filter-menu-height {
+        overflow-y: auto;
+    }
+
+    .dropdown-scroll {
+        max-height: 200px;
     }
 }

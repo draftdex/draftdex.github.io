@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { createClient } from '@supabase/supabase-js';
 
 @Component({
   selector: 'app-root',
@@ -9,27 +8,12 @@ import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 })
 
 export class AppComponent {
-  /* 
-    Firebase Config
-  */
-  firebaseConfig = {
-    apiKey: "AIzaSyAE-POqe7JhHNEXXBLcLO1i-lKiiBKZAr4",
-    authDomain: "draftdex-39a23.firebaseapp.com",
-    projectId: "draftdex-39a23",
-    storageBucket: "draftdex-39a23.appspot.com",
-    messagingSenderId: "961962497554",
-    appId: "1:961962497554:web:4f87742983885e2f71aacb",
-    measurementId: "G-J12SJ7VWP4"
-  };
+  // Create supabase.io database client
+  dbClient = createClient('https://kqyshvlibkoatazqavuc.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0Mzc0MTI3MSwiZXhwIjoxOTU5MzE3MjcxfQ.hMsQnDsKARs4OyTsIpUR2nPR86TQxbvn3hOoyuGEnA8');
 
-  // Initialize Firebase
-  app = initializeApp(this.firebaseConfig);
-  db = getFirestore(this.app);
-  async getPokemonTest() {
-    const pokemonCol = collection(this.db, 'pokemonInfo');
-    const pokemonSnapshot = await getDocs(pokemonCol);
-    const pokemonList = pokemonSnapshot.docs.map(doc => doc.data());
-    console.log(pokemonList);
+  async getPokemon(query:any) {
+    let { data, error } = await query;
+    return data;
   }
 
   /*
@@ -41,70 +25,46 @@ export class AppComponent {
   filterVals:any = {};
 
   // Query database using filter values
-  getPokemon() {
-    this.getPokemonTest();
-    /*
+  processFilters() {    
     this.queryProcessing = true;  // Initiate start of query processing
     this.pkmnList = [];           // Reset pokemon list when new filters applied
 
+    let query = this.dbClient.from('pokemonInfo').select();
+
     //filterVals[ability, available, dualTypeExclusive, tier, type1, type2]
     var sendArg = 'SELECT * FROM pokemonInfo WHERE ';
-    if (this.filterVals.ability)
-      sendArg += `(ability1 = '${this.filterVals.ability}' OR ability2 = '${this.filterVals.ability}' OR hiddenAbility = '${this.filterVals.ability}') AND ` ;
+    // Ability filters
+    if (this.filterVals.ability) 
+      query.or(`ability1.ilike.${this.filterVals.ability},ability2.ilike.${this.filterVals.ability},hiddenAbility.ilike.${this.filterVals.ability}`);
     
-    if (this.filterVals.available)
-      sendArg += `available = '${this.filterVals.available}' AND `;
+    // Available filter
+    if (this.filterVals.available) 
+      query.eq('available', this.filterVals.available);
 
+    // Tier filter
     if (this.filterVals.tier)
-      sendArg += `tier = '${this.filterVals.tier}' AND `;
+      query.ilike('tier', this.filterVals.tier);
 
+    // Type filters
     if (this.filterVals.type1 || this.filterVals.type2) {
-      if(this.filterVals.dualTypeExclusive){
-        sendArg += `((type1 = '${this.filterVals.type1}' AND type2 = '${this.filterVals.type2}') OR (type2 = '${this.filterVals.type1}' AND type1 = '${this.filterVals.type2}'))`;
-      }
-      else{
-        sendArg += `((type1 = '${this.filterVals.type1}' OR type2 = '${this.filterVals.type1}') OR (type1 = '${this.filterVals.type2}' OR type2 = '${this.filterVals.type2}'))`;
+      if (this.filterVals.dualTypeExclusive) {
+        // Dual-typing required
+        query.or(`and(type1.eq.${this.filterVals.type1},type2.eq.${this.filterVals.type2}),and(type1.eq.${this.filterVals.type2},type2.eq.${this.filterVals.type1})`);
+      } else {
+        // Dual-typing optional
+        query.or(`type1.eq.${this.filterVals.type1},type1.eq.${this.filterVals.type2},type2.eq.${this.filterVals.type1},type2.eq.${this.filterVals.type2}`);
       }
     }
-    
 
-    // Fix end of query if no filters are selected or query ends with 'AND'
-    if (sendArg.substring(sendArg.length - 6) === "WHERE ") {
-      sendArg = sendArg.slice(0, sendArg.length - 7);    // Remove leading and trailing spaces
-    } else if (sendArg.substring(sendArg.length - 4) === "AND ") {
-      sendArg = sendArg.slice(0, sendArg.length - 5);    // Remove leading and trailing spaces
-    }
-    console.log(sendArg);
-
-    const getFltrdRequest = new XMLHttpRequest();
-    getFltrdRequest.open("GET", "http://localhost:7982/app/fltrd/" + sendArg);
-    getFltrdRequest.send();
-
-    // Process response from request
-    getFltrdRequest.addEventListener("load", (event) => {
-      this.queryProcessing = false;
-
-      // Handle non-200 response codes
-      if (getFltrdRequest.status !== 200) {
-        console.log(getFltrdRequest.response);
-        alert(`An error has occurred. Please try again or contact the dev team with the following information: \n${getFltrdRequest.response}`);
-      } else {  // Process successful response
-        var pkmn = JSON.parse(getFltrdRequest.response);
-        this.setPkmnList(pkmn);
-      }
+    this.getPokemon(query).then((data) => {
+      this.setPkmnList(data);
     });
-
-    // Handle request error
-    getFltrdRequest.addEventListener("error", (event) => {
-      this.queryProcessing = false;
-      console.log(event)
-      alert(`An error has occurred. Please try again or contact the dev team with the following information: \n${event}`);
-    })*/
   }
 
   // Assign pokemonList to database query results
   setPkmnList(pkmn: any) {
     this.pkmnList = pkmn;
+    this.queryProcessing = false;
     
     if (this.pkmnList.length === 0) {
       alert("No matching Pokemon were found. Please try again.");
@@ -116,6 +76,6 @@ export class AppComponent {
   getFilterUpdate(filter_vals: any):void {
     this.filterVals = filter_vals;
     console.log(this.filterVals);
-    this.getPokemon();
+    this.processFilters();
   }
 }
