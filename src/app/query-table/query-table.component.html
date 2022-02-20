@@ -16,7 +16,17 @@
             </thead>
             <tbody>
                 <tr *ngFor="let pkmn of pkmnList">
-                    <td id="name"><a href="https://pokemondb.net/pokedex/{{pkmn.name.toLowerCase()}}" target="_blank" rel="noopener noreferrer"><strong>{{pkmn.name}}</strong></a></td>
+                    <td id="name" class="has-text-left">
+                        <a href="#" (click)="editShortlist(pkmn)">
+                            <span class="icon">
+                                <!-- If pkmn not in shortList, show PLUS. Otherwise, show MINUS -->
+                                <fa-icon *ngIf="!pkmn.inShortList" [icon]="faPlusSquare"></fa-icon>
+                                <fa-icon *ngIf="pkmn.inShortList" [icon]="faMinusCircle"></fa-icon>
+                            </span> 
+                        </a>
+                        <a href="https://pokemondb.net/pokedex/{{pkmn.name.toLowerCase()}}" target="_blank" rel="noopener noreferrer"><strong>
+                        {{pkmn.name}}
+                    </strong></a></td>
                     <td id="form"><strong>{{pkmn.form}}</strong></td>
                     <td id="gmax">{{pkmn.gmax == 0 ? "No" : "Yes"}}</td>
                     <td id="type1">{{pkmn.type1}}</td>

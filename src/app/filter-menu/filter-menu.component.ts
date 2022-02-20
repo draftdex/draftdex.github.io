@@ -24,6 +24,9 @@ export class FilterMenuComponent implements OnInit {
 
   // Keep track of filter values
   @Output() onFilterUpdate = new EventEmitter<any>();
+  // Switch to shortlist view
+  @Output() onDisplayShortList = new EventEmitter<any>();
+
   type1 = 'Select';
   type2 = 'Select';
   ability = '';
@@ -108,5 +111,10 @@ export class FilterMenuComponent implements OnInit {
       'available' : this.available == false ? 0 : 1,
       'dualTypeExclusive' : this.dualType == false ? 0 : 1
     });
+  }
+
+  // Fire event to display shortList
+  displayShortList() {
+    this.onDisplayShortList.emit()
   }
 }

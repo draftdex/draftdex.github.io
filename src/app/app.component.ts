@@ -21,6 +21,7 @@ export class AppComponent {
   */
   title = 'DraftDex';
   pkmnList = [];
+  shortList:any = [];
   queryProcessing = false;
   filterVals:any = {};
 
@@ -31,8 +32,6 @@ export class AppComponent {
 
     let query = this.dbClient.from('pokemonInfo').select();
 
-    //filterVals[ability, available, dualTypeExclusive, tier, type1, type2]
-    var sendArg = 'SELECT * FROM pokemonInfo WHERE ';
     // Ability filters
     if (this.filterVals.ability) 
       query.or(`ability1.ilike.${this.filterVals.ability},ability2.ilike.${this.filterVals.ability},hiddenAbility.ilike.${this.filterVals.ability}`);
@@ -43,7 +42,7 @@ export class AppComponent {
 
     // Tier filter
     if (this.filterVals.tier)
-      query.ilike('tier', this.filterVals.tier);
+      query.ilike('tier', this.filterVals.tier);  // ilike case insensitive match
 
     // Type filters
     if (this.filterVals.type1 || this.filterVals.type2) {
@@ -64,6 +63,12 @@ export class AppComponent {
   // Assign pokemonList to database query results
   setPkmnList(pkmn: any) {
     this.pkmnList = pkmn;
+
+    // Check shortList and appropriately set icon for any pkmn within
+    this.shortList.forEach((elem:any) => {
+      let pmonInShortList:any = (this.pkmnList.find(({name}) => name == elem.name));
+      if (pmonInShortList) pmonInShortList.inShortList = true;
+    })
     this.queryProcessing = false;
     
     if (this.pkmnList.length === 0) {
@@ -77,5 +82,28 @@ export class AppComponent {
     this.filterVals = filter_vals;
     console.log(this.filterVals);
     this.processFilters();
+  }
+
+  // Toggle view to shortList pkmn
+  displayShortList() {
+    this.pkmnList = this.shortList;
+  }
+
+  // Add pkmn to shortList and change icon to MINUS
+  addToShortlist(pkmn: any) {
+    this.shortList.push(pkmn);
+    pkmn.inShortList = true;
+  }
+
+  // Remove pkmn from shortList and change icon to PLUS
+  removeFromShortList(pkmn: any) {
+    // Locate pkmn in shortList and remove 
+    this.shortList.forEach((elem:any,index:number)=>{
+      if (elem.name==pkmn.name) {
+        this.shortList.splice(index, 1);
+      }
+   });
+   // Swaps icon back to PLUS
+   pkmn.inShortList = false;
   }
 }

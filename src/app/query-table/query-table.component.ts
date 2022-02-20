@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { faAngleUp, faSpinner } from '@fortawesome/free-solid-svg-icons'; 
+import { Component, OnInit, Input, Output, OnChanges, SimpleChanges, EventEmitter } from '@angular/core';
+import { faAngleUp, faSpinner, faPlusSquare, faMinusCircle } from '@fortawesome/free-solid-svg-icons'; 
 
 @Component({
   selector: 'app-query-table',
@@ -56,9 +56,15 @@ export class QueryTableComponent implements OnInit, OnChanges {
   // Define icons used in this component
   faAngleUp = faAngleUp;
   faSpinner = faSpinner;
+  faPlusSquare = faPlusSquare;
+  faMinusCircle = faMinusCircle;
 
   @Input() pkmnList: any;
   @Input() queryProcessing: any;  // boolean to determine if a query is being processed (if so, display spinner)
+
+  // Event listener to prompt addition to shortlist
+  @Output() onAddToShortlist = new EventEmitter<any>();
+  @Output() onRemoveFromShortList = new EventEmitter<any>();
 
   // Flip angle determining column sort direction
   flipIcon(event: MouseEvent) {
@@ -95,5 +101,11 @@ export class QueryTableComponent implements OnInit, OnChanges {
         }
       }
     }
+  }
+
+  // Add pokemon to shortlist
+  editShortlist(pkmn: any) {
+    // Emit event to edit pkmn in shortlist
+    pkmn.inShortList ? this.onRemoveFromShortList.emit(pkmn) : this.onAddToShortlist.emit(pkmn)
   }
 }

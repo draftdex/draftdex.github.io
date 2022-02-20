@@ -9,7 +9,7 @@
     <form class="box" autocomplete="off">  
       <div class="columns">
         <!--First Column-->
-        <div class="column is-flex is-align-items-flex-end is-flex-direction-column column-squeeze">
+        <div class="column is-flex is-align-items-center is-justify-content-center is-flex-direction-column column-squeeze">
           <div class="field is-horizontal">
             <div class="field-label is-normal">
               <label class="label filter-font">Type 1</label>
@@ -44,7 +44,7 @@
         </div>
 
         <!--Second Column-->
-        <div class="column is-flex is-align-items-flex-end is-flex-direction-column column-squeeze">
+        <div class="column is-flex is-align-items-flex-end is-justify-content-center is-flex-direction-column column-squeeze">
           <div class="field is-horizontal">
             <div class="field-label is-normal">
               <label class="label filter-font">Ability</label>
@@ -116,6 +116,7 @@
           <div class="pt-4 pb-4">
             <div class="buttons">
                 <a class="button is-warning filter_button" id="getPokemon" (click)="sendFilterVals()">Get Pokemon</a>
+              <a class="button is-warning filter_button" id="displayShortList" (click)="displayShortList()">View Shortlist</a>
             </div>
           </div>
         </div>
