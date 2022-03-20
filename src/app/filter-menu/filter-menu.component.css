@@ -33,7 +33,7 @@ select, input[type="text"]{
 
 .filter-menu-height {
     min-width: 75%;
-    max-height: 200px;
+    max-height: 300px;
 }
 
 @media screen and (max-width: 770px) {
@@ -50,3 +50,4 @@ select, input[type="text"]{
         max-height: 200px;
     }
 }
+

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { createClient } from '@supabase/supabase-js';
+import { GlobalConstants } from './global/global-constants';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,10 @@ export class AppComponent {
   shortList:any = [];
   queryProcessing = false;
   filterVals:any = {};
+  MasterSheet = GlobalConstants.MasterSheet;
+  Help = GlobalConstants.Help;
+  Ruleset = GlobalConstants.Ruleset;
+  Showdown = GlobalConstants.Showdown;
 
   // Query database using filter values
   processFilters() {    

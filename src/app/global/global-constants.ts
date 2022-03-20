@@ -74,4 +74,12 @@ export class GlobalConstants {
         'Unlisted',
         'Banned'
     ];
+
+
+    public static Ruleset = "docs.google.com/document/d/1u0mzt_oQH4vYfq6SLKqYcVLfCXD9uFLm-d4ldvVSQJ4/edit?usp=sharing";
+    public static MasterSheet = "docs.google.com/spreadsheets/d/1DomhRvEdFnVv2-njRJEVGhImahEsNsekWLDF93fiV4Q/edit?usp=sharing";
+    public static Help = "mailto:draftdex@gmail.com";
+
+    public static Showdown = "play.pokemonshowdown.com/teambuilder";
+    
 }
