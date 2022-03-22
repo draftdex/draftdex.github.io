@@ -16,9 +16,12 @@
         <app-query-table [pkmnList]="pkmnList" [queryProcessing]="queryProcessing" (onAddToShortlist)="addToShortlist($event)" (onRemoveFromShortList)="removeFromShortList($event)"></app-query-table>
     </div>
 
+    <app-add-edit [addEditEnabled]="addEditEnabled" (onAddEditDisabled)="disableAddEdit()"></app-add-edit>
+
     <div class="bottom-banner">
         <p><span class="bottom-text-big">Made for the W&W PDL&emsp;</span><span class="bottom-text-small">| <a target="_blank" href="https://{{Ruleset}}">Ruleset</a> | 
             <a target="_blank" href="https://{{MasterSheet}}">Current Season</a> | <a target="_blank" href="https://{{Help}}">Help</a> | 
-            <a target="_blank" href="https://google.com">Credits</a> | <a target="_blank" href="https://{{Showdown}}">Teambuilder</a> | Version 0.00 </span></p>
+            <a target="_blank" href="https://google.com">Credits</a> | <a target="_blank" href="https://{{Showdown}}">Teambuilder</a> |
+            <a href="#" (click)="addEditEnabled = true;">Add/Edit</a> | Version 0.00 </span></p>
     </div>
 </body>
