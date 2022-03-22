@@ -45,21 +45,21 @@ const listOfAnswers = [
     97,                     // 1. Test number of Tier 2 Pokemon
     109,                    // 2. Test number of Tier 3 Pokemon
     39,                     // 3. Test number of Legend Tier Pokemon
-    28,                     // 4. Test number of Restricted Tier Pokemon
+    29,                     // 4. Test number of Restricted Tier Pokemon
     121,                    // 5. Test number of Normal type Pokemon  -------Tests 5-22 Types
     109,                    // 6. Test number of Psychic type Pokemon
     65,                     // 7. Test number of Dark type Pokemon
     65,                     // 8. Test number of Fighting type Pokemon
-    56,                     // 9. Test number of Ghost type Pokemon
+    58,                     // 9. Test number of Ghost type Pokemon
     75,                     // 10. Test number of Poison type Pokemon
-    109,                    // 11. Test number of Grass type Pokemon
-    75,                     // 12. Test number of Fire type Pokemon
+    110,                    // 11. Test number of Grass type Pokemon
+    74,                     // 12. Test number of Fire type Pokemon
     146,                    // 13. Test number of Water type Pokemon
     69,                     // 14. Test number of Electric type Pokemon
     70,                     // 15. Test number of Rock type Pokemon
     73,                     // 16. Test number of Ground type Pokemon
     64,                     // 17. Test number of Steel type Pokemon
-    59,                     // 18. Test number of Fairy type Pokemon
+    57,                     // 18. Test number of Fairy type Pokemon
     60,                     // 19. Test number of Dragon type Pokemon
     86,                     // 20. Test number of Bug type Pokemon
     113,                    // 21. Test number of Flying type Pokemon
@@ -70,16 +70,15 @@ const listOfAnswers = [
     3,                      // 26. Test number of Incarnate Form Pokemon
     34,                     // 27. Test Number of Gigantamax Pokemon    -------Test 27 Gmax
     39,                     // 28. Test Number of Base Stat 600 pokemon -------Test 28-34 Stats
-    79,                     // 29. Test Number of Hp Stat 60 pokemon
-    52,                     // 30. Test Number of Atk Stat 65 pokemon
-    68,                     // 31. Test Number of Def Stat 50 pokemon
+    78,                     // 29. Test Number of Hp Stat 60 pokemon
+    50,                     // 30. Test Number of Atk Stat 65 pokemon
+    63,                     // 31. Test Number of Def Stat 50 pokemon
     67,                     // 32. Test Number of SpAtk Stat 40 Pokemon
-    70,                     // 33. Test Number of SpDef Stat 50 pokemon
-    58,                     // 34. Test Number of Speed Stat 50 pokemon
+    65,                     // 33. Test Number of SpDef Stat 50 pokemon
+    54,                     // 34. Test Number of Speed Stat 50 pokemon
 ];
 
-const sampleQuery = "";
-const sampleAnswer = "";
+
 
 //// Run the query check against answers
 function initTests() {
