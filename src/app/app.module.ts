@@ -9,6 +9,7 @@ import { QueryTableComponent } from './query-table/query-table.component';
 import { FilterMenuComponent } from './filter-menu/filter-menu.component';
 import { SortDirective } from './directive/sort.directive';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AddEditComponent } from './add-edit/add-edit.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HeaderComponent,
     QueryTableComponent,
     FilterMenuComponent,
-    SortDirective
+    SortDirective,
+    AddEditComponent
   ],
   imports: [
     BrowserModule,

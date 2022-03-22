@@ -29,6 +29,7 @@ export class AppComponent {
   Help = GlobalConstants.Help;
   Ruleset = GlobalConstants.Ruleset;
   Showdown = GlobalConstants.Showdown;
+  addEditEnabled = false;                     // Boolean to control add/edit overlay
 
   // Query database using filter values
   processFilters() {    
@@ -110,5 +111,10 @@ export class AppComponent {
    });
    // Swaps icon back to PLUS
    pkmn.inShortList = false;
+  }
+
+  // Disable Add/Edit Overlay
+  disableAddEdit() {
+    this.addEditEnabled = false;
   }
 }
