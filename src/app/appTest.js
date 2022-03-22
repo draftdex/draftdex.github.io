@@ -3,46 +3,46 @@ import { createClient } from '@supabase/supabase-js';
 // List of queries, each element is a list of conditions
 // Each condition is a 3-tuple for (condition type, field to check, value)
 const listOfQueries = [
-    [["eq", "tier", "1"]],              // 0. Test number of Tier 1 Pokemon
-    [["eq", "tier", "2"]],              // 1. Test number of Tier 2 Pokemon
-    [["eq", "tier", "3"]],              // 2. Test number of Tier 3 Pokemon
-    [["eq", "tier", "Legend"]],         // 3. Test number of Legend Tier Pokemon
-    [["eq", "tier", "Restricted"]],     // 4. Test number of Restricted Tier Pokemon
-    [["or", "type1.eq.Normal, type2.eq.Normal"]],        // 5. Test number of Normal type Pokemon  -------Tests 5-22 Types
-    [["or", "type1.eq.Psychic, type2.eq.Psychic"]],       // 6. Test number of Psychic type Pokemon
-    [["or", "type1.eq.Dark, type2.eq.Dark"]],          // 7. Test number of Dark type Pokemon
-    [["or", "type1.eq.Fighting, type2.eq.Fighting"]],      // 8. Test number of Fighting type Pokemon
-    [["or", "type1.eq.Ghost, type2.eq.Ghost"]],         // 9. Test number of Ghost type Pokemon
-    [["or", "type1.eq.Poison, type2.eq.Poison"]],        // 10. Test number of Poison type Pokemon
-    [["or", "type1.eq.Grass, type2.eq.Grass"]],         // 11. Test number of Grass type Pokemon
-    [["or", "type1.eq.Fire, type2.eq.Fire"]],          // 12. Test number of Fire type Pokemon
-    [["or", "type1.eq.Water, type2.eq.Water"]],         // 13. Test number of Water type Pokemon
-    [["or", "type1.eq.Electric, type2.eq.Electric"]],      // 14. Test number of Electric type Pokemon
-    [["or", "type1.eq.Rock, type2.eq.Rock"]],          // 15. Test number of Rock type Pokemon
-    [["or", "type1.eq.Ground, type2.eq.Ground"]],        // 16. Test number of Ground type Pokemon
-    [["or", "type1.eq.Steel, type2.eq.Steel"]],         // 17. Test number of Steel type Pokemon
-    [["or", "type1.eq.Fairy, type2.eq.Fairy"]],         // 18. Test number of Fairy type Pokemon
-    [["or", "type1.eq.Dragon, type2.eq.Dragon"]],        // 19. Test number of Dragon type Pokemon
-    [["or", "type1.eq.Bug, type2.eq.Bug"]],           // 20. Test number of Bug type Pokemon
-    [["or", "type1.eq.Flying, type2.eq.Flying"]],        // 21. Test number of Flying type Pokemon
-    [["or", "type1.eq.Ice, type2.eq.Ice"]],           // 22. Test number of Ice type Pokemon
-    [["eq", "form", "Alolan"]],         // 23. Test number of Alolan Form Pokemon  -------Tests 23-26 Forms
-    [["eq", "form", "Galarian"]],       // 24. Test number of Galarian Form Pokemon
-    [["eq", "form", "Therian"]],        // 25. Test number of Therian Form Pokemon
-    [["eq", "form", "Incarnate"]],      // 26. Test number of Incarnate Form Pokemon
-    [["eq", "gmax", true]],             // 27. Test Number of Gigantamax Pokemon    -------Test 27 Gmax
-    [["eq", "bst", 600]],               // 28. Test Number of Base Stat 600 pokemon -------Test 28-34 Stats
-    [["eq", "hp", 60]],                 // 29. Test Number of Hp Stat 60 pokemon
-    [["eq", "attack", 65]],                // 30. Test Number of Atk Stat 65 pokemon
-    [["eq", "defense", 50]],                // 31. Test Number of Def Stat 50 pokemon
-    [["eq", "spAttack", 40]],              // 32. Test Number of SpAtk Stat 40 Pokemon
-    [["eq", "spDefense", 50]],              // 33. Test Number of SpDef Stat 50 pokemon
-    [["eq", "speed", 50]],              // 34. Test Number of Speed Stat 50 pokemon
+    [["eq", "tier", "1"]],                                  // 0. Test number of Tier 1 Pokemon
+    [["eq", "tier", "2"]],                                  // 1. Test number of Tier 2 Pokemon
+    [["eq", "tier", "3"]],                                  // 2. Test number of Tier 3 Pokemon
+    [["eq", "tier", "Legend"]],                             // 3. Test number of Legend Tier Pokemon
+    [["eq", "tier", "Restricted"]],                         // 4. Test number of Restricted Tier Pokemon
+    [["or", "type1.eq.Normal, type2.eq.Normal"]],           // 5. Test number of Normal type Pokemon  -------Tests 5-22 Types
+    [["or", "type1.eq.Psychic, type2.eq.Psychic"]],         // 6. Test number of Psychic type Pokemon
+    [["or", "type1.eq.Dark, type2.eq.Dark"]],               // 7. Test number of Dark type Pokemon
+    [["or", "type1.eq.Fighting, type2.eq.Fighting"]],       // 8. Test number of Fighting type Pokemon
+    [["or", "type1.eq.Ghost, type2.eq.Ghost"]],             // 9. Test number of Ghost type Pokemon
+    [["or", "type1.eq.Poison, type2.eq.Poison"]],           // 10. Test number of Poison type Pokemon
+    [["or", "type1.eq.Grass, type2.eq.Grass"]],             // 11. Test number of Grass type Pokemon
+    [["or", "type1.eq.Fire, type2.eq.Fire"]],               // 12. Test number of Fire type Pokemon
+    [["or", "type1.eq.Water, type2.eq.Water"]],             // 13. Test number of Water type Pokemon
+    [["or", "type1.eq.Electric, type2.eq.Electric"]],       // 14. Test number of Electric type Pokemon
+    [["or", "type1.eq.Rock, type2.eq.Rock"]],               // 15. Test number of Rock type Pokemon
+    [["or", "type1.eq.Ground, type2.eq.Ground"]],           // 16. Test number of Ground type Pokemon
+    [["or", "type1.eq.Steel, type2.eq.Steel"]],             // 17. Test number of Steel type Pokemon
+    [["or", "type1.eq.Fairy, type2.eq.Fairy"]],             // 18. Test number of Fairy type Pokemon
+    [["or", "type1.eq.Dragon, type2.eq.Dragon"]],           // 19. Test number of Dragon type Pokemon
+    [["or", "type1.eq.Bug, type2.eq.Bug"]],                 // 20. Test number of Bug type Pokemon
+    [["or", "type1.eq.Flying, type2.eq.Flying"]],           // 21. Test number of Flying type Pokemon
+    [["or", "type1.eq.Ice, type2.eq.Ice"]],                 // 22. Test number of Ice type Pokemon
+    [["eq", "form", "Alolan"]],                             // 23. Test number of Alolan Form Pokemon  -------Tests 23-26 Forms
+    [["eq", "form", "Galarian"]],                           // 24. Test number of Galarian Form Pokemon
+    [["eq", "form", "Therian"]],                            // 25. Test number of Therian Form Pokemon
+    [["eq", "form", "Incarnate"]],                          // 26. Test number of Incarnate Form Pokemon
+    [["eq", "gmax", true]],                                 // 27. Test Number of Gigantamax Pokemon    -------Test 27 Gmax
+    [["eq", "bst", 600]],                                   // 28. Test Number of Base Stat 600 pokemon -------Test 28-34 Stats
+    [["eq", "hp", 60]],                                     // 29. Test Number of Hp Stat 60 pokemon
+    [["eq", "attack", 65]],                                 // 30. Test Number of Atk Stat 65 pokemon
+    [["eq", "defense", 50]],                                // 31. Test Number of Def Stat 50 pokemon
+    [["eq", "spAttack", 40]],                               // 32. Test Number of SpAtk Stat 40 Pokemon
+    [["eq", "spDefense", 50]],                              // 33. Test Number of SpDef Stat 50 pokemon
+    [["eq", "speed", 50]],                                  // 34. Test Number of Speed Stat 50 pokemon
 ];
 
 const listOfAnswers = [ 
     81,                     // 0. Test number of Tier 1 Pokemon  -----Tests 0-4 Tiers
-    96,                     // 1. Test number of Tier 2 Pokemon
+    97,                     // 1. Test number of Tier 2 Pokemon
     109,                    // 2. Test number of Tier 3 Pokemon
     39,                     // 3. Test number of Legend Tier Pokemon
     28,                     // 4. Test number of Restricted Tier Pokemon
@@ -68,7 +68,7 @@ const listOfAnswers = [
     19,                     // 24. Test number of Galarian Form Pokemon
     3,                      // 25. Test number of Therian Form Pokemon
     3,                      // 26. Test number of Incarnate Form Pokemon
-    33,                     // 27. Test Number of Gigantamax Pokemon    -------Test 27 Gmax
+    34,                     // 27. Test Number of Gigantamax Pokemon    -------Test 27 Gmax
     39,                     // 28. Test Number of Base Stat 600 pokemon -------Test 28-34 Stats
     79,                     // 29. Test Number of Hp Stat 60 pokemon
     52,                     // 30. Test Number of Atk Stat 65 pokemon
