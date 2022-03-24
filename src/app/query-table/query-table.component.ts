@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, OnChanges, SimpleChanges, EventEmitter } from '@angular/core';
 import { faAngleUp, faSpinner, faPlusSquare, faMinusCircle } from '@fortawesome/free-solid-svg-icons'; 
+import { GlobalConstants } from './../global/global-constants';
 
 @Component({
   selector: 'app-query-table',
@@ -13,45 +14,9 @@ export class QueryTableComponent implements OnInit, OnChanges {
   ngOnInit(): void {
   }
 
-  tableHeaders = [
-    'Name',
-    'Form',
-    'GMax',
-    'Type 1',
-    'Type 2',
-    'Ability 1',
-    'Ability 2',
-    'Hidden Ability',
-    'HP',
-    'Attack',
-    'Defense',
-    'Sp. Attack',
-    'Sp. Defense',
-    'Speed',
-    'Tier',
-    'Free',
-    'Team'
-  ]
-
-  tableHeaderMap: any = {
-    'Name' : "name",
-    'Form' : "form",
-    'GMax' : "gmax",
-    'Type 1' : "type1",
-    'Type 2' : "type2",
-    'Ability 1' : "ability1",
-    'Ability 2' : "ability2",
-    'Hidden Ability' : "hiddenAbility",
-    'HP' : "hp",
-    'Attack' : "attack",
-    'Defense' : "defense",
-    'Sp. Attack' : "spAttack",
-    'Sp. Defense' : "spDefense",
-    'Speed' : "speed",
-    'Tier' : "tier",
-    'Free' : "available",
-    'Team' : "team"
-  };
+  // Import table attributes from GlobalConstants
+  tableHeaders = GlobalConstants.pokemonAttributesTableHeaders;
+  tableHeaderMap = GlobalConstants.tableHeaderMap;
 
   // Define icons used in this component
   faAngleUp = faAngleUp;

@@ -1,1 +1,34 @@
-<div id="overlay" *ngIf="addEditEnabled">Hello</div>
+<div id="overlay" *ngIf="addEditEnabled">
+    <div class="box overlay-box">
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                      <label class="label filter-font">Pokemon</label>
+                    </div>
+                    <div class="dropdown" [ngClass]="{'is-active' : pkmnDropdownActive, '' : !pkmnDropdownActive}">
+                      <div class="dropdown-trigger">
+                        <div class="control">
+                          <input id="pkmn_input" class="input" [(ngModel)]="selectedPokemonName" type="text" (focus)="setPkmnDropdownActive()" (keyup)="searchPokemon($event)" placeholder="Find a Pokemon" autocomplete="off">
+                        </div>
+                      </div>
+                      <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                        <div class="dropdown-content dropdown-scroll">
+                          <a id="pkmn_choice" *ngFor="let name of pkmnNames" (click)="selectPkmn(name)" class="dropdown-item pokemon-select-active">
+                            {{name}}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </header>
+            <section class="modal-card-body">
+               <app-query-table [pkmnList]="pkmn"></app-query-table>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-success">Save changes</button>
+                <button class="button">Cancel</button>
+            </footer>
+        </div>
+    </div>
+</div>

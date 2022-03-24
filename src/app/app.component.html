@@ -13,10 +13,12 @@
 
     <!-- Table to Display Pokemon Matching Query -->
     <div class="pt-4 pb-5">
-        <app-query-table [pkmnList]="pkmnList" [queryProcessing]="queryProcessing" (onAddToShortlist)="addToShortlist($event)" (onRemoveFromShortList)="removeFromShortList($event)"></app-query-table>
+        <div class="table-container is-flex is-justify-content-center query-table-container">
+            <app-query-table [pkmnList]="pkmnList" [queryProcessing]="queryProcessing" (onAddToShortlist)="addToShortlist($event)" (onRemoveFromShortList)="removeFromShortList($event)"></app-query-table>
+        </div>
     </div>
 
-    <app-add-edit [addEditEnabled]="addEditEnabled" (onAddEditDisabled)="disableAddEdit()"></app-add-edit>
+    <app-add-edit [addEditEnabled]="addEditEnabled" [dbClient]="dbClient" (onAddEditDisabled)="disableAddEdit()"></app-add-edit>
 
     <div class="bottom-banner">
         <p><span class="bottom-text-big">Made for the W&W PDL&emsp;</span><span class="bottom-text-small">| <a target="_blank" href="https://{{Ruleset}}">Ruleset</a> | 

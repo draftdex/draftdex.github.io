@@ -75,7 +75,6 @@ export class FilterMenuComponent implements OnInit {
     let found = false;
 
     // Display all potential abilities if no input
-    console.log(this.abilityActive)
     if (!this.abilityActive && $event.key !== 'Escape') {
       this.setAbilityActive();
       for (let i = 0; i < abilities.length; i++) {

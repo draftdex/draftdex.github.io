@@ -75,6 +75,46 @@ export class GlobalConstants {
         'Banned'
     ];
 
+    public static pokemonAttributesTableHeaders = [
+        'Name',
+        'Form',
+        'GMax',
+        'Type 1',
+        'Type 2',
+        'Ability 1',
+        'Ability 2',
+        'Hidden Ability',
+        'HP',
+        'Attack',
+        'Defense',
+        'Sp. Attack',
+        'Sp. Defense',
+        'Speed',
+        'Tier',
+        'Free',
+        'Team'
+    ];
+
+    public static tableHeaderMap: any = {
+        'Name' : "name",
+        'Form' : "form",
+        'GMax' : "gmax",
+        'Type 1' : "type1",
+        'Type 2' : "type2",
+        'Ability 1' : "ability1",
+        'Ability 2' : "ability2",
+        'Hidden Ability' : "hiddenAbility",
+        'HP' : "hp",
+        'Attack' : "attack",
+        'Defense' : "defense",
+        'Sp. Attack' : "spAttack",
+        'Sp. Defense' : "spDefense",
+        'Speed' : "speed",
+        'Tier' : "tier",
+        'Free' : "available",
+        'Team' : "team"
+    };
+
 
     public static Ruleset = "docs.google.com/document/d/1u0mzt_oQH4vYfq6SLKqYcVLfCXD9uFLm-d4ldvVSQJ4/edit?usp=sharing";
     public static MasterSheet = "docs.google.com/spreadsheets/d/1DomhRvEdFnVv2-njRJEVGhImahEsNsekWLDF93fiV4Q/edit?usp=sharing";
