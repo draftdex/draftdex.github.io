@@ -1,10 +1,10 @@
 <div id="overlay" *ngIf="addEditEnabled">
-    <div class="box overlay-box">
+    <div class="box overlay-background">
         <div class="modal-card">
-            <header class="modal-card-head">
+            <header class="modal-card-head border-background">
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                      <label class="label filter-font">Pokemon</label>
+                      <label class="filter-font">Pokemon</label>
                     </div>
                     <div class="dropdown" [ngClass]="{'is-active' : pkmnDropdownActive, '' : !pkmnDropdownActive}">
                       <div class="dropdown-trigger">
@@ -22,12 +22,240 @@
                     </div>
                 </div>
             </header>
-            <section class="modal-card-body">
-               <app-query-table [pkmnList]="pkmn"></app-query-table>
+            <section class="modal-card-body overlay-background">
+              <app-query-table [pkmnList]="pkmn"></app-query-table>
+              <div class="tile is-ancestor top-row">
+                <div class="tile is-5 is-vertical is-parent">
+                  <div class="tile is-child box">
+                    <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">Name:</label>
+                      </div>
+                      <div class="field">
+                        <div class="control">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.name" type="text" autocomplete="off">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tile is-5 is-vertical is-parent">
+                  <div class="tile is-child box">
+                    <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">Form:</label>
+                      </div>
+                      <div class="field">
+                        <div class="control">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.form" type="text" autocomplete="off">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tile is-ancestor tile-rows">
+                <div class="tile is-2 is-vertical is-parent">
+                  <div class="tile is-child box">
+                    <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">GMax:</label>
+                      </div>
+                      <div class="field">
+                        <div class="control">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.gmax" type="text" autocomplete="off">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tile is-child box">
+                    <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">Hidden Ability:</label>
+                      </div>
+                      <div class="field">
+                        <div class="control">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.hiddenAbility" type="text" autocomplete="off">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tile is-child box">
+                    <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">Sp. Defense:</label>
+                      </div>
+                      <div class="field">
+                        <div class="control">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.spDefense" type="text" autocomplete="off">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tile is-2 is-vertical is-parent">
+                  <div class="tile is-child box">
+                    <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">Type 1:</label>
+                      </div>
+                      <div class="field">
+                        <div class="control">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.type1" type="text" autocomplete="off">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tile is-child box">
+                    <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">HP:</label>
+                      </div>
+                      <div class="field">
+                        <div class="control">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.hp" type="text" autocomplete="off">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tile is-child box">
+                    <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">Speed:</label>
+                      </div>
+                      <div class="field">
+                        <div class="control">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.speed" type="text" autocomplete="off">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tile is-2 is-vertical is-parent">
+                  <div class="tile is-child box">
+                      <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                          <label class="label">Type 2:</label>
+                        </div>
+                        <div class="field">
+                          <div class="control">
+                            <input id="pkmn_input" class="input" [(ngModel)]="newVals.type2" type="text" autocomplete="off">
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="tile is-child box">
+                      <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                          <label class="label">Attack:</label>
+                        </div>
+                        <div class="field">
+                          <div class="control">
+                            <input id="pkmn_input" class="input" [(ngModel)]="newVals.attack" type="text" autocomplete="off">
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="tile is-child box">
+                    <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">Tier:</label>
+                      </div>
+                      <div class="field">
+                        <div class="control">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.tier" type="text" autocomplete="off">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tile is-2 is-vertical is-parent">
+                  <div class="tile is-child box">
+                      <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                          <label class="label">Ability 1:</label>
+                        </div>
+                        <div class="field">
+                          <div class="control">
+                            <input id="pkmn_input" class="input" [(ngModel)]="newVals.ability1" type="text" autocomplete="off">
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="tile is-child box">
+                    <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">Defense:</label>
+                      </div>
+                      <div class="field">
+                        <div class="control">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.defense" type="text" autocomplete="off">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tile is-child box">
+                    <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">Free:</label>
+                      </div>
+                      <div class="field">
+                        <div class="control">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.available" type="text" autocomplete="off">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tile is-2 is-vertical is-parent">
+                  <div class="tile is-child box">
+                      <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                          <label class="label">Ability 2:</label>
+                        </div>
+                        <div class="field">
+                          <div class="control">
+                            <input id="pkmn_input" class="input" [(ngModel)]="newVals.ability2" type="text" autocomplete="off">
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tile is-child box">
+                    <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">Sp. Attack:</label>
+                      </div>
+                      <div class="field">
+                        <div class="control">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.spAttack" type="text" autocomplete="off">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tile is-child box">
+                    <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">Team:</label>
+                      </div>
+                      <div class="field">
+                        <div class="control">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.team" type="text" autocomplete="off">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </section>
-            <footer class="modal-card-foot">
-                <button class="button is-success">Save changes</button>
-                <button class="button">Cancel</button>
+            <footer class="modal-card-foot border-background">
+              <div class="field is-horizontal">
+                <div class="field">
+                  <div class="control">
+                    <input id="pkmn_input" class="input" [(ngModel)]="password" type="text" placeholder="Password" autocomplete="off">
+                  </div>
+                </div>
+              </div>
+              <button class="button confirm-button" (click)="submitNewVals()">Confirm</button>
             </footer>
         </div>
     </div>

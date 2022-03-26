@@ -8,23 +8,6 @@ import { GlobalConstants } from './../global/global-constants';
   styleUrls: ['./add-edit.component.css']
 })
 export class AddEditComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-    this.pkmnDropdownActive = false;
-    let query = this.dbClient.from('pokemonInfo').select();
-    this.getPokemon(query).then(response => {
-      this.pkmnList = response;
-      this.pkmnNames = Array.from(response, pMon => (<any> pMon).name);
-    });
-  }
-
-  async getPokemon(query:any) {
-    let { data, error } = await query;
-    return data;
-  }
-
   // Import table attributes from GlobalConstants
   tableHeaders = GlobalConstants.pokemonAttributesTableHeaders;
   tableHeaderMap = GlobalConstants.tableHeaderMap;
@@ -33,16 +16,42 @@ export class AddEditComponent implements OnInit {
   pkmn: any;
   pkmnNames: any;
   selectedPokemonName = '';
+  password = "";    // user password
+  newVals: any = {};    // updated/new vals for pokemon (from user input)
+  pkmnList = [];
 
   @Input() addEditEnabled = false;
   @Input() dbClient: any;
   @Output() onAddEditDisabled = new EventEmitter<any>();
 
-  pkmnList = [];
+  constructor() { }
+
+  ngOnInit(): void {
+    this.pkmnDropdownActive = false;
+    let query = this.dbClient.from('pokemonInfo').select();
+    this.getPokemon(query).then(response => {
+      this.pkmnList = response;
+      this.pkmnNames = Array.from(response, pMon => (<any> pMon).id);
+    });
+
+    Object.keys(this.tableHeaderMap).forEach(attribute => {
+      this.newVals[this.tableHeaderMap[attribute]] = '';
+    });
+
+    console.log(this.newVals);
+  }
+
+  async getPokemon(query:any) {
+    let { data, error } = await query;
+    return data;
+  }
+
   // Register DOM click event to dynamically hide add/edit menu when necessary
   @HostListener("document:click", ['$event']) onClick(event: PointerEvent){
     if ((<HTMLSelectElement> event.target).id === "overlay" && this.addEditEnabled) {
       this.onAddEditDisabled.emit();
+    } else if ((<HTMLSelectElement> event.target).id !== "pkmn_choice" && (<HTMLSelectElement> event.target).id !== "pkmn_input" && this.pkmnDropdownActive) {
+      this.setPkmnDropdownInactive();
     }
   }
 
@@ -93,8 +102,12 @@ export class AddEditComponent implements OnInit {
   
   // Register dropdown menu selection
   selectPkmn(pkmn: string) {
-    this.pkmn = this.pkmnList.filter(mon => (<any>mon).name === pkmn);
-    this.selectedPokemonName = this.pkmn.name;
+    this.pkmn = this.pkmnList.filter(mon => (<any>mon).id === pkmn);
     this.pkmnDropdownActive = false;
+  }
+
+  // Verify password and submit user input values
+  submitNewVals() {
+    console.log(this.newVals);
   }
 }

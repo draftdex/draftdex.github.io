@@ -23,6 +23,5 @@ th {
 }
 
 .table-div {
-    max-width: 95%;
     overflow-x: auto;
 }
