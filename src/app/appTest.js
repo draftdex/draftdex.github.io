@@ -41,10 +41,10 @@ const listOfQueries = [
 ];
 
 const listOfAnswers = [ 
-    81,                     // 0. Test number of Tier 1 Pokemon  -----Tests 0-4 Tiers
-    97,                     // 1. Test number of Tier 2 Pokemon
-    109,                    // 2. Test number of Tier 3 Pokemon
-    39,                     // 3. Test number of Legend Tier Pokemon
+    71,                     // 0. Test number of Tier 1 Pokemon  -----Tests 0-4 Tiers
+    86,                     // 1. Test number of Tier 2 Pokemon
+    256,                    // 2. Test number of Tier 3 Pokemon
+    37,                     // 3. Test number of Legend Tier Pokemon
     29,                     // 4. Test number of Restricted Tier Pokemon
     121,                    // 5. Test number of Normal type Pokemon  -------Tests 5-22 Types
     109,                    // 6. Test number of Psychic type Pokemon
