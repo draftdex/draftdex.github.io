@@ -29,6 +29,7 @@ export class AppComponent {
   Help = GlobalConstants.Help;
   Ruleset = GlobalConstants.Ruleset;
   Showdown = GlobalConstants.Showdown;
+  ScheduleLink = GlobalConstants.ScheduleLink;
   addEditEnabled = false;                     // Boolean to control add/edit overlay
 
   // Query database using filter values

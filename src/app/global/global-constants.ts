@@ -119,7 +119,7 @@ export class GlobalConstants {
     public static Ruleset = "docs.google.com/document/d/1u0mzt_oQH4vYfq6SLKqYcVLfCXD9uFLm-d4ldvVSQJ4/edit?usp=sharing";
     public static MasterSheet = "docs.google.com/spreadsheets/d/1DomhRvEdFnVv2-njRJEVGhImahEsNsekWLDF93fiV4Q/edit?usp=sharing";
     public static Help = "mailto:draftdex@gmail.com";
-
+    public static ScheduleLink = "docs.google.com/spreadsheets/d/1djJCyVU7YzCEwBvrDFasvxBLv_1kEx2x6-HlQn6MKtU/edit?usp=sharing";
     public static Showdown = "play.pokemonshowdown.com/teambuilder";
     
-}
+}   
