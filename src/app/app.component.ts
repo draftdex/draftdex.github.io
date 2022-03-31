@@ -117,5 +117,6 @@ export class AppComponent {
   // Disable Add/Edit Overlay
   disableAddEdit() {
     this.addEditEnabled = false;
+    this.processFilters();    // Pull pokemon to refresh any updates
   }
 }

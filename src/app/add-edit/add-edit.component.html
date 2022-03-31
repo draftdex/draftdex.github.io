@@ -9,12 +9,12 @@
                     <div class="dropdown" [ngClass]="{'is-active' : pkmnDropdownActive, '' : !pkmnDropdownActive}">
                       <div class="dropdown-trigger">
                         <div class="control">
-                          <input id="pkmn_input" class="input" [(ngModel)]="selectedPokemonName" type="text" (focus)="setPkmnDropdownActive()" (keyup)="searchPokemon($event)" placeholder="Find a Pokemon" autocomplete="off">
+                          <input id="pkmn_input" class="input" [(ngModel)]="selectedPokemonName" type="text" (focus)="setDropdownActive('pkmn')" (keyup)="searchPokemon($event)" placeholder="Find a Pokemon" autocomplete="off">
                         </div>
                       </div>
                       <div class="dropdown-menu" id="dropdown-menu" role="menu">
                         <div class="dropdown-content dropdown-scroll">
-                          <a id="pkmn_choice" *ngFor="let name of pkmnNames" (click)="selectPkmn(name)" class="dropdown-item pokemon-select-active">
+                          <a id="pkmn_choice" *ngFor="let name of pkmnNames" (click)="selectPkmn(name)" class="dropdown-item select-active pkmn-select">
                             {{name}}
                           </a>
                         </div>
@@ -23,7 +23,7 @@
                 </div>
             </header>
             <section class="modal-card-body overlay-background">
-              <app-query-table [pkmnList]="pkmn"></app-query-table>
+              <app-query-table [pkmnList]="[pkmn]" *ngIf="pkmn.name !== ''"></app-query-table>
               <div class="tile is-ancestor top-row">
                 <div class="tile is-5 is-vertical is-parent">
                   <div class="tile is-child box">
@@ -33,7 +33,7 @@
                       </div>
                       <div class="field">
                         <div class="control">
-                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.name" type="text" autocomplete="off">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.name" type="text" autocomplete="off" placeholder="{{pkmn.name}}">
                         </div>
                       </div>
                     </div>
@@ -47,7 +47,7 @@
                       </div>
                       <div class="field">
                         <div class="control">
-                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.form" type="text" autocomplete="off">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.form" type="text" autocomplete="off" placeholder="{{pkmn.form}}">
                         </div>
                       </div>
                     </div>
@@ -63,7 +63,7 @@
                       </div>
                       <div class="field">
                         <div class="control">
-                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.gmax" type="text" autocomplete="off">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.gmax" type="text" autocomplete="off" placeholder="{{pkmn.gmax}}">
                         </div>
                       </div>
                     </div>
@@ -71,11 +71,20 @@
                   <div class="tile is-child box">
                     <div class="field is-horizontal">
                       <div class="field-label is-normal">
-                        <label class="label">Hidden Ability:</label>
+                        <label class="label">Hidden Ability</label>
                       </div>
-                      <div class="field">
-                        <div class="control">
-                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.hiddenAbility" type="text" autocomplete="off">
+                      <div class="dropdown" [ngClass]="{'is-active' : hiddenAbilityDropdownActive, '' : !hiddenAbilityDropdownActive}">
+                        <div class="dropdown-trigger">
+                          <div class="control">
+                            <input id="hiddenAbility_input" class="input" [(ngModel)]="newVals.hiddenAbility" type="text" (focus)="setDropdownActive('hiddenAbility')" (keyup)="searchAbilities($event, 'hiddenAbility')" placeholder="{{pkmn.hiddenAbility}}" autocomplete="off">
+                          </div>
+                        </div>
+                        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                          <div class="dropdown-content dropdown-scroll">
+                            <a id="hiddenAbility_choice" *ngFor="let ability of abilities" (click)="selectAbility(ability, 3)" class="dropdown-item select-active hiddenAbility-select">
+                              {{ability}}
+                            </a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -87,7 +96,7 @@
                       </div>
                       <div class="field">
                         <div class="control">
-                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.spDefense" type="text" autocomplete="off">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.spDefense" type="number" autocomplete="off" placeholder="{{pkmn.spDefense}}">
                         </div>
                       </div>
                     </div>
@@ -97,11 +106,20 @@
                   <div class="tile is-child box">
                     <div class="field is-horizontal">
                       <div class="field-label is-normal">
-                        <label class="label">Type 1:</label>
+                        <label class="label">Type 1</label>
                       </div>
-                      <div class="field">
-                        <div class="control">
-                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.type1" type="text" autocomplete="off">
+                      <div class="dropdown" [ngClass]="{'is-active' : type1DropdownActive, '' : !type1DropdownActive}">
+                        <div class="dropdown-trigger">
+                          <div class="control">
+                            <input id="type1_input" class="input" [(ngModel)]="newVals.type1" type="text" (focus)="setDropdownActive('type1')" (keyup)="searchTypes($event, 1)" placeholder="{{pkmn.type1}}" autocomplete="off">
+                          </div>
+                        </div>
+                        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                          <div class="dropdown-content dropdown-scroll">
+                            <a id="type1_choice" *ngFor="let type of types" (click)="selectType(type, 1)" class="dropdown-item select-active type1-select">
+                              {{type}}
+                            </a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -113,7 +131,7 @@
                       </div>
                       <div class="field">
                         <div class="control">
-                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.hp" type="text" autocomplete="off">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.hp" type="number" autocomplete="off" placeholder="{{pkmn.hp}}">
                         </div>
                       </div>
                     </div>
@@ -125,7 +143,7 @@
                       </div>
                       <div class="field">
                         <div class="control">
-                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.speed" type="text" autocomplete="off">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.speed" type="number" autocomplete="off" placeholder="{{pkmn.speed}}">
                         </div>
                       </div>
                     </div>
@@ -133,15 +151,24 @@
                 </div>
                 <div class="tile is-2 is-vertical is-parent">
                   <div class="tile is-child box">
-                      <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                          <label class="label">Type 2:</label>
-                        </div>
-                        <div class="field">
+                    <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">Type 2</label>
+                      </div>
+                      <div class="dropdown" [ngClass]="{'is-active' : type2DropdownActive, '' : !type2DropdownActive}">
+                        <div class="dropdown-trigger">
                           <div class="control">
-                            <input id="pkmn_input" class="input" [(ngModel)]="newVals.type2" type="text" autocomplete="off">
+                            <input id="type2_input" class="input" [(ngModel)]="newVals.type2" type="text" (focus)="setDropdownActive('type2')" (keyup)="searchTypes($event, 2)" placeholder="{{pkmn.type2}}" autocomplete="off">
                           </div>
                         </div>
+                        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                          <div class="dropdown-content dropdown-scroll">
+                            <a id="type2_choice" *ngFor="let type of types" (click)="selectType(type, 2)" class="dropdown-item select-active type2-select">
+                              {{type}}
+                            </a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="tile is-child box">
@@ -151,7 +178,7 @@
                         </div>
                         <div class="field">
                           <div class="control">
-                            <input id="pkmn_input" class="input" [(ngModel)]="newVals.attack" type="text" autocomplete="off">
+                            <input id="pkmn_input" class="input" [(ngModel)]="newVals.attack" type="number" autocomplete="off" placeholder="{{pkmn.attack}}">
                           </div>
                         </div>
                       </div>
@@ -159,11 +186,20 @@
                   <div class="tile is-child box">
                     <div class="field is-horizontal">
                       <div class="field-label is-normal">
-                        <label class="label">Tier:</label>
+                        <label class="label">Tier</label>
                       </div>
-                      <div class="field">
-                        <div class="control">
-                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.tier" type="text" autocomplete="off">
+                      <div class="dropdown" [ngClass]="{'is-active' : tierDropdownActive, '' : !tierDropdownActive}">
+                        <div class="dropdown-trigger">
+                          <div class="control">
+                            <input id="tier_input" class="input" [(ngModel)]="newVals.tier" type="text" (focus)="setDropdownActive('tier')" (keyup)="searchAbilities($event, 'tier')" placeholder="{{pkmn.tier}}" autocomplete="off">
+                          </div>
+                        </div>
+                        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                          <div class="dropdown-content dropdown-scroll">
+                            <a id="tier_choice" *ngFor="let tier of tiers" (click)="selectTier(tier)" class="dropdown-item select-active tier-select">
+                              {{tier}}
+                            </a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -171,15 +207,24 @@
                 </div>
                 <div class="tile is-2 is-vertical is-parent">
                   <div class="tile is-child box">
-                      <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                          <label class="label">Ability 1:</label>
-                        </div>
-                        <div class="field">
+                    <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">Ability 1</label>
+                      </div>
+                      <div class="dropdown" [ngClass]="{'is-active' : ability1DropdownActive, '' : !ability1DropdownActive}">
+                        <div class="dropdown-trigger">
                           <div class="control">
-                            <input id="pkmn_input" class="input" [(ngModel)]="newVals.ability1" type="text" autocomplete="off">
+                            <input id="ability1_input" class="input" [(ngModel)]="newVals.ability1" type="text" (focus)="setDropdownActive('ability1')" (keyup)="searchAbilities($event, 'ability1')" placeholder="{{pkmn.ability1}}" autocomplete="off">
                           </div>
                         </div>
+                        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                          <div class="dropdown-content dropdown-scroll">
+                            <a id="ability1_choice" *ngFor="let ability of abilities" (click)="selectAbility(ability, 1)" class="dropdown-item select-active ability1-select">
+                              {{ability}}
+                            </a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="tile is-child box">
@@ -189,7 +234,7 @@
                       </div>
                       <div class="field">
                         <div class="control">
-                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.defense" type="text" autocomplete="off">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.defense" type="number" autocomplete="off" placeholder="{{pkmn.defense}}">
                         </div>
                       </div>
                     </div>
@@ -201,7 +246,7 @@
                       </div>
                       <div class="field">
                         <div class="control">
-                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.available" type="text" autocomplete="off">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.available" type="text" autocomplete="off" placeholder="{{pkmn.available}}">
                         </div>
                       </div>
                     </div>
@@ -209,14 +254,23 @@
                 </div>
                 <div class="tile is-2 is-vertical is-parent">
                   <div class="tile is-child box">
-                      <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                          <label class="label">Ability 2:</label>
-                        </div>
-                        <div class="field">
+                    <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">Ability 2</label>
+                      </div>
+                      <div class="dropdown" [ngClass]="{'is-active' : ability2DropdownActive, '' : !ability2DropdownActive}">
+                        <div class="dropdown-trigger">
                           <div class="control">
-                            <input id="pkmn_input" class="input" [(ngModel)]="newVals.ability2" type="text" autocomplete="off">
+                            <input id="ability2_input" class="input" [(ngModel)]="newVals.ability2" type="text" (focus)="setDropdownActive('ability2')" (keyup)="searchAbilities($event, 'ability2')" placeholder="{{pkmn.ability2}}" autocomplete="off">
                           </div>
+                        </div>
+                        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                          <div class="dropdown-content dropdown-scroll">
+                            <a id="ability2_choice" *ngFor="let ability of abilities" (click)="selectAbility(ability, 2)" class="dropdown-item select-active ability2-select">
+                              {{ability}}
+                            </a>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -227,7 +281,7 @@
                       </div>
                       <div class="field">
                         <div class="control">
-                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.spAttack" type="text" autocomplete="off">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.spAttack" type="number" autocomplete="off" placeholder="{{pkmn.spAttack}}">
                         </div>
                       </div>
                     </div>
@@ -239,7 +293,7 @@
                       </div>
                       <div class="field">
                         <div class="control">
-                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.team" type="text" autocomplete="off">
+                          <input id="pkmn_input" class="input" [(ngModel)]="newVals.team" type="text" autocomplete="off" placeholder="{{pkmn.team}}">
                         </div>
                       </div>
                     </div>
