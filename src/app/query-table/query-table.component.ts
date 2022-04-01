@@ -57,10 +57,8 @@ export class QueryTableComponent implements OnInit, OnChanges {
       if (changes.hasOwnProperty(propName)) {
         switch (propName) {
           case 'pkmnList': {
-            console.log(changes[propName]);
             break;
           } case 'queryProcessing': {
-            console.log(changes[propName]);
             break;
           }
         }
