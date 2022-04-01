@@ -10,7 +10,7 @@ table {
     display: block;
     max-height: 63vh;
     overflow-y: scroll;
-    font-size: 12px;
+    font-size: 11px;
 }
 
 th {
