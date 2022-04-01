@@ -10,7 +10,7 @@ table {
     display: block;
     max-height: 63vh;
     overflow-y: scroll;
-    font-size: 11px;
+    font-size: 13px;
 }
 
 th {
@@ -24,4 +24,10 @@ th {
 
 .table-div {
     overflow-x: auto;
+}
+
+@media screen and (max-width: 770px) {
+    .table {
+        font-size: 11px;
+    }
 }
