@@ -337,33 +337,55 @@ export class AddEditComponent implements OnInit {
   submitNewVals() {
     // Create supabase.io database client
     const dbClient = createClient('https://kqyshvlibkoatazqavuc.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0Mzc0MTI3MSwiZXhwIjoxOTU5MzE3MjcxfQ.hMsQnDsKARs4OyTsIpUR2nPR86TQxbvn3hOoyuGEnA8');
-    let query;
-    // Replace any unchanged values w/ original Pokemon vals
-    if (this.selectedPokemonName !== '') {
-      query = dbClient.from('pokemonInfo').update(this.newVals);
-      query.eq('name', this.selectedPokemonName);
-    } else {
-      // Create new entry
-      let bst: number = this.newVals['hp'] + this.newVals['attack'] + this.newVals['defense'] + this.newVals['spAttack'] + this.newVals['spDefense'] + this.newVals['speed'];
-      let id: string = this.newVals.name + this.newVals.form;
-      let valsToInsert = { 
-        'id': id,
-        'bst': bst,
-        ...this.newVals 
-      };
-      console.log(valsToInsert);
-      query = dbClient.from('pokemonInfo').insert([valsToInsert]);
-    }
+    let query: any;
+    let pwdCorrect = false;   // Flag to verify pwd
 
-    // Gather response from query and clear overlay
-    let res = query.then(response => {
-      if (response.error === null) {
-        this.pkmn = new Pokemon();
-        this.newVals = new Pokemon();
-        this.selectedPokemonName = '';
-        this.onAddEditDisabled.emit();
+    const pwd = dbClient.from('users').select().eq('username', 'Admin');
+    pwd.then(response => {
+      let md5 = require('md5');   // hashing function
+      let user;
+      response.body ? user = response.body[0] : null;
+      if (user) {
+        pwdCorrect = (<any>user).password == md5(this.password);
+      }
+
+      // Replace any unchanged values w/ original Pokemon vals
+      if (pwdCorrect) {
+        if (this.selectedPokemonName !== '') {
+          query = dbClient.from('pokemonInfo').update(this.newVals);
+          query.eq('name', this.selectedPokemonName);
+        } else if (this.newVals.name !== '') {
+          // Create new entry
+          let bst: number = this.newVals['hp'] + this.newVals['attack'] + this.newVals['defense'] + this.newVals['spAttack'] + this.newVals['spDefense'] + this.newVals['speed'];
+          let id: string = this.newVals.form + this.newVals.name;
+          let valsToInsert = { 
+            'id': id,
+            'bst': bst,
+            ...this.newVals 
+          };
+          query = dbClient.from('pokemonInfo').insert([valsToInsert]);
+        } else {
+          alert('Please select a Pokemon to update or provide a new Pokemon name.');
+        }
+    
+        // Gather response from query and clear overlay
+        
+        if (query) {
+          let res = query.then((response: { error: null; }) => {
+            if (response.error === null) {
+              alert("Database Commit Successful")
+              this.pkmn = new Pokemon();
+              this.newVals = new Pokemon();
+              this.selectedPokemonName = '';
+              this.onAddEditDisabled.emit();
+              this.password = '';
+            } else {
+              alert(`Error: ${response.error}`);
+            }
+          });
+        }
       } else {
-        console.error(response.error);
+        alert('Password incorrect');
       }
     });
   }
