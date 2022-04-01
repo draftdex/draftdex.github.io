@@ -27,7 +27,7 @@ th {
 }
 
 @media screen and (max-width: 770px) {
-    .table {
-        font-size: 11px;
+    table {
+        font-size: 11px !important;
     }
 }
