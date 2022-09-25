@@ -10,6 +10,7 @@ import { FilterMenuComponent } from './filter-menu/filter-menu.component';
 import { SortDirective } from './directive/sort.directive';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddEditComponent } from './add-edit/add-edit.component';
+import { PokemonSearchComponent } from './pokemon-search/pokemon-search.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AddEditComponent } from './add-edit/add-edit.component';
     QueryTableComponent,
     FilterMenuComponent,
     SortDirective,
-    AddEditComponent
+    AddEditComponent,
+    PokemonSearchComponent
   ],
   imports: [
     BrowserModule,
