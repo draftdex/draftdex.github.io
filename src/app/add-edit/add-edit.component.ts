@@ -1,8 +1,9 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { Input, HostListener, SimpleChanges, EventEmitter } from '@angular/core';
-import { createClient } from '@supabase/supabase-js';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { HostListener } from '@angular/core';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Pokemon } from '../models/pokemon.model';
-import { GlobalConstants } from './../global/global-constants';
+import { GlobalConstants } from '../global/global-constants';
 
 @Component({
   selector: 'app-add-edit',
@@ -34,11 +35,11 @@ export class AddEditComponent implements OnInit {
   newVals: Pokemon = new Pokemon();    // updated/new vals for pokemon (from user input)
   pkmnList = [];
 
-  @Input() addEditEnabled = false;
-  @Input() dbClient: any;
-  @Output() onAddEditDisabled = new EventEmitter<any>();
+  // Create supabase.io database client
+  dbClient: SupabaseClient = createClient('https://kqyshvlibkoatazqavuc.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0Mzc0MTI3MSwiZXhwIjoxOTU5MzE3MjcxfQ.hMsQnDsKARs4OyTsIpUR2nPR86TQxbvn3hOoyuGEnA8');
 
-  constructor() { }
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     let query = this.dbClient.from('pokemonInfo').select();
@@ -55,8 +56,8 @@ export class AddEditComponent implements OnInit {
 
   // Register DOM click event to dynamically hide add/edit menu when necessary
   @HostListener("document:click", ['$event']) onClick(event: PointerEvent){
-    if ((<HTMLSelectElement> event.target).id === "overlay" && this.addEditEnabled) {
-      this.onAddEditDisabled.emit();
+    if ((<HTMLSelectElement> event.target).id === "overlay") {
+      this.router.navigateByUrl('/pokemon-search');
     } else if ((<HTMLSelectElement> event.target).id !== "pkmn_choice" && (<HTMLSelectElement> event.target).id !== "pkmn_input" && this.pkmnDropdownActive) {
       this.setDropdownInactive('pkmn');
     } else if ((<HTMLSelectElement> event.target).id !== "type1_choice" && (<HTMLSelectElement> event.target).id !== "type1_input" && this.type1DropdownActive) {
@@ -377,8 +378,8 @@ export class AddEditComponent implements OnInit {
               this.pkmn = new Pokemon();
               this.newVals = new Pokemon();
               this.selectedPokemonName = '';
-              this.onAddEditDisabled.emit();
               this.password = '';
+              this.router.navigateByUrl('/pokemon-search');
             } else {
               alert(`Error: ${response.error}`);
             }

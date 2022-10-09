@@ -8,22 +8,19 @@
     <!-- Page Header Section -->
     <app-header></app-header>
 
-    <!-- Filter Menu -->
-    <app-filter-menu (onFilterUpdate)="getFilterUpdate($event)" (onDisplayShortList)="displayShortList()"></app-filter-menu>
-
-    <!-- Table to Display Pokemon Matching Query -->
-    <div class="pt-4 pb-5">
-        <div class="table-container is-flex is-justify-content-center query-table-container">
-            <app-query-table [pkmnList]="pkmnList" [queryProcessing]="queryProcessing" (onAddToShortlist)="addToShortlist($event)" (onRemoveFromShortList)="removeFromShortList($event)"></app-query-table>
-        </div>
-    </div>
-
-    <app-add-edit [addEditEnabled]="addEditEnabled" [dbClient]="dbClient" (onAddEditDisabled)="disableAddEdit()"></app-add-edit>
-
     <div class="bottom-banner">
-        <p><span class="bottom-text-big">Made for the W&W PDL&emsp;</span><span class="bottom-text-small">| <a target="_blank" href="https://{{Ruleset}}">Ruleset</a> | 
-            <a target="_blank" href="https://{{MasterSheet}}">Master Sheet </a>| <a target="_blank" href="https://{{ScheduleLink}}">Schedule</a> |
-             <a target="_blank" href="https://{{Help}}">Help</a> | <a target="_blank" href="https://google.com">Credits</a> |
-              <a target="_blank" href="https://{{Showdown}}">Teambuilder</a> |<a href="#" (click)="addEditEnabled = true;"> Add/Edit</a> | Version 0.01 </span></p>
+        <p><span class="bottom-text-big">Made for the W&W PDL&emsp;</span><span class="bottom-text-small">| 
+            <a target="_blank" href="https://{{Ruleset}}">Ruleset</a> | 
+            <a target="_blank" href="https://{{MasterSheet}}">Master Sheet </a>| 
+            <a target="_blank" href="https://{{ScheduleLink}}">Schedule</a> |
+            <a target="_blank" href="https://{{Help}}">Help</a> | 
+            <a target="_blank" href="https://google.com">Credits</a> |
+            <a target="_blank" href="https://{{Showdown}}">Teambuilder</a> |
+            <a routerLink="/add-edit"> Add/Edit</a> |
+            Version 0.01 
+            </span>
+        </p>
     </div>
+    <router-outlet></router-outlet>
 </body>
+x   
