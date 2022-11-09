@@ -11,6 +11,8 @@ import { SortDirective } from './directive/sort.directive';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddEditComponent } from './add-edit/add-edit.component';
 import { PokemonSearchComponent } from './pokemon-search/pokemon-search.component';
+import { LoginComponent } from './login/login.component';
+import { BottomBannerComponent } from './bottom-banner/bottom-banner.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { PokemonSearchComponent } from './pokemon-search/pokemon-search.componen
     FilterMenuComponent,
     SortDirective,
     AddEditComponent,
-    PokemonSearchComponent
+    PokemonSearchComponent,
+    LoginComponent,
+    BottomBannerComponent
   ],
   imports: [
     BrowserModule,

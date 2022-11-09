@@ -19,3 +19,7 @@
     border-width: 1px;
     border-color: black;
 }
+
+.display-container {
+    height: 100%;
+}
