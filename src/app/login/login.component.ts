@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService, User } from '@auth0/auth0-angular';
 import { Observable } from 'rxjs';
 import { AuthorizationService } from './authorization-service';
-import { FormControl } from '@angular/forms';
 import * as argon2 from 'argon2';
 
 @Component({
@@ -14,7 +13,6 @@ export class LoginComponent implements OnInit {
   
   authentication$: Observable<boolean> | undefined;
   user$: Observable<User | null | undefined> | undefined;
-  loginForm = new FormControl('');
 
   constructor(private authService: AuthService,
               private authorizaiontService: AuthorizationService) { }
