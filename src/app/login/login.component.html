@@ -20,7 +20,10 @@
     
             <div class="field is-grouped login-button-container">
                 <div class="control">
-                    <button class="button login-button-dark">Login</button>
+                    <button class="button login-button-dark" (click)="login()" *ngIf="!(authentication$ | async) as authenticated; else logout_button">Login</button>
+                    <ng-template #logout_button>
+                        <button class="button login-button-dark" (click)="logout()">Logout</button>
+                    </ng-template>
                 </div>
                 <div class="control">
                     <button class="button is-link is-light">Continue as Guest</button>
