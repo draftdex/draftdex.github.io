@@ -1,20 +1,20 @@
 <body>
-    <div class="login-container">
-        <div class="login-form">
+    <form class="login-form" [formGroup]="loginCreds">
+        <div class="login-container">
 
             <div class="field">
-                <label class="label">Trainer Name</label>
+                <label class="label" for="username">Trainer Name</label>
                 <div class="control has-icons-left">
                     <span class="icon"><i class="pokeball-icon"></i></span>
-                    <input class="input" type="text">
+                    <input class="input" type="text" formControlName="username">
                 </div>
             </div>
 
-            <div class="field">
+            <div>
                 <label class="label">Password</label>
                 <div class="control has-icons-left">
                     <span class="icon"><i class=" pokeball-icon"></i></span>
-                    <input class="input" type="text">
+                    <input class="input" type="text" formControlName="password">
                 </div>
             </div>
     
@@ -29,7 +29,9 @@
                     <button class="button is-link is-light">Continue as Guest</button>
                 </div>
             </div>
+
+            <a>Register an account</a>
         </div>
-        <app-bottom-banner class="bottom-banner"></app-bottom-banner>
-    </div>
+    </form>
+    <app-bottom-banner class="bottom-banner"></app-bottom-banner>
 </body>

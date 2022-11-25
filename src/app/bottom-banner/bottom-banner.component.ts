@@ -3,6 +3,7 @@ import { GlobalConstants } from './../global/global-constants';
 
 @Component({
   selector: 'app-bottom-banner',
+  standalone: true,
   templateUrl: './bottom-banner.component.html',
   styleUrls: ['./bottom-banner.component.css']
 })

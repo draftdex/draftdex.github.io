@@ -10,9 +10,9 @@ import { SortDirective } from './directive/sort.directive';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddEditComponent } from './add-edit/add-edit.component';
 import { PokemonSearchComponent } from './pokemon-search/pokemon-search.component';
+import { AuthModule } from '@auth0/auth0-angular';
 import { LoginComponent } from './login/login.component';
 import { BottomBannerComponent } from './bottom-banner/bottom-banner.component';
-import { AuthModule } from '@auth0/auth0-angular';
 
 
 @NgModule({
@@ -23,9 +23,7 @@ import { AuthModule } from '@auth0/auth0-angular';
     FilterMenuComponent,
     SortDirective,
     AddEditComponent,
-    PokemonSearchComponent,
-    LoginComponent,
-    BottomBannerComponent
+    PokemonSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +34,8 @@ import { AuthModule } from '@auth0/auth0-angular';
       domain: 'dev-mzpojjalxtx2aqqn.us.auth0.com',
       clientId: 'r7am8vu0TbXg7bNbhqfjUXjDii425AQW'
     }),
+    BottomBannerComponent,
+    LoginComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
