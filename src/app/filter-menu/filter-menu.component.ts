@@ -116,4 +116,15 @@ export class FilterMenuComponent implements OnInit {
   displayShortList() {
     this.onDisplayShortList.emit()
   }
+
+
+  // Boolean to track if filter menu is open
+  menuOpen = true;
+
+  //Fire event to collapse filter menu
+  collapseMenu() {
+      this.menuOpen = !this.menuOpen   
+  }
+
+
 }

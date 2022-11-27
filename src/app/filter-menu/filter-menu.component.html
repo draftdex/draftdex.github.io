@@ -4,10 +4,11 @@
     <div class="hero is-info is-small banner-format">
       <div class="hero-body banner banner-format">
         <p class="subtitle">Search Filters</p>
+        <a class="button is-warning collapseButton" style="width: 20px; height : 15px ;" id="collapseButton" (click)="collapseMenu()">-</a> 
       </div>
     </div>
     <form class="box" autocomplete="off">  
-      <div class="columns">
+      <div *ngIf="menuOpen" class="columns">
         <!--First Column-->
         <div class="column is-flex is-align-items-center is-justify-content-center is-flex-direction-column column-squeeze">
           <div class="field is-horizontal">
