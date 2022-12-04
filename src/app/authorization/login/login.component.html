@@ -1,0 +1,33 @@
+<form class="login-form px-6 py-5" [formGroup]="loginCreds">
+    <div class="login-container">
+        <div class="field my-4">
+            <label class="label" for="username">Trainer Name</label>
+            <div class="control has-icons-left">
+                <span class="icon"><i class="pokeball-icon"></i></span>
+                <input class="input" [ngClass]="{'error': authError}" type="text" formControlName="username" (click)="authError = false;">
+            </div>
+        </div>
+        <div class="field my-2">
+            <label class="label">Password</label>
+            <div class="control has-icons-left">
+                <span class="icon"><i class=" pokeball-icon"></i></span>
+                <input class="input" [ngClass]="{'error': authError}" type="password" formControlName="password" (click)="authError = false;">
+                <p *ngIf="authError" class="help error">
+                    Invalid trainer credentials.
+                </p>
+            </div>
+        </div>
+
+        <div class="field mt-6 is-grouped login-button-container">
+            <div class="login-buttons pb-3">
+                <div class="control">
+                    <button class="button login-button-dark" (click)="login()" [ngClass]="{'is-loading': loading}" [disabled]="loading">Login</button>
+                </div>
+                <div class="control">
+                    <button class="button is-link is-light" (click)="loginGuest()" [disabled]="loading">Continue as Guest</button>
+                </div>
+            </div>
+            <p>Need an account? <a (click)="onRegister.emit()">Register</a></p>
+        </div>
+    </div>
+</form>

@@ -10,8 +10,7 @@ import { SortDirective } from './directive/sort.directive';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddEditComponent } from './add-edit/add-edit.component';
 import { PokemonSearchComponent } from './pokemon-search/pokemon-search.component';
-import { AuthModule } from '@auth0/auth0-angular';
-import { LoginComponent } from './login/login.component';
+import { AuthComponent } from './authorization/auth.component';
 import { BottomBannerComponent } from './bottom-banner/bottom-banner.component';
 
 
@@ -30,12 +29,8 @@ import { BottomBannerComponent } from './bottom-banner/bottom-banner.component';
     AppRoutingModule,
     FormsModule,
     FontAwesomeModule,
-    AuthModule.forRoot({
-      domain: 'dev-mzpojjalxtx2aqqn.us.auth0.com',
-      clientId: 'r7am8vu0TbXg7bNbhqfjUXjDii425AQW'
-    }),
     BottomBannerComponent,
-    LoginComponent
+    AuthComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

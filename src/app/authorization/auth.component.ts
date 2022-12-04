@@ -1,28 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthorizationService } from './authorization-service';
-import * as argon2 from 'argon2';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
-import { AppModule } from '../app.module';
 import { CommonModule } from '@angular/common';
 import { BottomBannerComponent } from '../bottom-banner/bottom-banner.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-auth',
   standalone: true,
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  imports: [ReactiveFormsModule, CommonModule, BottomBannerComponent]
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.css'],
+  imports: [ReactiveFormsModule, CommonModule, BottomBannerComponent, LoginComponent, RegisterComponent]
 })
-export class LoginComponent implements OnInit {
-  
-  authentication$: Observable<boolean> | undefined;
-  loginCreds: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl('')
-  })
+export class AuthComponent implements OnInit {
+  loginForm = true;
 
-  constructor(private authorizationService: AuthorizationService) { }
+  constructor() { }
 
   ngOnInit(): void {
     // this.authorizationService.signUp();
@@ -42,7 +36,6 @@ export class LoginComponent implements OnInit {
     // query db for stored hash password
     // const match = await argon2.verify(hash, password);
     // this.authService.loginWithPopup();
-    console.log(this.loginCreds.value);
   }
 
   logout() {
