@@ -1,26 +1,39 @@
+.align-dropdown-center {
+    width: 50%; 
+    margin-left: 25px;
+    text-align: center;
+}
+
+.dropdown-item {
+    text-align: center;
+}
+
+.test {
+    cursor: pointer;
+}
+
+.test :hover {
+    background-color: red;
+}
+
+.header-height {
+    min-height: 12vh;
+}
+
 .logo {
     width: 12vh;
 }
 
-.logo-display {
-    padding-left: 20px !important;
-    display: flex !important;
-    justify-content: flex-start !important;
-    align-items: center;
+.menu :hover {
+    cursor: pointer;
 }
 
 @media screen and (max-width: 770px) {
     .logo-display {
         padding-left: 12px !important;
-        justify-content: center !important;
     }
 }
 
-
 .title {
     width: 369px;
-}
-
-.header-height {
-    min-height: 12vh;
 }

@@ -2,6 +2,7 @@
 import { Injectable } from "@angular/core";
 import { SupabaseClient, createClient } from "@supabase/supabase-js";
 import { Observable, from, first } from "rxjs";
+import { User } from "./models/User.model";
 
 @Injectable({
     providedIn: 'root'      // Ensure this is a singleton service
@@ -16,8 +17,8 @@ export class SupabaseService {
      * @param pwd 
      * @returns 
      */
-    getUserCreds(username: string): Observable<any> {
-        let query = this.dbClient.from('users').select('password');
+    getUserCreds(username: string): Observable<User[]> {
+        let query = this.dbClient.from('users').select('*');
         query.eq('username', username);
         let user$ = from(this.executeQuery(query)).pipe(first());
         return user$;

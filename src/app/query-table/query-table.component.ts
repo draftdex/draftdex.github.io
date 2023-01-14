@@ -69,6 +69,6 @@ export class QueryTableComponent implements OnInit, OnChanges {
   // Add pokemon to shortlist
   editShortlist(pkmn: any) {
     // Emit event to edit pkmn in shortlist
-    pkmn.inShortList ? this.onRemoveFromShortList.emit(pkmn) : this.onAddToShortlist.emit(pkmn)
+    pkmn.inShortList ? this.onRemoveFromShortList.emit(pkmn) : this.onAddToShortlist.emit(pkmn);
   }
 }

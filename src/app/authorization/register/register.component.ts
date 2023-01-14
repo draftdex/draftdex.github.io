@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { AuthService } from '../auth-service';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,39 +11,41 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./register.component.css'],
   imports: [ReactiveFormsModule, CommonModule]
 })
-export class RegisterComponent implements OnInit {
-  
-  authentication$: Observable<boolean> | undefined;
-  loginCreds: FormGroup = new FormGroup({
+export class RegisterComponent {
+  // TODO -- fix this and validate input
+  @Output() onRegister = new EventEmitter();
+
+  public authError: boolean = false;
+
+  registerCreds: FormGroup = new FormGroup({
+    team: new FormControl(''),
     username: new FormControl(''),
     password: new FormControl('')
   })
 
-  constructor() { }
+  loading: boolean = false;    // Indicate whether or not content is being loaded 
 
-  ngOnInit(): void {
-    // this.authorizationService.signUp();
-    //TODO -- Email verification turned off - see if we can register users without emails
+  constructor(private authService: AuthService, private router: Router) {
+    this.authService.authenticated$.subscribe(next => {
+      this.loading = false;
+      next ? this.router.navigate(['pokemon-search']) : this.authError = true;
+    });
   }
 
-  register(user: string, password: string) {
-    // put this in auth service
-    // const hash = await argon2.hash(password, {
-    //   memoryCost: 65536, // 64KB,
-    //   timeCost: 3, // # iters,
-    //   parallelism: 4
-    // })
+  register() {
+    this.loading = true;
+    this.authService.registerUser(this.registerCreds.value.team, this.registerCreds.value.username, this.registerCreds.value.password);
   }
 
-  login(user?: string, password?: string) {
-    // query db for stored hash password
-    // const match = await argon2.verify(hash, password);
-    // this.authService.loginWithPopup();
-    console.log(this.loginCreds.value);
+  /**
+   * Navigate to pokemon-search table with 'Guest' account
+   */
+  registerGuest() {
+    this.router.navigate(['pokemon-search']);
   }
 
-  logout() {
-    //this.authService.logout();
+  cancelRegister() {
+    console.log('register')
   }
 
 }

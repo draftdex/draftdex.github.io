@@ -30,7 +30,6 @@ export class PokemonSearchComponent implements OnInit {
   // Sets filterVals to filter selections and calls getPokemon() to query database
   getFilterUpdate(filter_vals: any):void {
     this.filterVals = filter_vals;
-    console.log(this.filterVals);
     this.processFilters();
   }
 

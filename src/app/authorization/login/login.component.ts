@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BottomBannerComponent } from 'src/app/bottom-banner/bottom-banner.component';
@@ -27,19 +26,9 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) {
     this.authService.authenticated$.subscribe(next => {
-      console.log(next);
       this.loading = false;
       next ? this.router.navigate(['pokemon-search']) : this.authError = true;
     });
-  }
-
-  register(user: string, password: string) {
-    // put this in auth service
-    // const hash = await argon2.hash(password, {
-    //   memoryCost: 65536, // 64KB,
-    //   timeCost: 3, // # iters,
-    //   parallelism: 4
-    // })
   }
 
   login() {
@@ -47,13 +36,10 @@ export class LoginComponent {
     this.authService.authenticateUser(this.loginCreds.value.username, this.loginCreds.value.password);
   }
 
+  /**
+   * Navigate to pokemon-search table with 'Guest' account
+   */
   loginGuest() {
-    // TODO: Set user as guest for auth service
     this.router.navigate(['pokemon-search']);
   }
-
-  logout() {
-    //this.authService.logout();
-  }
-
 }

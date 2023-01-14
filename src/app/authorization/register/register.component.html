@@ -1,4 +1,4 @@
-<!--<form class="register-form px-6 py-5" [formGroup]="registerCreds">
+<form class="register-form px-6 py-5" [formGroup]="registerCreds">
     <div class="register-container">
         <div class="field my-4">
             <label class="label" for="username">Trainer Name</label>
@@ -21,14 +21,12 @@
         <div class="field mt-6 is-grouped register-button-container">
             <div class="register-buttons pb-3">
                 <div class="control">
-                    <button class="button register-button-dark" (click)="register()" [ngClass]="{'is-loading': loading}" [disabled]="loading">register</button>
+                    <button class="button register-button-dark" (click)="register()" [ngClass]="{'is-loading': loading}" [disabled]="loading">Claim Team</button>
                 </div>
                 <div class="control">
-                    <button class="button is-link is-light" (click)="registerGuest()" [disabled]="loading">Continue as Guest</button>
+                    <button class="button is-link is-light" (click)="cancelRegister()" [disabled]="loading">Cancel</button>
                 </div>
             </div>
-            <p>Need an account? <a (click)="onRegister.emit()">Register</a></p>
         </div>
     </div>
-</form>-->
-<p>Hello</p>
+</form>
