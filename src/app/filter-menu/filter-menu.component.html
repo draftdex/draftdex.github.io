@@ -86,6 +86,23 @@
         <!--Third Column-->
         <div class="column is-flex is-align-items-center is-justify-content-center is-flex-direction-column column-squeeze">
           <div class="field is-horizontal">
+            <div class="dropdown" [ngClass]="{'is-active' : abilityActive, '' : !abilityActive}">
+              <div class="dropdown-trigger">
+                <div class="control">
+                  <input id="ability_input" class="input" [(ngModel)]="ability" name="ability" type="text" (focus)="setAbilityActive()" (keyup)="searchAbilities($event)" placeholder="Pokemon Name">
+                </div>
+              </div>
+              <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                <div class="dropdown-content dropdown-scroll">
+                  <a id="ability_choice" *ngFor="let ability of abilityList" (click)="selectAbility(ability)" class="dropdown-item ability-select-active">
+                    {{ability}}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div>
             <div class="field-label">
               <label class="label filter-font">Dual-Type&nbsp; </label>
             </div>
