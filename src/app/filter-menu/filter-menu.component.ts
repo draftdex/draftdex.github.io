@@ -129,5 +129,72 @@ export class FilterMenuComponent implements OnInit {
       this.menuOpen = !this.menuOpen   
   }
 
+  // Show ability dropdown menu
+  setNameSearchActive() {
+    this.abilityActive = true;
+  }
+
+  // Hide ability dropdown menu
+  setNameSearchInactive() {
+    this.abilityActive = false;
+  }
+
+  // Register dropdown menu selection
+  selectNameSearch(ability: string) {
+    this.ability = ability;
+    this.abilityActive = false;
+  }
+  /*
+  // Register DOM click event to dynamically hide ability dropdown when necessary
+  @HostListener("document:click", ['$event']) onClick(event: PointerEvent){
+    if ((<HTMLSelectElement> event.target).id !== "ability_choice" && (<HTMLSelectElement> event.target).id !== "ability_input" && this.abilityActive) {
+      this.setAbilityInactive();
+    }
+  }
+
+  
+  // Register DOM keypress event to dynamically hide ability dropdown when [esc] is pressed
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) { 
+    if (event.key === "Escape" && this.abilityActive) {
+      this.setAbilityInactive();
+    }
+  }
+  */
+ 
+  // Dynamically display abilities according to input text
+  searchPokemonName($event: KeyboardEvent) {
+    // Grab abilities from ability dropdown
+    const pokemonnames = document.getElementsByClassName('pkmname-select-active'); // innerText only gives human-readable content of <a> tag
+    
+    // Determine if a match is found
+    let foundName = false;
+
+    // Display all potential abilities if no input
+    if (!this.abilityActive && $event.key !== 'Escape') {
+      this.setAbilityActive();
+      for (let i = 0; i < pokemonnames.length; i++) {
+        (<HTMLElement> pokemonnames[i]).style.display = "";
+      }
+    }
+
+    // Iterate over abilities and compare to input text
+    // Only display options matching input
+    for (let i = 0; i < pokemonnames.length; i++) {
+      let possible_ability = <HTMLElement> pokemonnames[i];
+      if (possible_ability.innerText.toUpperCase().indexOf(this.ability.toUpperCase()) > -1) {
+        possible_ability.style.display = "";
+        foundName = true;
+      } else {
+        possible_ability.style.display = "none";
+      }
+    }
+
+    // Hide dropdown menu if input doesn't match any abilities
+    if (!foundName) {
+      this.setAbilityInactive();
+    }
+  }
+
 
 }
