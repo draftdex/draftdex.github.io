@@ -85,7 +85,7 @@
 
         <!--Third Column-->
         <div class="column is-flex is-align-items-center is-justify-content-center is-flex-direction-column column-squeeze">
-          <div class="field is-horizontal">
+          <div class="field is-horizontal mb-0 mt-3">
             <div class="dropdown" [ngClass]="{'is-active' : abilityActive, '' : !abilityActive}">
               <div class="dropdown-trigger">
                 <div class="control">
@@ -102,31 +102,35 @@
             </div>
           </div>
           
-          <div>
-            <div class="field-label">
-              <label class="label filter-font">Dual-Type&nbsp; </label>
+          <div class="column is-flex is-flex-direction-column is-justify-content-center p-0 m-0">
+            <div class="field is-horizontal m-0">
+              <div class="field-label">
+                <label class="label filter-font">Dual-Type&nbsp; </label>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <div class="checkbox">
+                    <input type="checkbox" [(ngModel)]="dualType" name="dualType">
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="field">
-              <div class="control">
-                <div class="checkbox">
-                  <input type="checkbox" [(ngModel)]="dualType" name="dualType">
+
+            <div class="field is-horizontal m-0">
+              <div class="field-label">
+                <label class="label filter-font">Free Agent</label>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <div class="checkbox">
+                    <input type="checkbox" [(ngModel)]="available" name="available">
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="field is-horizontal">
-            <div class="field-label">
-              <label class="label filter-font">Free Agent</label>
-            </div>
-            <div class="field">
-              <div class="control">
-                <div class="checkbox">
-                  <input type="checkbox" [(ngModel)]="available" name="available">
-                </div>
-              </div>
-            </div>
-          </div>
+
         </div>
 
         <!--4th column-->
