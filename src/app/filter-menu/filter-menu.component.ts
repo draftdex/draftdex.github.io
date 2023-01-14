@@ -18,9 +18,13 @@ export class FilterMenuComponent implements OnInit {
   typeList = GlobalConstants.typeList;
   abilityList = GlobalConstants.abilityList;
   tierList = GlobalConstants.tierList;
+  pokemonSearchList = GlobalConstants.pokemonSearchList;
 
   // Boolean to dynamically render ability dropdown menu
   abilityActive = false;
+
+  //Boolean to dynamically render pokemon name dropdown
+  pokemonActive = false;
 
   // Keep track of filter values
   @Output() onFilterUpdate = new EventEmitter<any>();

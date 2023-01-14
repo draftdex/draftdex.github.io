@@ -121,5 +121,21 @@ export class GlobalConstants {
     public static Help = "mailto:draftdex@gmail.com";
     public static ScheduleLink = "docs.google.com/spreadsheets/d/1djJCyVU7YzCEwBvrDFasvxBLv_1kEx2x6-HlQn6MKtU/edit?usp=sharing";
     public static Showdown = "play.pokemonshowdown.com/teambuilder";
+
+
+    public static pokemonSearchList = [
+        'Burtli',
+        'Diancie',
+        'Hydreigon',
+        'Luxray',
+        'Garchomp',
+        'Mankey',
+        'Your',
+        'Mother',
+        'Groudon',
+        'Grimmysnorl',
+        'The Clops',
+        'Ice'
+    ];
     
 }   
