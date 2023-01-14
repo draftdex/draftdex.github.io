@@ -67,10 +67,10 @@ export class GlobalConstants {
     public static tierList = [
         'Restricted',
         'Legend',
-        'GMax',
         '1',
         '2',
         '3',
+        '4',
         'Unlisted',
         'Banned'
     ];
