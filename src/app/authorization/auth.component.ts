@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BottomBannerComponent } from '../bottom-banner/bottom-banner.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { SupabaseService } from '../supabase-service';
 
 @Component({
   selector: 'app-auth',
@@ -14,12 +15,12 @@ import { RegisterComponent } from './register/register.component';
 })
 export class AuthComponent implements OnInit {
   loginForm = true;
+  availableTeams: string[] = [];
 
-  constructor() { }
+  constructor(private supabaseService: SupabaseService) { }
 
   ngOnInit(): void {
-    // this.authorizationService.signUp();
-    //TODO -- Email verification turned off - see if we can register users without emails
+    this.supabaseService.getUnclaimedTeams().subscribe(res => this.availableTeams = res)
   }
 
   login(user?: string, password?: string) {

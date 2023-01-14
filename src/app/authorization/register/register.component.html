@@ -1,32 +1,43 @@
-<form class="register-form px-6 py-5" [formGroup]="registerCreds">
+<form class="register-form px-6 my-4" [formGroup]="registrationForm">
     <div class="register-container">
-        <div class="select">
-            <select>
-            <option>Select dropdown</option>
-            <option>With options</option>
-            </select>
+        <div class="field m-1">
+            <label class="label m-0" for="username">Team</label>
+            <div class="select form-field-border" (click)="resetErrors()">
+                <select class="border" [ngClass]="{'border-error': passwordMismatch || invalidForm}" formControlName="team">
+                    <option></option>
+                    <option *ngFor="let team of availableTeams">{{team}}</option>
+                </select>
+            </div>
         </div>
-        <div class="field my-4">
-            <label class="label" for="username">Trainer Name</label>
+        <div class="field m-1">
+            <label class="label m-0" for="username">Trainer Name</label>
             <div class="control has-icons-left">
                 <span class="icon"><i class="pokeball-icon"></i></span>
-                <input class="input" [ngClass]="{'error': passwordMismatch}" type="text" formControlName="username" (click)="passwordMismatch = false;">
+                <input class="input" [ngClass]="{'error': passwordMismatch || invalidForm}" type="text" formControlName="username" (click)="resetErrors()">
             </div>
         </div>
-        <div class="field my-2">
-            <label class="label">Password</label>
+        <div class="field m-1">
+            <label class="label m-0">Password</label>
             <div class="control has-icons-left">
                 <span class="icon"><i class=" pokeball-icon"></i></span>
-                <input class="input" [ngClass]="{'error': passwordMismatch}" type="password" formControlName="password" (click)="passwordMismatch = false;">
+                <input class="input" [ngClass]="{'error': passwordMismatch || invalidForm}" type="password" formControlName="password" (click)="resetErrors()">
             </div>
         </div>
-        <label class="label">Confirm Password</label>
-        <div class="control has-icons-left">
-            <span class="icon"><i class=" pokeball-icon"></i></span>
-            <input class="input" [ngClass]="{'error': passwordMismatch}" type="password" formControlName="password" (click)="passwordMismatch = false;">
-            <p *ngIf="passwordMismatch" class="help error">
-                Passwords do not match
-            </p>
+        <div class="field m-1">
+            <label class="label m-0">Confirm Password</label>
+            <div class="control has-icons-left">
+                <span class="icon"><i class=" pokeball-icon"></i></span>
+                <input class="input" [ngClass]="{'error': passwordMismatch || invalidForm}" type="password" formControlName="passwordConfirmation" (click)="resetErrors()">
+                <p *ngIf="passwordMismatch" class="help error">
+                    Passwords do not match
+                </p>
+                <p *ngIf="invalidForm" class="help error">
+                    All fields are required for registration
+                </p>
+                <p *ngIf="registrationError" class="help error">
+                    A registration error has occurred. Please contact an admin
+                </p>
+            </div>
         </div>
 
         <div class="field mt-5 is-grouped register-button-container">

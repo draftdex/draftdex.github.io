@@ -1,8 +1,8 @@
 // Service intended to expose the supabase client to other services
 import { Injectable } from "@angular/core";
 import { SupabaseClient, createClient } from "@supabase/supabase-js";
-import { Observable, from, first } from "rxjs";
-import { User } from "./models/User.model";
+import { Observable, from, first, map } from "rxjs";
+import { NewUser, User } from "./models/User.model";
 
 @Injectable({
     providedIn: 'root'      // Ensure this is a singleton service
@@ -22,6 +22,23 @@ export class SupabaseService {
         query.eq('username', username);
         let user$ = from(this.executeQuery(query)).pipe(first());
         return user$;
+    }
+
+    getUnclaimedTeams(): Observable<string[]> {
+        let query = this.dbClient.from('users').select('team');
+        query.eq('claimed', false);
+        let availableTeams$ = from(this.executeQuery(query)).pipe(
+            first(),
+            map(res => res.map((user: { team: string }) => user.team)));
+        return availableTeams$;
+    }
+
+    registerUser(team: string, username: string, pwd: string): Observable<any> {
+        let query = this.dbClient.from('users')
+            .update({username: username, password: pwd, claimed: true})
+            .eq('team', team);
+        let newUser$ = from(this.executeQuery(query)).pipe(first());
+        return newUser$;
     }
 
     async executeQuery(query: any) {

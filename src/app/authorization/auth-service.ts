@@ -3,13 +3,14 @@ import { Router } from "@angular/router";
 import { SupabaseService } from "../supabase-service";
 import * as bcrypt from 'bcryptjs';
 import { Subject } from "rxjs";
-import { User } from "../models/User.model";
+import { NewUser, User } from "../models/User.model";
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
     authenticated$ = new Subject();     // Subject to alert subscribers when user is authenticated
+    registered$ = new Subject();        // Subject to alert when user has been registered
     userSession: User = User.getGuestAccount();
 
     constructor(private supabaseClient: SupabaseService,
@@ -49,14 +50,10 @@ export class AuthService {
         });
     }
 
-    public registerUser(team: string, username: string, plaintextPass: string) {
-        console.log('register used!')
-        const saltRounds = 10;
-        bcrypt.genSalt(saltRounds, (err, salt) => {
-            bcrypt.hash(plaintextPass, salt, (err, hash) => {
-                // TODO: Add user, hash to db
-                // this.authenticated$.complete();
-            });
+    public registerUser(newUser: NewUser) {
+        const hash = this.generateHash(newUser.password);
+        this.supabaseClient.registerUser(newUser.team, newUser.username, hash).subscribe(res => {
+            this.registered$.next(res);
         });
     }
 
@@ -64,5 +61,10 @@ export class AuthService {
         this.authenticated$ = new Subject();
         this.userSession = User.getGuestAccount();
         this.router.navigate(['login'])
+    }
+
+    private generateHash(plaintext: string): string {
+        const saltRounds = 10;
+        return bcrypt.hashSync(plaintext, saltRounds);
     }
 }

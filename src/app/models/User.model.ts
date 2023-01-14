@@ -23,3 +23,10 @@ export class User {
         return new User('Guest', '', 'WW');
     }
 }
+
+export interface NewUser {
+    team: string;
+    username: string;
+    password: string;
+    passwordConfirmation: string;
+}
