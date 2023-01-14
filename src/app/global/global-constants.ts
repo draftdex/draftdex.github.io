@@ -67,10 +67,10 @@ export class GlobalConstants {
     public static tierList = [
         'Restricted',
         'Legend',
-        'GMax',
         '1',
         '2',
         '3',
+        '4',
         'Unlisted',
         'Banned'
     ];
@@ -116,10 +116,10 @@ export class GlobalConstants {
     };
 
 
-    public static Ruleset = "docs.google.com/document/d/1u0mzt_oQH4vYfq6SLKqYcVLfCXD9uFLm-d4ldvVSQJ4/edit?usp=sharing";
-    public static MasterSheet = "docs.google.com/spreadsheets/d/1DomhRvEdFnVv2-njRJEVGhImahEsNsekWLDF93fiV4Q/edit?usp=sharing";
+    public static Ruleset = "docs.google.com/document/d/1qHL1TpiBeMYpzjgcLNMFXlfqS7WEyUTMgzG3_aRhrMw/edit?usp=sharing";
+    public static MasterSheet = "docs.google.com/spreadsheets/d/1tY6Eu4fSbemBQfWcpl3CC38Et3aCkqbDKAtGB-Eb2xE/edit?usp=sharing";
     public static Help = "mailto:draftdex@gmail.com";
-    public static ScheduleLink = "docs.google.com/spreadsheets/d/1djJCyVU7YzCEwBvrDFasvxBLv_1kEx2x6-HlQn6MKtU/edit?usp=sharing";
+    public static ScheduleLink = "docs.google.com/spreadsheets/d/1PEGa5tafwHpjt4u6Aj-q2uTRIPPKOIFUM19r-iLRfi0/edit?usp=sharing";
     public static Showdown = "play.pokemonshowdown.com/teambuilder";
     
 }   

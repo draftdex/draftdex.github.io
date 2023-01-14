@@ -16,7 +16,7 @@
         <tbody>
             <tr *ngFor="let pkmn of pkmnList">
                 <td id="name" class="has-text-left">
-                    <a href="#" (click)="editShortlist(pkmn)">
+                    <a (click)="editShortlist(pkmn)">
                         <span class="icon">
                             <!-- If pkmn not in shortList, show PLUS. Otherwise, show MINUS -->
                             <fa-icon *ngIf="!pkmn.inShortList" [icon]="faPlusSquare"></fa-icon>

@@ -12,6 +12,7 @@ import { AddEditComponent } from './add-edit/add-edit.component';
 import { PokemonSearchComponent } from './pokemon-search/pokemon-search.component';
 import { AuthComponent } from './authorization/auth.component';
 import { BottomBannerComponent } from './bottom-banner/bottom-banner.component';
+import { CreditsComponent } from './credits/credits.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { BottomBannerComponent } from './bottom-banner/bottom-banner.component';
     FilterMenuComponent,
     SortDirective,
     AddEditComponent,
-    PokemonSearchComponent
+    PokemonSearchComponent,
+    CreditsComponent
   ],
   imports: [
     BrowserModule,

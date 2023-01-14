@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BottomBannerComponent } from '../bottom-banner/bottom-banner.component';
@@ -21,15 +20,6 @@ export class AuthComponent implements OnInit {
   ngOnInit(): void {
     // this.authorizationService.signUp();
     //TODO -- Email verification turned off - see if we can register users without emails
-  }
-
-  register(user: string, password: string) {
-    // put this in auth service
-    // const hash = await argon2.hash(password, {
-    //   memoryCost: 65536, // 64KB,
-    //   timeCost: 3, // # iters,
-    //   parallelism: 4
-    // })
   }
 
   login(user?: string, password?: string) {

@@ -106,4 +106,5 @@ export class PokemonSearchComponent implements OnInit {
   displayShortList() {
     this.pkmnList = this.shortList;
   }
+
 }

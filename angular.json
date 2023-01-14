@@ -103,6 +103,7 @@
       }
     }
   },
+  "defaultProject": "DraftDex",
   "cli": {
     "analytics": false
   }

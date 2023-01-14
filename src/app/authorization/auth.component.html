@@ -2,7 +2,7 @@
     <div class="form-container">
         <app-login *ngIf="loginForm; else registerForm" (onRegister)="loginForm = false"></app-login>
         <ng-template #registerForm>
-            <app-register></app-register>
+            <app-register (onCloseRegisterForm)="loginForm = true;"></app-register>
         </ng-template>
     </div>
     <app-bottom-banner class="bottom-banner"></app-bottom-banner>

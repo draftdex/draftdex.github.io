@@ -13,23 +13,20 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
   // TODO -- fix this and validate input
-  @Output() onRegister = new EventEmitter();
+  @Output() onCloseRegisterForm = new EventEmitter();
 
-  public authError: boolean = false;
+  public passwordMismatch: boolean = false;
 
   registerCreds: FormGroup = new FormGroup({
     team: new FormControl(''),
     username: new FormControl(''),
-    password: new FormControl('')
+    password: new FormControl(''),
+    passwordConfirmation: new FormControl('')
   })
 
   loading: boolean = false;    // Indicate whether or not content is being loaded 
 
   constructor(private authService: AuthService, private router: Router) {
-    this.authService.authenticated$.subscribe(next => {
-      this.loading = false;
-      next ? this.router.navigate(['pokemon-search']) : this.authError = true;
-    });
   }
 
   register() {
@@ -45,7 +42,7 @@ export class RegisterComponent {
   }
 
   cancelRegister() {
-    console.log('register')
+    this.onCloseRegisterForm.emit('cancel');
   }
 
 }

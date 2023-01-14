@@ -1,24 +1,35 @@
 <form class="register-form px-6 py-5" [formGroup]="registerCreds">
     <div class="register-container">
+        <div class="select">
+            <select>
+            <option>Select dropdown</option>
+            <option>With options</option>
+            </select>
+        </div>
         <div class="field my-4">
             <label class="label" for="username">Trainer Name</label>
             <div class="control has-icons-left">
                 <span class="icon"><i class="pokeball-icon"></i></span>
-                <input class="input" [ngClass]="{'error': authError}" type="text" formControlName="username" (click)="authError = false;">
+                <input class="input" [ngClass]="{'error': passwordMismatch}" type="text" formControlName="username" (click)="passwordMismatch = false;">
             </div>
         </div>
         <div class="field my-2">
             <label class="label">Password</label>
             <div class="control has-icons-left">
                 <span class="icon"><i class=" pokeball-icon"></i></span>
-                <input class="input" [ngClass]="{'error': authError}" type="password" formControlName="password" (click)="authError = false;">
-                <p *ngIf="authError" class="help error">
-                    Invalid trainer credentials.
-                </p>
+                <input class="input" [ngClass]="{'error': passwordMismatch}" type="password" formControlName="password" (click)="passwordMismatch = false;">
             </div>
         </div>
+        <label class="label">Confirm Password</label>
+        <div class="control has-icons-left">
+            <span class="icon"><i class=" pokeball-icon"></i></span>
+            <input class="input" [ngClass]="{'error': passwordMismatch}" type="password" formControlName="password" (click)="passwordMismatch = false;">
+            <p *ngIf="passwordMismatch" class="help error">
+                Passwords do not match
+            </p>
+        </div>
 
-        <div class="field mt-6 is-grouped register-button-container">
+        <div class="field mt-5 is-grouped register-button-container">
             <div class="register-buttons pb-3">
                 <div class="control">
                     <button class="button register-button-dark" (click)="register()" [ngClass]="{'is-loading': loading}" [disabled]="loading">Claim Team</button>

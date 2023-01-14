@@ -21,6 +21,10 @@ select, input[type="text"]{
 .banner-format{
     padding-top: 4px !important;
     padding-bottom: 4px !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .is-info{
@@ -48,6 +52,15 @@ select, input[type="text"]{
 
     .dropdown-scroll {
         max-height: 200px;
-    }
+    }    
 }
 
+.collapse_button {
+    background-color: #ffffff !important;
+    color: rgb(21, 17, 43);
+    font-size: 5px;
+}
+
+.subtitle{
+    margin: 0;
+}
