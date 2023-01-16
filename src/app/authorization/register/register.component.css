@@ -44,3 +44,44 @@ button {
 .border-error {
     border-color: red !important;
 }
+
+.form-horizontal-padding {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.field-bottom-padding {
+    padding-bottom: .25rem;
+}
+
+.form-vertical-padding {
+    padding-top: 2rem;
+}
+
+.field-padding {
+    padding-top: .25rem;
+    padding-bottom: .5rem;
+}
+
+.field-margin {
+    margin: 0;
+}
+
+@media screen and (max-height: 800px) {
+    .form-vertical-padding {
+        padding-top: .5rem;
+    }
+
+    .field-margin {
+        margin: 0;
+    }
+
+    .field-bottom-padding {
+        padding-bottom: 0;
+    }
+
+    .field-padding {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}

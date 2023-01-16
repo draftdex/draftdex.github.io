@@ -1,53 +1,56 @@
-<form class="register-form px-6 my-4" [formGroup]="registrationForm">
-    <div class="register-container">
-        <div class="field m-1">
-            <label class="label m-0" for="username">Team</label>
-            <div class="select form-field-border" (click)="resetErrors()">
-                <select class="border" [ngClass]="{'border-error': passwordMismatch || invalidForm}" formControlName="team">
-                    <option></option>
-                    <option *ngFor="let team of availableTeams">{{team}}</option>
-                </select>
-            </div>
-        </div>
-        <div class="field m-1">
+<form class="register-form form-horizontal-padding form-vertical-padding" [formGroup]="registrationForm">
+    <div class="columns is-multiline register-container">
+        <div class="column is-half field field-margin field-bottom-padding">
             <label class="label m-0" for="username">Trainer Name</label>
             <div class="control has-icons-left">
                 <span class="icon"><i class="pokeball-icon"></i></span>
                 <input class="input" [ngClass]="{'error': passwordMismatch || invalidForm}" type="text" formControlName="username" (click)="resetErrors()">
             </div>
         </div>
-        <div class="field m-1">
-            <label class="label m-0">Password</label>
-            <div class="control has-icons-left">
-                <span class="icon"><i class=" pokeball-icon"></i></span>
-                <input class="input" [ngClass]="{'error': passwordMismatch || invalidForm}" type="password" formControlName="password" (click)="resetErrors()">
+
+            <div class="column is-half field field-margin field-bottom-padding">
+                <label class="label m-0" for="username">Team</label>
+                <div class="select form-field-border" style="width: 100%" (click)="resetErrors()">
+                    <select class="border" style="width: 100%" [ngClass]="{'border-error': passwordMismatch || invalidForm}" formControlName="team">
+                        <option></option>
+                        <option *ngFor="let team of availableTeams">{{team}}</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="field m-1">
-            <label class="label m-0">Confirm Password</label>
-            <div class="control has-icons-left">
-                <span class="icon"><i class=" pokeball-icon"></i></span>
-                <input class="input" [ngClass]="{'error': passwordMismatch || invalidForm}" type="password" formControlName="passwordConfirmation" (click)="resetErrors()">
-                <p *ngIf="passwordMismatch" class="help error">
-                    Passwords do not match
-                </p>
-                <p *ngIf="invalidForm" class="help error">
-                    All fields are required for registration
-                </p>
-                <p *ngIf="registrationError" class="help error">
-                    A registration error has occurred. Please contact an admin
-                </p>
+
+            <div class="column is-full field field-margin field-padding">
+                <label class="label m-0">Password</label>
+                <div class="control has-icons-left">
+                    <span class="icon"><i class=" pokeball-icon"></i></span>
+                    <input class="input" [ngClass]="{'error': passwordMismatch || invalidForm}" type="password" formControlName="password" (click)="resetErrors()">
+                </div>
+            </div>
+
+            <div class="column is-full field field-margin field-padding">
+                <label class="label m-0">Confirm Password</label>
+                <div class="control has-icons-left">
+                    <span class="icon"><i class=" pokeball-icon"></i></span>
+                    <input class="input" [ngClass]="{'error': passwordMismatch || invalidForm}" type="password" formControlName="passwordConfirmation" (click)="resetErrors()">
+                    <p *ngIf="passwordMismatch" class="help error">
+                        Passwords do not match
+                    </p>
+                    <p *ngIf="invalidForm" class="help error">
+                        All fields are required for registration
+                    </p>
+                    <p *ngIf="registrationError" class="help error">
+                        A registration error has occurred. Please contact an admin
+                    </p>
+                </div>
             </div>
         </div>
 
-        <div class="field mt-2 is-grouped register-button-container">
-            <div class="register-buttons pb-3">
-                <div class="control">
-                    <button class="button register-button-dark" (click)="register()" [ngClass]="{'is-loading': loading}" [disabled]="loading">Claim Team</button>
-                </div>
-                <div class="control">
-                    <button class="button is-link is-light" (click)="cancelRegister()" [disabled]="loading">Cancel</button>
-                </div>
+    <div class="field mt-2 is-grouped register-button-container">
+        <div class="register-buttons pb-3">
+            <div class="control">
+                <button class="button register-button-dark" (click)="register()" [ngClass]="{'is-loading': loading}" [disabled]="loading">Claim Team</button>
+            </div>
+            <div class="control">
+                <button class="button is-link is-light" (click)="cancelRegister()" [disabled]="loading">Cancel</button>
             </div>
         </div>
     </div>

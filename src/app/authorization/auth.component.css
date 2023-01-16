@@ -20,6 +20,14 @@ body {
     padding-bottom: 10px;
 }
 
+.form-horizontal-padding {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.form-vertical-padding {
+    padding-top: .25rem;
+}
 
 .form-container {
     position: absolute;
@@ -34,3 +42,16 @@ body {
     0 0 0 10px #CD9933,
     0 0 0 15px black;
 }
+
+@media screen and (max-width: 1240px) {
+    .form-container {
+        width: 40%;
+    }
+}
+
+@media screen and (max-height: 799px) {
+    .form-container {
+        height: 38%;
+    }
+}
+

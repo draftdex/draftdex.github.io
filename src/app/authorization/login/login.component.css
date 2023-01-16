@@ -36,3 +36,28 @@ input {
 button {
     box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
 }
+
+.form-horizontal-padding {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.form-vertical-padding {
+    padding-top: .25rem;
+}
+
+@media screen and (min-height: 800px) {
+    .field-vertical-margin {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .form-vertical-padding {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+    
+    .button-row-padding {
+        margin-top: 3rem;
+    }
+}
