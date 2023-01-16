@@ -1,11 +1,6 @@
-.align-dropdown-center {
-    width: 50%; 
-    margin-left: 25px;
-    text-align: center;
-}
-
 .dropdown-item {
     text-align: center;
+    padding: 0;
 }
 
 .test {
