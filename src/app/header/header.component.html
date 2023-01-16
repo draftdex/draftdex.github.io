@@ -14,7 +14,7 @@
         </div>
 
         <div class="pr-4">
-            <div class="dropdown is-right" [ngClass]="{ 'is-active': displayMenu }" (click)="displayMenu = !displayMenu">
+            <div class="dropdown is-right is-hoverable">
                 <div class="dropdown-trigger">
                     <figure class="image logo menu dropdown-trigger" aria-haspopup="true" aria-controls="dropdown-menu">
                         <img src='{{"../assets/logos/" + authService.userSession.team + ".png"}}' alt="W&W PDL Logo">

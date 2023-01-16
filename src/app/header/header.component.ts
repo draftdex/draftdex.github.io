@@ -8,8 +8,6 @@ import { AuthService } from '../authorization/auth-service';
 })
 export class HeaderComponent implements OnInit {
 
-  displayMenu: boolean = false;
-
   constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
