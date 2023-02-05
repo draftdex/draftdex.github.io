@@ -116,7 +116,7 @@
         <div class="column is-flex is-align-items-center column-squeeze">
           <div class="pt-4 pb-4">
             <div class="buttons">
-                <a class="button is-warning filter_button" id="getPokemon" (click)="sendFilterVals()">Get Pokemon</a>
+                <a class="button is-warning filter_button" [ngClass]="{'is-loading': queryProcessing}" id="getPokemon" (click)="sendFilterVals()">Get Pokemon</a>
               <a class="button is-warning filter_button" id="displayShortList" (click)="displayShortList()">View Shortlist</a>
             </div>
           </div>

@@ -1,33 +1,35 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { SupabaseService } from "../supabase-service";
+import { SupabaseService } from "../shared/services/supabase-service";
 import * as bcrypt from 'bcryptjs';
-import { Subject } from "rxjs";
-import { NewUser, User } from "../models/User.model";
+import { Observable, Subject } from "rxjs";
+import { NewUser, User } from "../shared/models/User.model";
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
     authenticated$ = new Subject();     // Subject to alert subscribers when user is authenticated
-    registered$ = new Subject();        // Subject to alert when user has been registered
     userSession: User = User.getGuestAccount();
 
     constructor(private supabaseClient: SupabaseService,
                 private router: Router) {}
 
     /**
-     * Authenticate user by verifying hashes of input and pwd of user matching username
+     * Authenticate user by verifying hashes of input and pwd of user that match username
      * @param username 
      * @param pwd 
      */
-    async authenticateUser(username: string, pwd: string) {
-        this.supabaseClient.getUserCreds(username).subscribe((res: User[]) => {
-            if (res.length === 1) {
-                this.compareHash(pwd, res[0]);
-            } else {
-                this.authenticated$.next(false);
-            }
+    async authenticateUser(username: string, inputPwd: string) {
+        this.supabaseClient.getUserCreds(username).subscribe({
+            next: (res: User[]) => {
+                if (res.length === 1) {
+                    this.compareHash(inputPwd, res[0]);
+                } else {
+                    this.authenticated$.next(false);
+                }
+            }, 
+            error: error => console.error(`Error retrieving user ${username}`, error)
         });
     }
 
@@ -42,6 +44,8 @@ export class AuthService {
                 this.authenticated$.next(res);
                 if (res) {
                     this.authenticated$.complete();
+                    user.password = '';
+                    user.id = undefined;
                     this.userSession = user;
                 }
             } else {
@@ -50,11 +54,9 @@ export class AuthService {
         });
     }
 
-    public registerUser(newUser: NewUser) {
+    public registerUser(newUser: NewUser): Observable<any> {
         const hash = this.generateHash(newUser.password);
-        this.supabaseClient.registerUser(newUser.team, newUser.username, hash).subscribe(res => {
-            this.registered$.next(res);
-        });
+        return this.supabaseClient.registerUser(newUser.team, newUser.username, hash);
     }
 
     public logout() {

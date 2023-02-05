@@ -1,9 +1,9 @@
 <!-- Table to Display Pokemon Matching Query -->
-<div class="border table-div">
+<div class="border" *ngIf="pkmnList.length > 0">
     <table class="table has-text-centered is-striped is-bordered is-hoverable">
         <thead>
             <tr>
-                <th *ngFor="let attribute of tableHeaders">
+                <th *ngFor="let attribute of tableHeaders" class="has-text-centered">
                     <a [appSort]="{listToSort: pkmnList, headerMapping: tableHeaderMap}" (click)="flipIcon($event)" data-order="asc" data-name="attribute.value" class="remove-hyperlink">
                         {{attribute}}
                         <span class="icon">
@@ -27,7 +27,6 @@
                     {{pkmn.name}}
                 </strong></a></td>
                 <td id="form"><strong>{{pkmn.form}}</strong></td>
-                <td id="gmax">{{pkmn.gmax == 0 ? "No" : "Yes"}}</td>
                 <td id="type1">{{pkmn.type1}}</td>
                 <td id="type2">{{pkmn.type2}}</td>
                 <td id="ability1">{{pkmn.ability1}}</td>
@@ -39,14 +38,9 @@
                 <td id="spAttack">{{pkmn.spAttack}}</td>
                 <td id="spDefense">{{pkmn.spDefense}}</td>
                 <td id="speed">{{pkmn.speed}}</td>
+                <td id="bst">{{pkmn.bst}}</td>
                 <td id="tier">{{pkmn.tier}}</td>
-                <td id="available">{{pkmn.available == 0 ? "No" : "Yes"}}</td>
                 <td id="team">{{pkmn.team}}</td>
-            </tr>
-            <tr *ngIf="queryProcessing">
-                <td colspan="17">
-                    <fa-icon [icon]="faSpinner" [pulse]="true" size="2x"></fa-icon>
-                </td>
             </tr>
         </tbody>
     </table>

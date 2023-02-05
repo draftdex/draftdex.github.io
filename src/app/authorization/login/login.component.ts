@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BottomBannerComponent } from 'src/app/bottom-banner/bottom-banner.component';
@@ -16,19 +16,14 @@ export class LoginComponent {
   @Output() onRegister = new EventEmitter();
 
   public authError: boolean = false;
-
-  loginCreds: FormGroup = new FormGroup({
+  public loading: boolean = false;    
+  public loginCreds: FormGroup = new FormGroup({
     username: new FormControl(''),
     password: new FormControl('')
   })
 
-  loading: boolean = false;    // Indicate whether or not content is being loaded 
-
   constructor(private authService: AuthService, private router: Router) {
-    this.authService.authenticated$.subscribe(next => {
-      this.loading = false;
-      next ? this.router.navigate(['pokemon-search']) : this.authError = true;
-    });
+    this.setLoginListener();
   }
 
   login() {
@@ -41,5 +36,14 @@ export class LoginComponent {
    */
   loginGuest() {
     this.router.navigate(['pokemon-search']);
+  }
+
+  private setLoginListener(): void {
+    this.authService.authenticated$.subscribe({
+      next: (success) => {
+        this.loading = false;
+        success ? this.router.navigate(['pokemon-search']) : this.authError = true;
+      }, error: (error) => console.error('Error authenticating user', error)
+    });
   }
 }

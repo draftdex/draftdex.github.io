@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HostListener } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { Pokemon } from '../models/pokemon.model';
+import { Pokemon } from '../shared/models/pokemon.model';
 import { GlobalConstants } from '../global/global-constants';
 
 @Component({

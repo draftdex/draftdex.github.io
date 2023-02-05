@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SupabaseClient, createClient } from '@supabase/supabase-js';
+import { AuthService } from '../authorization/auth-service';
+import { SupabaseService } from '../shared/services/supabase-service';
 
 @Component({
   selector: 'app-pokemon-search',
@@ -16,9 +18,22 @@ export class PokemonSearchComponent implements OnInit {
 
   queryProcessing = false;
 
-  constructor() { }
+  constructor(private authService: AuthService,
+              private supabaseService: SupabaseService) {}
 
   ngOnInit(): void {
+    this.getPokemonForTeam(this.authService.userSession.team);
+  }
+
+  private getPokemonForTeam(teamName: string | undefined): void {
+    this.queryProcessing = true;
+    this.supabaseService.getPokemonForTeam(teamName).subscribe({
+      next: (pokemon) => {
+        this.pkmnList = pokemon;
+        this.queryProcessing = false;
+      },
+      error: (error) => console.error(`Error retrieving pokemon for ${teamName}`, error)
+    })
   }
 
   async getPokemon(query:any) {

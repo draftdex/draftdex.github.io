@@ -14,34 +14,36 @@ import { Validators } from '@angular/forms';
 })
 export class RegisterComponent {
   @Input() availableTeams: string[] = [];
-  //TODO -- fix this and validate input
   @Output() onCloseRegisterForm = new EventEmitter();
 
   public invalidForm: boolean = false;
   public passwordMismatch: boolean = false;
   public registrationError: boolean = false;
-
-  registrationForm: FormGroup = new FormGroup({
+  public loading: boolean = false;   
+  public registrationForm: FormGroup = new FormGroup({
     team: new FormControl('', [Validators.required]),
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
     passwordConfirmation: new FormControl('', [Validators.required])
   })
 
-  loading: boolean = false;    // Indicate whether or not content is being loaded 
-
-  constructor(private authService: AuthService, private router: Router) {
-    this.authService.registered$.subscribe(next => {
-      this.loading = false;
-      next ? this.onCloseRegisterForm.emit('success') : this.registrationError = true;
-    });
-  }
+  constructor(private authService: AuthService, private router: Router) {}
 
   register() {
     if (!this.validateForm()) return;
-    console.log(this.registrationForm.value)
     this.loading = true;
-    this.authService.registerUser(this.registrationForm.value);
+
+    this.authService.registerUser(this.registrationForm.value).subscribe({
+      next: () =>  {
+        this.loading = false;
+        this.onCloseRegisterForm.emit('success');
+      },
+      error: (error) => {
+        this.loading = false;
+        this.registrationError = true;
+        console.error('Error registering user', error);
+      }
+    });
   }
 
   /**

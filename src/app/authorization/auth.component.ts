@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BottomBannerComponent } from '../bottom-banner/bottom-banner.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { SupabaseService } from '../supabase-service';
+import { SupabaseService } from '../shared/services/supabase-service';
 
 @Component({
   selector: 'app-auth',
@@ -22,15 +22,4 @@ export class AuthComponent implements OnInit {
   ngOnInit(): void {
     this.supabaseService.getUnclaimedTeams().subscribe(res => this.availableTeams = res)
   }
-
-  login(user?: string, password?: string) {
-    // query db for stored hash password
-    // const match = await argon2.verify(hash, password);
-    // this.authService.loginWithPopup();
-  }
-
-  logout() {
-    //this.authService.logout();
-  }
-
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { GlobalConstants } from '../global/global-constants';
 import { HostListener  } from "@angular/core";
 
@@ -22,6 +22,8 @@ export class FilterMenuComponent implements OnInit {
   // Boolean to dynamically render ability dropdown menu
   abilityActive = false;
 
+  
+  @Input() queryProcessing: boolean = false;  // boolean to determine if a query is being processed (if so, display spinner)
   // Keep track of filter values
   @Output() onFilterUpdate = new EventEmitter<any>();
   // Switch to shortlist view

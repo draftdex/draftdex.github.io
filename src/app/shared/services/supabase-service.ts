@@ -2,7 +2,7 @@
 import { Injectable } from "@angular/core";
 import { SupabaseClient, createClient } from "@supabase/supabase-js";
 import { Observable, from, first, map } from "rxjs";
-import { NewUser, User } from "./models/User.model";
+import { NewUser, User } from "../models/User.model";
 
 @Injectable({
     providedIn: 'root'      // Ensure this is a singleton service
@@ -39,6 +39,14 @@ export class SupabaseService {
             .eq('team', team);
         let newUser$ = from(this.executeQuery(query)).pipe(first());
         return newUser$;
+    }
+
+    getPokemonForTeam(team: string | undefined) {
+        const query = this.dbClient.from('pokemonInfo')
+            .select('*');
+        if (team !== 'WW' && team !== undefined) query.eq('team', team);
+        let pokemonForTeam$ = from(this.executeQuery(query)).pipe(first());
+        return pokemonForTeam$;
     }
 
     async executeQuery(query: any) {
