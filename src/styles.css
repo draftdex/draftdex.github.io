@@ -4,6 +4,15 @@
     src: local("Gameboy"), url(./assets/fonts/PokemonGb-RAeo.ttf) format("truetype");
 }
 
+body::-webkit-scrollbar {
+    display: none;  /* for Chrome, Safari, and Opera */
+}
+
+body {
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none;  /* for Firefox */
+}
+
 .background {
     background-color: #8D9AAD;
     width: 100%;
