@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { SupabaseService } from "../shared/services/supabase-service";
+import { SupabaseService } from "./supabase-service";
 import * as bcrypt from 'bcryptjs';
 import { Observable, Subject } from "rxjs";
-import { NewUser, User } from "../shared/models/User.model";
+import { NewUser, User } from "../models/User.model";
 
 @Injectable({
     providedIn: 'root'
@@ -35,19 +35,16 @@ export class AuthService {
 
     /**
      * Compare manually entered password with stored hash for user
-     * @param plaintextPwd 
-     * @param hashedPwd 
      */
     private compareHash(plaintextPwd: string, user: User) {
         bcrypt.compare(plaintextPwd, user.password, (err, res) => {
             if (!err) {
-                this.authenticated$.next(res);
                 if (res) {
-                    this.authenticated$.complete();
                     user.password = '';
-                    user.id = undefined;
                     this.userSession = user;
                 }
+                this.authenticated$.next(res);
+                this.authenticated$.complete();
             } else {
                 this.authenticated$.error(err);
             }

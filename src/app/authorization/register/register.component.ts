@@ -1,4 +1,4 @@
-import { AuthService } from '../auth-service';
+import { AuthService } from '../../shared/services/auth-service';
 import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';

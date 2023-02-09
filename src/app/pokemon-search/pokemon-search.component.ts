@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SupabaseClient, createClient } from '@supabase/supabase-js';
-import { AuthService } from '../authorization/auth-service';
+import { AuthService } from '../shared/services/auth-service';
 import { SupabaseService } from '../shared/services/supabase-service';
 
 @Component({

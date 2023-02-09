@@ -2,8 +2,10 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BottomBannerComponent } from 'src/app/bottom-banner/bottom-banner.component';
-import { AuthService } from '../auth-service';
+import { AuthService } from '../../shared/services/auth-service';
+import { SupabaseService } from 'src/app/shared/services/supabase-service';
 import { Router } from '@angular/router';
+import { UserStyle } from 'src/app/shared/models/UserStyles.model';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +24,9 @@ export class LoginComponent {
     password: new FormControl('')
   })
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, 
+              private router: Router,
+              private supabaserService: SupabaseService) {
     this.setLoginListener();
   }
 
@@ -42,8 +46,22 @@ export class LoginComponent {
     this.authService.authenticated$.subscribe({
       next: (success) => {
         this.loading = false;
-        success ? this.router.navigate(['pokemon-search']) : this.authError = true;
+        if (success) {
+          this.supabaserService.getStylesForUser(this.authService.userSession.id).subscribe({
+            next: (style: UserStyle) => {
+              this.setUserStyles(style);
+              this.router.navigate(['pokemon-search']);
+            },
+            error: (err) => console.error(err)
+          });
+        } else {
+          this.authError = true;
+        } 
       }, error: (error) => console.error('Error authenticating user', error)
     });
+  }
+
+  private setUserStyles(style: UserStyle): void {
+    document.documentElement.style.setProperty('--header-background', style.headerBackground);
   }
 }
