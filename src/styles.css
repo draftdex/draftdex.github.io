@@ -6,16 +6,23 @@
 
 /* Define all user-specific style variables here so they can be reused throughout the app */
 :root {
+    --main-background: #8d9aad;
     --header-background: #6C6C76;
-}
-
-body::-webkit-scrollbar {
-    display: none;  /* for Chrome, Safari, and Opera */
-}
-
-body {
-    -ms-overflow-style: none; /* for Internet Explorer, Edge */
-    scrollbar-width: none;  /* for Firefox */
+    --header-text: #000000;
+    --main-text-dark: #000000;
+    --main-text-light: #ffffff;
+    --dark-background: #6c6c76;
+    --light-background: #8d9aad;
+    --button-color1: #ffb700;
+    --button-color2: #d5a52b;
+    --button-text: #000000;
+    --table-background1: #ffffff;
+    --table-background2: #ececec;
+    --table-header: #cccccc;
+    --table-text: #000000;
+    --table-buttons: #485fc7;
+    --hyperlink_pc: #4877bb;
+    --hyperlink-ac: #2b498a;
 }
 
 .background {
