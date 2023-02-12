@@ -1,5 +1,5 @@
 .ability-select-active:hover {
-    background-color: var(--dropdown-hover-background);
+    background-color: var(--light-background);
     color: var(--dropdown-hover-text);
 }
 

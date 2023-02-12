@@ -25,6 +25,7 @@
     --hyperlink-ac: #2b498a;
     --dropdown-hover-text: white;
     --dropdown-hover-background: #1E90FF;
+    --table-hyperlink: black;
 }
 
 
@@ -37,7 +38,7 @@ a:hover {
 }
 
 .background {
-    background-color: var(--dark-background);
+    background-color: var(--main-background);
     width: 100%;
     height: 100vh;
 }

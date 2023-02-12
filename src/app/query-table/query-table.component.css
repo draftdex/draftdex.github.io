@@ -1,3 +1,7 @@
+a {
+    color: var(--table-hyperlink) !important;
+}
+
 .remove-hyperlink {
     color: var(--table-text) !important;
 }
