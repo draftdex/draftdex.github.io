@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddEditComponent } from './add-edit/add-edit.component';
 import { AuthComponent } from './authorization/auth.component';
+import { CreditsComponent } from './credits/credits.component';
 import { PokemonSearchComponent } from './pokemon-search/pokemon-search.component';
-import { StyleResolver } from './shared/style-resolver';
+import { StyleResolver } from './shared/resolvers/style-resolver';
 
 const routes: Routes = [
   { 
     path: 'login', 
     component: AuthComponent,
     resolve: { style: StyleResolver },
-    runGuardsAndResolvers: 'always'} ,
+    runGuardsAndResolvers: 'always'
+  },
   { 
     path: 'add-edit', 
     component: AddEditComponent,
@@ -19,6 +21,12 @@ const routes: Routes = [
   { 
     path: 'pokemon-search', 
     component: PokemonSearchComponent,
+    resolve: { style: StyleResolver },
+    runGuardsAndResolvers: 'always'
+  },
+  { 
+    path: 'credits', 
+    component: CreditsComponent,
     resolve: { style: StyleResolver },
     runGuardsAndResolvers: 'always'
   },

@@ -2,14 +2,14 @@
 <div class="hero banner border header-height">
     <div class="is-flex is-justify-content-space-between is-align-items-center">
         <div class="pl-4">
-            <figure class="image logo">
+            <figure class="image logo clickable" (click)="navigateToHome()">
                 <img src="../assets/WWLogo.png" alt="W&W PDL Logo">
             </figure>
         </div>
 
         <div>
             <figure class="image title">
-                <img src="../assets/DraftDexTitleWhite.png" alt="W&W PDL Logo">
+                <img src={{logoPath}} alt="W&W PDL Logo">
             </figure>
         </div>
 

@@ -23,8 +23,6 @@
     --table-buttons: #485fc7;
     --hyperlink-pc: #4877bb;
     --hyperlink-ac: #2b498a;
-    --dropdown-hover-text: white;
-    --dropdown-hover-background: #1E90FF;
     --table-hyperlink: black;
 }
 
@@ -51,6 +49,10 @@ a:hover {
     border-style: solid;
     border-width: 1px;
     border-color: black;
+}
+
+.clickable {
+    cursor: pointer;
 }
 
 .display-container {

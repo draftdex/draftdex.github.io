@@ -39,8 +39,8 @@
 }
 
 .select-active:hover {
-    background-color: var(--dropdown-hover-background);
-    color: var(--dropdown-hover-text);
+    background-color: var(--header-background);
+    color: var(--header-text);
 }
 
 .dropdown-scroll {

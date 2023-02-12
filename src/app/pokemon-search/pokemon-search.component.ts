@@ -64,7 +64,7 @@ export class PokemonSearchComponent implements OnInit {
       query.eq('available', this.filterVals.available);
 
     // Tier filter
-    if (this.filterVals.tier)
+    if (this.filterVals.tier && this.filterVals.tier !== 'All')
       query.ilike('tier', this.filterVals.tier);  // ilike case insensitive match
 
     // Type filters

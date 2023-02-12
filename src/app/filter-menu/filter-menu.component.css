@@ -1,6 +1,10 @@
-.ability-select-active:hover {
-    background-color: var(--light-background);
-    color: var(--dropdown-hover-text);
+.select-active:hover {
+    background-color: var(--header-background);
+    color: var(--header-text);
+}
+
+input[type="select"] {
+    accent-color: red !important;
 }
 
 select, input[type="text"]{
@@ -62,4 +66,8 @@ select, input[type="text"]{
 
 .subtitle{
     margin: 0;
+}
+
+option {
+    color: var(--hyperlink-pc);
 }

@@ -12,6 +12,7 @@
     padding-left: 10px;
     padding-bottom: 10px;
     background-color: var(--header-background);
+    z-index: 100;
 }
 
 .bottom-text-small {

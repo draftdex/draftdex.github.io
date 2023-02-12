@@ -65,14 +65,15 @@ export class GlobalConstants {
     ];
 
     public static tierList = [
-        'Restricted',
-        'Legend',
         '1',
         '2',
         '3',
         '4',
+        'Restricted',
+        'Legend',
         'Unlisted',
-        'Banned'
+        'Banned',
+        'All'
     ];
 
     public static pokemonAttributesTableHeaders = [
