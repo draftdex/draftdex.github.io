@@ -18,7 +18,9 @@ export class User {
     }
 
     static getGuestAccount(): User {
-        return new User('Guest', '', 'WW');
+        const newUser =  new User('Guest', '', 'WW');
+        newUser.id = '99999';
+        return newUser;
     }
 }
 

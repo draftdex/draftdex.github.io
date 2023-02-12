@@ -13,7 +13,18 @@ export class AuthService {
     userSession: User = User.getGuestAccount();
 
     constructor(private supabaseClient: SupabaseService,
-                private router: Router) {}
+                private router: Router) {
+    }
+
+    public configureUserSession() {
+        const savedSessionUser: string | null = sessionStorage.getItem('userSession');
+
+        if (savedSessionUser === null) {
+            this.userSession = User.getGuestAccount();
+        } else {
+            this.userSession = JSON.parse(savedSessionUser);
+        }
+    }
 
     /**
      * Authenticate user by verifying hashes of input and pwd of user that match username
@@ -42,9 +53,13 @@ export class AuthService {
                 if (res) {
                     user.password = '';
                     this.userSession = user;
+                    sessionStorage.setItem('userSession', JSON.stringify(this.userSession));
+                    
+                    this.authenticated$.next(res);
+                    this.authenticated$.complete();
+                } else {
+                    this.authenticated$.next(res);
                 }
-                this.authenticated$.next(res);
-                this.authenticated$.complete();
             } else {
                 this.authenticated$.error(err);
             }
@@ -59,7 +74,8 @@ export class AuthService {
     public logout() {
         this.authenticated$ = new Subject();
         this.userSession = User.getGuestAccount();
-        
+        sessionStorage.setItem('userSession', JSON.stringify(this.userSession));
+        this.configureUserSession();
         this.router.navigate(['login'])
     }
 
