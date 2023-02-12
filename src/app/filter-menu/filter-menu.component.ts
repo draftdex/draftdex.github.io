@@ -74,7 +74,7 @@ export class FilterMenuComponent implements OnInit {
   // Dynamically display abilities according to input text
   searchAbilities($event: KeyboardEvent) {
     // Grab abilities from ability dropdown
-    const abilities = document.getElementsByClassName('ability-select-active'); // innerText only gives human-readable content of <a> tag
+    const abilities = document.getElementsByClassName('select-active'); // innerText only gives human-readable content of <a> tag
     
     // Determine if a match is found
     let found = false;
