@@ -11,7 +11,7 @@ import { UserStyle } from 'src/app/shared/models/UserStyles.model';
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css', './../../../styles.css'],
   imports: [ReactiveFormsModule, CommonModule, BottomBannerComponent]
 })
 export class LoginComponent {
@@ -77,7 +77,7 @@ export class LoginComponent {
     document.documentElement.style.setProperty('--table-header', style.tableHeader);
     document.documentElement.style.setProperty('--table-text', style.tableText);
     document.documentElement.style.setProperty('--table-buttons', style.tableButtons);
-    document.documentElement.style.setProperty('--hyperlink_pc', style.hyperlinkPC);
+    document.documentElement.style.setProperty('--hyperlink-pc', style.hyperlinkPC);
     document.documentElement.style.setProperty('--hyperlink-ac', style.hyperlinkAC);
   }
 }

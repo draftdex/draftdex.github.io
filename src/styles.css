@@ -21,12 +21,23 @@
     --table-header: #cccccc;
     --table-text: #000000;
     --table-buttons: #485fc7;
-    --hyperlink_pc: #4877bb;
+    --hyperlink-pc: #4877bb;
     --hyperlink-ac: #2b498a;
+    --dropdown-hover-text: white;
+    --dropdown-hover-background: #1E90FF;
+}
+
+
+a {
+    color: var(--hyperlink-pc);
+}
+
+a:hover {
+    color: var(--hyperlink-ac);
 }
 
 .background {
-    background-color: #8D9AAD;
+    background-color: var(--dark-background);
     width: 100%;
     height: 100vh;
 }

@@ -14,7 +14,6 @@ import { AuthComponent } from './authorization/auth.component';
 import { BottomBannerComponent } from './bottom-banner/bottom-banner.component';
 import { CreditsComponent } from './credits/credits.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

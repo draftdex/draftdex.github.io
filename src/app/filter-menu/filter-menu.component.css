@@ -1,6 +1,6 @@
 .ability-select-active:hover {
-    background-color: #1E90FF;
-    color: white;
+    background-color: var(--dropdown-hover-background);
+    color: var(--dropdown-hover-text);
 }
 
 select, input[type="text"]{
@@ -9,8 +9,8 @@ select, input[type="text"]{
 }
 
 .filter_button {
-    background-color: #FFB700 !important;
-    color: black;
+    background-color: var(--button-color1) !important;
+    color: var(--button-text);
 }
 
 .dropdown-scroll {
@@ -28,7 +28,7 @@ select, input[type="text"]{
 }
 
 .is-info{
-    background-color: #6c6c76;
+    background-color: var(--header-background);
 }
 
 .filter-font{
@@ -55,10 +55,9 @@ select, input[type="text"]{
     }    
 }
 
-.collapse_button {
-    background-color: #ffffff !important;
-    color: rgb(21, 17, 43);
-    font-size: 5px;
+.collapse-button {
+    background-color: var(--button-color2) !important;
+    color: var(--button-text);
 }
 
 .subtitle{

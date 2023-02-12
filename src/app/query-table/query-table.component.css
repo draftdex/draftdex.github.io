@@ -1,5 +1,5 @@
 .remove-hyperlink {
-    color: black !important;
+    color: var(--table-text) !important;
 }
 
 .table {
@@ -14,9 +14,19 @@
 th {
     position: sticky;
     top: 0;
-    background-color: white;
+    background-color: var(--table-header);
     border-top: none !important;
     border-left: none !important;
+}
+
+.table-row1 {
+    background-color: var(--table-background1);
+    color: var(--table-text);
+}
+
+.table-row2 {
+    background-color: var(--table-background2);
+    color: var(--table-text);
 }
 
 @media screen and (max-width: 1600px) {

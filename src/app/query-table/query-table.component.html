@@ -1,6 +1,6 @@
 <!-- Table to Display Pokemon Matching Query -->
 <div class="border" *ngIf="pkmnList.length > 0">
-    <table class="table has-text-centered is-striped is-bordered is-hoverable">
+    <table class="table has-text-centered is-bordered is-hoverable">
         <thead>
             <tr>
                 <th *ngFor="let attribute of tableHeaders" class="has-text-centered">
@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let pkmn of pkmnList">
+            <tr *ngFor="let pkmn of pkmnList; index as i;" [ngClass]="{'table-row1': i % 2 == 0, 'table-row2': i % 2 != 0}">
                 <td id="name" class="has-text-left">
                     <a (click)="editShortlist(pkmn)">
                         <span class="icon">

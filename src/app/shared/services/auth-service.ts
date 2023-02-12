@@ -59,6 +59,7 @@ export class AuthService {
     public logout() {
         this.authenticated$ = new Subject();
         this.userSession = User.getGuestAccount();
+        
         this.router.navigate(['login'])
     }
 

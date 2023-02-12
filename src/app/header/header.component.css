@@ -3,14 +3,6 @@
     padding: 0;
 }
 
-.test {
-    cursor: pointer;
-}
-
-.test :hover {
-    background-color: red;
-}
-
 .header-height {
     min-height: 12vh;
 }
