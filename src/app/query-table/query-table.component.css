@@ -18,7 +18,7 @@ a {
 th {
     position: sticky;
     top: 0;
-    background-color: var(--table-header);
+    background-color: var(--header-background);
     border-top: none !important;
     border-left: none !important;
 }
