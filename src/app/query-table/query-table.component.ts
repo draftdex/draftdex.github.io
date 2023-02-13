@@ -25,6 +25,7 @@ export class QueryTableComponent implements OnInit {
   faMinusCircle = faMinusCircle;
 
   @Input() pkmnList: any;
+  @Input() filterMenuOpen: boolean = true;
 
   // Event listener to prompt addition to shortlist
   @Output() onAddToShortlist = new EventEmitter<any>();

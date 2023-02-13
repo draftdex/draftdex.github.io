@@ -1,6 +1,6 @@
 <!-- Table to Display Pokemon Matching Query -->
 <div class="border" *ngIf="pkmnList.length > 0">
-    <table class="table has-text-centered is-bordered is-hoverable">
+    <table class="table-with-filter-open has-text-centered is-bordered is-hoverable" [ngClass]="{'table-with-filter-open': filterMenuOpen, 'table-with-filter-closed': !filterMenuOpen}">
         <thead>
             <tr>
                 <th *ngFor="let attribute of tableHeaders" class="has-text-centered">
@@ -32,13 +32,13 @@
                 <td id="ability1">{{pkmn.ability1}}</td>
                 <td id="ability2">{{pkmn.ability2}}</td>
                 <td id="hiddenAbility">{{pkmn.hiddenAbility}}</td>
-                <td id="hp">{{pkmn.hp}}</td>
-                <td id="attack">{{pkmn.attack}}</td>
-                <td id="defense">{{pkmn.defense}}</td>
-                <td id="spAttack">{{pkmn.spAttack}}</td>
-                <td id="spDefense">{{pkmn.spDefense}}</td>
-                <td id="speed">{{pkmn.speed}}</td>
-                <td id="bst">{{pkmn.bst}}</td>
+                <td id="hp" class="has-text-left">{{pkmn.hp}}</td>
+                <td id="attack" class="has-text-left">{{pkmn.attack}}</td>
+                <td id="defense" class="has-text-left">{{pkmn.defense}}</td>
+                <td id="spAttack" class="has-text-left">{{pkmn.spAttack}}</td>
+                <td id="spDefense" class="has-text-left">{{pkmn.spDefense}}</td>
+                <td id="speed" class="has-text-left">{{pkmn.speed}}</td>
+                <td id="bst" class="has-text-left">{{pkmn.bst}}</td>
                 <td id="tier">{{pkmn.tier}}</td>
                 <td id="team">{{pkmn.team}}</td>
             </tr>

@@ -13,8 +13,9 @@ export class PokemonSearchComponent implements OnInit {
   dbClient: SupabaseClient = createClient('https://kqyshvlibkoatazqavuc.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0Mzc0MTI3MSwiZXhwIjoxOTU5MzE3MjcxfQ.hMsQnDsKARs4OyTsIpUR2nPR86TQxbvn3hOoyuGEnA8');
 
   pkmnList = [];
-  filterVals:any = {};
-  shortList:any = [];
+  filterVals: any = {};
+  shortList: any = [];
+  filterMenuOpen: boolean = true;
 
   queryProcessing = false;
 

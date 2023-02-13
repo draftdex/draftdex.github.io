@@ -28,6 +28,7 @@ export class FilterMenuComponent implements OnInit {
   @Output() onFilterUpdate = new EventEmitter<any>();
   // Switch to shortlist view
   @Output() onDisplayShortList = new EventEmitter<any>();
+  @Output() onFilterMenuCollapseChange = new EventEmitter<boolean>();
   
   // Boolean to track if filter menu is open
   menuOpen = true;
@@ -122,10 +123,9 @@ export class FilterMenuComponent implements OnInit {
     this.onDisplayShortList.emit()
   }
 
-  //Fire event to collapse filter menu
+  // Fire event to collapse filter menu
   collapseMenu() {
-      this.menuOpen = !this.menuOpen   
+      this.menuOpen = !this.menuOpen;
+      this.onFilterMenuCollapseChange.emit(this.menuOpen);  
   }
-
-
 }

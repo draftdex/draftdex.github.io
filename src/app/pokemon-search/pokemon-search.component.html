@@ -2,11 +2,20 @@
 <app-header></app-header>
 
 <!-- Filter Menu -->
- <app-filter-menu (onFilterUpdate)="getFilterUpdate($event)" (onDisplayShortList)="displayShortList()" [queryProcessing]="queryProcessing"></app-filter-menu>
+ <app-filter-menu 
+    (onFilterUpdate)="getFilterUpdate($event)" 
+    (onDisplayShortList)="displayShortList()" 
+    (onFilterMenuCollapseChange)="filterMenuOpen = $event"
+    [queryProcessing]="queryProcessing"></app-filter-menu>
 
  <!-- Table to Display Pokemon Matching Query -->
  <div class="pt-4 pb-5">
      <div class="table-container is-flex is-justify-content-center query-table-container">
-         <app-query-table [pkmnList]="pkmnList" (onAddToShortlist)="addToShortlist($event)" (onRemoveFromShortList)="removeFromShortList($event)"></app-query-table>
+         <app-query-table 
+            [pkmnList]="pkmnList" 
+            [filterMenuOpen]="filterMenuOpen"
+            (onAddToShortlist)="addToShortlist($event)" 
+            (onRemoveFromShortList)="removeFromShortList($event)">
+        </app-query-table>
      </div>
  </div>
