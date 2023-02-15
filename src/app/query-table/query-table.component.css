@@ -10,7 +10,6 @@ a {
     display: block;
     width: 100%;
     overflow-y: scroll;
-    font-size: 13px;
     text-align: center;
 }
 
@@ -18,7 +17,7 @@ a {
     max-height: 60vh;
 }
 
-.table-with-filter-closed {
+.table-with-filter-closed { 
     max-height: 71vh;
 }
 
@@ -28,6 +27,15 @@ th {
     background-color: var(--header-background);
     border-top: none !important;
     border-left: none !important;
+}
+
+td, th {
+    font-size: 14px;
+    padding: 6px;
+}
+
+tr {
+    text-align: center;
 }
 
 .table-row1 {
