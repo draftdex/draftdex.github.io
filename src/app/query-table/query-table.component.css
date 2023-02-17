@@ -56,10 +56,10 @@ tr {
 
 @media screen and (max-height: 1024px) {
     .table-with-filter-open {
-        max-height: 56vh;
+        max-height: 54vh;
     }
 
     .table-with-filter-closed {
-        max-height: 69vh;
+        max-height: 67vh;
     }
 }
