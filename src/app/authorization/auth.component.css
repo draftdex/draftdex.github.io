@@ -8,7 +8,7 @@ body {
     position: relative;
 }
 
-.bottom-banner {
+.login-bottom-banner {
     position: fixed;
     width: 100%;
     bottom: 14vh;
@@ -17,7 +17,8 @@ body {
     left: 0;
     color: black;
     padding-left: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
+    font-size: 14px;
 }
 
 .form-horizontal-padding {

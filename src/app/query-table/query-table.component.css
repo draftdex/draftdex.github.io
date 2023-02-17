@@ -14,11 +14,11 @@ a {
 }
 
 .table-with-filter-open {
-    max-height: 60vh;
+    max-height: 66vh;
 }
 
 .table-with-filter-closed { 
-    max-height: 71vh;
+    max-height: 78vh;
 }
 
 th {
@@ -56,10 +56,10 @@ tr {
 
 @media screen and (max-height: 1024px) {
     .table-with-filter-open {
-        max-height: 45vh;
+        max-height: 56vh;
     }
 
     .table-with-filter-closed {
-        max-height: 63vh;
+        max-height: 69vh;
     }
 }

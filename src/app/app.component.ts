@@ -11,5 +11,4 @@ export class AppComponent {
   currentRoute: string = this.router.url;
 
   constructor(private router: Router) {}
-
 }

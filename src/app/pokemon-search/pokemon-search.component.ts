@@ -6,7 +6,7 @@ import { SupabaseService } from '../shared/services/supabase-service';
 @Component({
   selector: 'app-pokemon-search',
   templateUrl: './pokemon-search.component.html',
-  styleUrls: ['./pokemon-search.component.css']
+  styleUrls: ['./pokemon-search.component.css', './../../styles.css']
 })
 export class PokemonSearchComponent implements OnInit {
   // Create supabase.io database client
