@@ -65,12 +65,15 @@ export class PokemonSearchComponent implements OnInit {
       query.eq('available', this.filterVals.available);
 
     // Tier filter
-    if (this.filterVals.tier && this.filterVals.tier !== 'All') {
-      if (this.filterVals.tier === 'My Team') {
-        const team = this.authService.userSession.team;
-        if (team) query.ilike('team', team);
-      } else {
-        query.ilike('tier', this.filterVals.tier);  // ilike case insensitive match
+    if (this.filterVals.tier) {
+      query.order('tier',  { ascending: true });
+      if ( this.filterVals.tier !== 'All') {
+        if (this.filterVals.tier === 'My Team') {
+          const team = this.authService.userSession.team;
+          if (team) query.ilike('team', team);
+        } else {
+          query.ilike('tier', this.filterVals.tier);  // ilike case insensitive match
+        }
       }
     }
 
