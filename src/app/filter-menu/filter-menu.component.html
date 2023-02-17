@@ -4,7 +4,7 @@
     <div class="hero is-info is-small banner-format">
       <div class="hero-body banner banner-format">
         <p class="subtitle">Search Filters</p>
-        <a class="button is-warning collapseButton" style="width: 20px; height : 15px ;" id="collapseButton" (click)="collapseMenu()">-</a> 
+        <a class="button is-warning collapse-button" style="width: 20px; height : 15px ;" id="collapseButton" (click)="collapseMenu()">-</a> 
       </div>
     </div>
     <form class="box" autocomplete="off">  
@@ -58,7 +58,7 @@
               </div>
               <div class="dropdown-menu" id="dropdown-menu" role="menu">
                 <div class="dropdown-content dropdown-scroll">
-                  <a id="ability_choice" *ngFor="let ability of abilityList" (click)="selectAbility(ability)" class="dropdown-item ability-select-active">
+                  <a id="ability_choice" *ngFor="let ability of abilityList" (click)="selectAbility(ability)" class="dropdown-item select-active">
                     {{ability}}
                   </a>
                 </div>
@@ -116,7 +116,7 @@
         <div class="column is-flex is-align-items-center column-squeeze">
           <div class="pt-4 pb-4">
             <div class="buttons">
-                <a class="button is-warning filter_button" id="getPokemon" (click)="sendFilterVals()">Get Pokemon</a>
+                <a class="button is-warning filter_button" [ngClass]="{'is-loading': queryProcessing}" id="getPokemon" (click)="sendFilterVals()">Get Pokemon</a>
               <a class="button is-warning filter_button" id="displayShortList" (click)="displayShortList()">View Shortlist</a>
             </div>
           </div>

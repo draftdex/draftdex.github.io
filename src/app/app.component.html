@@ -5,21 +5,6 @@
 </head>
 
 <body class="background">
-    <!-- Page Header Section -->
-    <app-header></app-header>
-
-    <div class="bottom-banner">
-        <p><span class="bottom-text-big">Made for the W&W PDL&emsp;</span><span class="bottom-text-small">| 
-            <a target="_blank" href="https://{{Ruleset}}">Ruleset</a> | 
-            <a target="_blank" href="https://{{MasterSheet}}">Master Sheet </a>| 
-            <a target="_blank" href="https://{{ScheduleLink}}">Schedule</a> |
-            <a target="_blank" href="https://{{Help}}">Help</a> | 
-            <a routerLink="/credits">Credits</a> |
-            <a target="_blank" href="https://{{Showdown}}">Teambuilder</a> |
-            <a routerLink="/add-edit"> Add/Edit</a> |
-            Version 0.02
-            </span>
-        </p>
-    </div>
-    <router-outlet></router-outlet>
+    <app-bottom-banner class="bottom-banner" *ngIf="currentRoute !== '/login'"></app-bottom-banner>
+    <router-outlet class="display-container"></router-outlet>
 </body>

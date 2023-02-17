@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SupabaseClient, createClient } from '@supabase/supabase-js';
+import { AuthService } from '../shared/services/auth-service';
+import { SupabaseService } from '../shared/services/supabase-service';
 
 @Component({
   selector: 'app-pokemon-search',
@@ -11,14 +13,28 @@ export class PokemonSearchComponent implements OnInit {
   dbClient: SupabaseClient = createClient('https://kqyshvlibkoatazqavuc.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0Mzc0MTI3MSwiZXhwIjoxOTU5MzE3MjcxfQ.hMsQnDsKARs4OyTsIpUR2nPR86TQxbvn3hOoyuGEnA8');
 
   pkmnList = [];
-  filterVals:any = {};
-  shortList:any = [];
+  filterVals: any = {};
+  shortList: any = [];
+  filterMenuOpen: boolean = true;
 
   queryProcessing = false;
 
-  constructor() { }
+  constructor(private authService: AuthService,
+              private supabaseService: SupabaseService) {}
 
   ngOnInit(): void {
+    this.getPokemonForTeam(this.authService.userSession.team);
+  }
+
+  private getPokemonForTeam(teamName: string | undefined): void {
+    this.queryProcessing = true;
+    this.supabaseService.getPokemonForTeam(teamName).subscribe({
+      next: (pokemon) => {
+        this.pkmnList = pokemon;
+        this.queryProcessing = false;
+      },
+      error: (error) => console.error(`Error retrieving pokemon for ${teamName}`, error)
+    })
   }
 
   async getPokemon(query:any) {
@@ -30,7 +46,6 @@ export class PokemonSearchComponent implements OnInit {
   // Sets filterVals to filter selections and calls getPokemon() to query database
   getFilterUpdate(filter_vals: any):void {
     this.filterVals = filter_vals;
-    console.log(this.filterVals);
     this.processFilters();
   }
 
@@ -50,8 +65,14 @@ export class PokemonSearchComponent implements OnInit {
       query.eq('available', this.filterVals.available);
 
     // Tier filter
-    if (this.filterVals.tier)
-      query.ilike('tier', this.filterVals.tier);  // ilike case insensitive match
+    if (this.filterVals.tier && this.filterVals.tier !== 'All') {
+      if (this.filterVals.tier === 'My Team') {
+        const team = this.authService.userSession.team;
+        if (team) query.ilike('team', team);
+      } else {
+        query.ilike('tier', this.filterVals.tier);  // ilike case insensitive match
+      }
+    }
 
     // Type filters
     if (this.filterVals.type1 || this.filterVals.type2) {

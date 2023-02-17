@@ -1,0 +1,87 @@
+.error {
+    border-color: red;
+    color: red;
+    font-size: 14px;
+}
+
+.register-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.register-buttons {
+    display: flex;
+    justify-content: center;
+    column-gap: 15px;
+}
+
+.register-button-dark {
+    background: #4B4C66;
+    color: white;
+    border: 1px solid #4B4C66;
+}
+
+.pokeball-icon {
+    background: url('./../../../assets/TinyPokeball.png');
+    height: 14px !important;
+    width: 14px !important;
+}
+
+input {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+button {
+    box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
+}
+
+.border {
+    border-color: black !important;
+}
+
+.border-error {
+    border-color: red !important;
+}
+
+.form-horizontal-padding {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.field-bottom-padding {
+    padding-bottom: .25rem;
+}
+
+.form-vertical-padding {
+    padding-top: 2rem;
+}
+
+.field-padding {
+    padding-top: .25rem;
+    padding-bottom: .5rem;
+}
+
+.field-margin {
+    margin: 0;
+}
+
+@media screen and (max-height: 900px) {
+    .form-vertical-padding {
+        padding-top: .5rem;
+    }
+
+    .field-margin {
+        margin: 0;
+    }
+
+    .field-bottom-padding {
+        padding-bottom: 0;
+    }
+
+    .field-padding {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}

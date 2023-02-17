@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -11,6 +10,8 @@ import { SortDirective } from './directive/sort.directive';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddEditComponent } from './add-edit/add-edit.component';
 import { PokemonSearchComponent } from './pokemon-search/pokemon-search.component';
+import { AuthComponent } from './authorization/auth.component';
+import { BottomBannerComponent } from './bottom-banner/bottom-banner.component';
 import { CreditsComponent } from './credits/credits.component';
 
 @NgModule({
@@ -28,7 +29,9 @@ import { CreditsComponent } from './credits/credits.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    BottomBannerComponent,
+    AuthComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,11 +1,11 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { GlobalConstants } from '../global/global-constants';
 import { HostListener  } from "@angular/core";
 
 @Component({
   selector: 'app-filter-menu',
   templateUrl: './filter-menu.component.html',
-  styleUrls: ['./filter-menu.component.css']
+  styleUrls: ['./filter-menu.component.css', './../../styles.css']
 })
 export class FilterMenuComponent implements OnInit {
 
@@ -22,10 +22,13 @@ export class FilterMenuComponent implements OnInit {
   // Boolean to dynamically render ability dropdown menu
   abilityActive = false;
 
+  
+  @Input() queryProcessing: boolean = false;  // boolean to determine if a query is being processed (if so, display spinner)
   // Keep track of filter values
   @Output() onFilterUpdate = new EventEmitter<any>();
   // Switch to shortlist view
   @Output() onDisplayShortList = new EventEmitter<any>();
+  @Output() onFilterMenuCollapseChange = new EventEmitter<boolean>();
   
   // Boolean to track if filter menu is open
   menuOpen = true;
@@ -72,7 +75,7 @@ export class FilterMenuComponent implements OnInit {
   // Dynamically display abilities according to input text
   searchAbilities($event: KeyboardEvent) {
     // Grab abilities from ability dropdown
-    const abilities = document.getElementsByClassName('ability-select-active'); // innerText only gives human-readable content of <a> tag
+    const abilities = document.getElementsByClassName('select-active'); // innerText only gives human-readable content of <a> tag
     
     // Determine if a match is found
     let found = false;
@@ -120,10 +123,9 @@ export class FilterMenuComponent implements OnInit {
     this.onDisplayShortList.emit()
   }
 
-  //Fire event to collapse filter menu
+  // Fire event to collapse filter menu
   collapseMenu() {
-      this.menuOpen = !this.menuOpen   
+      this.menuOpen = !this.menuOpen;
+      this.onFilterMenuCollapseChange.emit(this.menuOpen);  
   }
-
-
 }

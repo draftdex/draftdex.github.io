@@ -8,10 +8,11 @@
     width: 100%;
     bottom: 0;
     left: 0;
-    color: black;
+    color: var(--header-text);
     padding-left: 10px;
     padding-bottom: 10px;
-    background-color: #8D9AAD;
+    background-color: var(--header-background);
+    z-index: 100;
 }
 
 .bottom-text-small {
@@ -24,5 +25,5 @@
 }
 
 .query-table-container {
-    background-color: #8D9AAD;
+    background-color: var(--light-background);
 }

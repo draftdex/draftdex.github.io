@@ -1,0 +1,14 @@
+.credits-container {
+    height: 100vh;
+    width: 100vw;
+}
+
+.credits-image {
+    background-image: url('./../../assets/CreditsPage.png');
+    background-repeat: no-repeat;
+    background-size: 100% 88%;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 0;
+}

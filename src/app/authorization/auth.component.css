@@ -1,0 +1,57 @@
+body {
+    background-image: url('./../../assets/MainPageBanner.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.bottom-banner {
+    position: fixed;
+    width: 100%;
+    bottom: 14vh;
+    margin-left: 14.5vw;
+    left: 160px;
+    left: 0;
+    color: black;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+.form-horizontal-padding {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.form-vertical-padding {
+    padding-top: .25rem;
+}
+
+.form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25%;
+    height: 32%;
+    transform: translate(-50%, -35%);
+    background: #8d9aad;
+    box-shadow:
+    0 0 0 7px black,
+    0 0 0 10px #CD9933,
+    0 0 0 15px black;
+}
+
+@media screen and (max-width: 1240px) {
+    .form-container {
+        width: 40%;
+    }
+}
+
+@media screen and (max-height: 799px) {
+    .form-container {
+        height: 38%;
+    }
+}
+

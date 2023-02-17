@@ -65,53 +65,53 @@ export class GlobalConstants {
     ];
 
     public static tierList = [
-        'Restricted',
-        'Legend',
         '1',
         '2',
         '3',
         '4',
+        'My Team',
+        'Restricted',
+        'Legend',
         'Unlisted',
-        'Banned'
+        'Banned',
+        'All'
     ];
 
     public static pokemonAttributesTableHeaders = [
         'Name',
         'Form',
-        'GMax',
         'Type 1',
         'Type 2',
         'Ability 1',
         'Ability 2',
         'Hidden Ability',
         'HP',
-        'Attack',
-        'Defense',
-        'Sp. Attack',
-        'Sp. Defense',
-        'Speed',
+        'Atk',
+        'Def',
+        'SpA',
+        'SpD',
+        'Spd',
+        'Bst',
         'Tier',
-        'Free',
         'Team'
     ];
 
     public static tableHeaderMap: any = {
         'Name' : "name",
         'Form' : "form",
-        'GMax' : "gmax",
         'Type 1' : "type1",
         'Type 2' : "type2",
         'Ability 1' : "ability1",
         'Ability 2' : "ability2",
         'Hidden Ability' : "hiddenAbility",
         'HP' : "hp",
-        'Attack' : "attack",
-        'Defense' : "defense",
-        'Sp. Attack' : "spAttack",
-        'Sp. Defense' : "spDefense",
-        'Speed' : "speed",
+        'Atk' : "attack",
+        'Def' : "defense",
+        'SpA' : "spAttack",
+        'SpD' : "spDefense",
+        'Spd' : "speed",
+        'Bst' : "bst",
         'Tier' : "tier",
-        'Free' : "available",
         'Team' : "team"
     };
 

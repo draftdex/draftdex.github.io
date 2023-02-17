@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GlobalConstants } from './global/global-constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +8,8 @@ import { GlobalConstants } from './global/global-constants';
 })
 
 export class AppComponent {
-  /*
-    Define component properties
-  */
-  title = 'DraftDex';
-  MasterSheet = GlobalConstants.MasterSheet;
-  Help = GlobalConstants.Help;
-  Ruleset = GlobalConstants.Ruleset;
-  Showdown = GlobalConstants.Showdown;
-  ScheduleLink = GlobalConstants.ScheduleLink;
+  currentRoute: string = this.router.url;
+
+  constructor(private router: Router) {}
+
 }

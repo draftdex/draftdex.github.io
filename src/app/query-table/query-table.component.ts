@@ -1,13 +1,13 @@
-import { Component, OnInit, Input, Output, OnChanges, SimpleChanges, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { faAngleUp, faSpinner, faPlusSquare, faMinusCircle } from '@fortawesome/free-solid-svg-icons'; 
 import { GlobalConstants } from './../global/global-constants';
 
 @Component({
   selector: 'app-query-table',
   templateUrl: './query-table.component.html',
-  styleUrls: ['./query-table.component.css']
+  styleUrls: ['./query-table.component.css', './../../styles.css']
 })
-export class QueryTableComponent implements OnInit, OnChanges {
+export class QueryTableComponent implements OnInit {
 
   constructor() { }
 
@@ -25,7 +25,7 @@ export class QueryTableComponent implements OnInit, OnChanges {
   faMinusCircle = faMinusCircle;
 
   @Input() pkmnList: any;
-  @Input() queryProcessing: any;  // boolean to determine if a query is being processed (if so, display spinner)
+  @Input() filterMenuOpen: boolean = true;
 
   // Event listener to prompt addition to shortlist
   @Output() onAddToShortlist = new EventEmitter<any>();
@@ -46,29 +46,9 @@ export class QueryTableComponent implements OnInit, OnChanges {
     }
 }
 
-  /**
-   * Add listener for changes to variables defined in parent component
-   * @param changes - SimpleChanges object, where keys are input prop names and val is 
-   *                  instance of SimpleChange class
-   * @returns nothing
-   */
-  ngOnChanges(changes: SimpleChanges) {
-    for (const propName in changes) {
-      if (changes.hasOwnProperty(propName)) {
-        switch (propName) {
-          case 'pkmnList': {
-            break;
-          } case 'queryProcessing': {
-            break;
-          }
-        }
-      }
-    }
-  }
-
   // Add pokemon to shortlist
   editShortlist(pkmn: any) {
     // Emit event to edit pkmn in shortlist
-    pkmn.inShortList ? this.onRemoveFromShortList.emit(pkmn) : this.onAddToShortlist.emit(pkmn)
+    pkmn.inShortList ? this.onRemoveFromShortList.emit(pkmn) : this.onAddToShortlist.emit(pkmn);
   }
 }

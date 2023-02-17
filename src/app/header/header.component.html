@@ -1,18 +1,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<div class="hero banner border is-flex is-justify-content-center header-height">
-    <div class="columns">
-        <div class="column logo-display">
-            <figure class="image logo">
+<div class="hero banner border header-height">
+    <div class="is-flex is-justify-content-space-between is-align-items-center">
+        <div class="pl-4">
+            <figure class="image logo clickable" (click)="navigateToHome()">
                 <img src="../assets/WWLogo.png" alt="W&W PDL Logo">
             </figure>
         </div>
 
-        <div class="column is-flex is-align-items-center is-justify-content-center">
+        <div>
             <figure class="image title">
-                <img src="../assets/DraftDexTitle.png" alt="W&W PDL Logo">
+                <img src={{logoPath}} alt="W&W PDL Logo">
             </figure>
         </div>
 
-        <div class="column"></div>
+        <div class="pr-4">
+            <div class="dropdown is-right is-hoverable">
+                <div class="dropdown-trigger">
+                    <figure class="image logo menu dropdown-trigger" aria-haspopup="true" aria-controls="dropdown-menu">
+                        <img src='{{"../assets/logos/" + authService.userSession.team + ".png"}}' alt="W&W PDL Logo">
+                    </figure>
+                </div>
+                <div class="dropdown-menu" style="width: 20px;" id="dropdown-menu" role="menu">
+                    <div class="dropdown-content align-dropdown-center">
+                        <a class="dropdown-item" (click)="authService.logout()">
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
