@@ -69,6 +69,7 @@ export class GlobalConstants {
         '2',
         '3',
         '4',
+        'My Team',
         'Restricted',
         'Legend',
         'Unlisted',
