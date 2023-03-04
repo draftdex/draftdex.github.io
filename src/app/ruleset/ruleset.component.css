@@ -1,12 +1,15 @@
 .ruleset-container {
-    height: 88vh;
+    height: 85vh;
     width: 100vw; 
-    background-color: white;
+    padding-top: 4px;
+    padding-bottom: 8px;
+    
     
 }
 
 iframe {
     height: 100%;
     width: 100%;
-    margin-left: 25vw;
+    margin-left: 30vw;
 }
+
