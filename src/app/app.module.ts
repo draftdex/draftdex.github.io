@@ -13,6 +13,7 @@ import { PokemonSearchComponent } from './pokemon-search/pokemon-search.componen
 import { AuthComponent } from './authorization/auth.component';
 import { BottomBannerComponent } from './bottom-banner/bottom-banner.component';
 import { CreditsComponent } from './credits/credits.component';
+import { RulesetComponent } from './ruleset/ruleset.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CreditsComponent } from './credits/credits.component';
     SortDirective,
     AddEditComponent,
     PokemonSearchComponent,
-    CreditsComponent
+    CreditsComponent,
+    RulesetComponent
   ],
   imports: [
     BrowserModule,
