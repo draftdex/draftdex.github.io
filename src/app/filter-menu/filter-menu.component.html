@@ -85,52 +85,31 @@
 
         <!--Third Column-->
         <div class="column is-flex is-align-items-center is-justify-content-center is-flex-direction-column column-squeeze">
-          <div class="field is-horizontal mb-0 mt-3">
-            <div class="dropdown" [ngClass]="{'is-active' : pokemonActive, '' : !pokemonActive}">
-              <div class="dropdown-trigger">
-                <div class="control">
-                  <input id="nameSearch_input" class="input" [(ngModel)]="ability" name="name_search" type="text" (focus)="setNameSearchActive()" (keyup)="searchPokemonName($event)" placeholder="Pokemon Name">
-                </div>
-              </div>
-              <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                <div class="dropdown-content dropdown-scroll">
-                  <a id="ability_choice" *ngFor="let namesearch of pokemonSearchList" (click)="selectNameSearch(namesearch)" class="dropdown-item ability-select-active">
-                    {{ability}}
-                  </a>
-                </div>
-              </div>
+          <div class="field is-horizontal">
+            <div class="field-label">
+              <label class="label filter-font">Dual-Type&nbsp; </label>
             </div>
-          </div>
-          
-          <div class="column is-flex is-flex-direction-column is-justify-content-center p-0 m-0">
-            <div class="field is-horizontal m-0">
-              <div class="field-label">
-                <label class="label filter-font">Dual-Type&nbsp; </label>
-              </div>
-              <div class="field">
-                <div class="control">
-                  <div class="checkbox">
-                    <input type="checkbox" [(ngModel)]="dualType" name="dualType">
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="field is-horizontal m-0">
-              <div class="field-label">
-                <label class="label filter-font">Free Agent</label>
-              </div>
-              <div class="field">
-                <div class="control">
-                  <div class="checkbox">
-                    <input type="checkbox" [(ngModel)]="available" name="available">
-                  </div>
+            <div class="field">
+              <div class="control">
+                <div class="checkbox">
+                  <input type="checkbox" [(ngModel)]="dualType" name="dualType">
                 </div>
               </div>
             </div>
           </div>
 
-
+          <div class="field is-horizontal">
+            <div class="field-label">
+              <label class="label filter-font">Free Agent</label>
+            </div>
+            <div class="field">
+              <div class="control">
+                <div class="checkbox">
+                  <input type="checkbox" [(ngModel)]="available" name="available">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!--4th column-->
