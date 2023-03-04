@@ -4,6 +4,7 @@ import { AddEditComponent } from './add-edit/add-edit.component';
 import { AuthComponent } from './authorization/auth.component';
 import { CreditsComponent } from './credits/credits.component';
 import { PokemonSearchComponent } from './pokemon-search/pokemon-search.component';
+import { RulesetComponent } from './ruleset/ruleset.component';
 import { StyleResolver } from './shared/resolvers/style-resolver';
 
 const routes: Routes = [
@@ -27,6 +28,12 @@ const routes: Routes = [
   { 
     path: 'credits', 
     component: CreditsComponent,
+    resolve: { style: StyleResolver },
+    runGuardsAndResolvers: 'always'
+  },
+  {
+    path: 'ruleset',
+    component: RulesetComponent,
     resolve: { style: StyleResolver },
     runGuardsAndResolvers: 'always'
   },
