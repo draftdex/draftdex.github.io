@@ -1,0 +1,12 @@
+.ruleset-container {
+    height: 88vh;
+    width: 100vw; 
+    display: flex;
+    justify-content: center;
+}
+
+iframe {
+    height: 100%;
+    width: 100%;
+    
+}
