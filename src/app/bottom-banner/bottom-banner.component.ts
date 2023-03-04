@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GlobalConstants } from './../global/global-constants';
+import { GlobalConstants } from '../shared/global-constants';
 import { RouterModule } from '@angular/router';
 
 @Component({

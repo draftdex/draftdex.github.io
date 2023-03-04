@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { faAngleUp, faSpinner, faPlusSquare, faMinusCircle } from '@fortawesome/free-solid-svg-icons'; 
-import { GlobalConstants } from './../global/global-constants';
+import { GlobalConstants } from '../shared/global-constants';
 
 @Component({
   selector: 'app-query-table',

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { GlobalConstants } from '../global/global-constants';
+import { GlobalConstants } from '../shared/global-constants';
 import { HostListener  } from "@angular/core";
 
 @Component({

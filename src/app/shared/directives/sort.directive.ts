@@ -1,5 +1,5 @@
 import { Directive, Input, ElementRef, Renderer2, HostListener } from '@angular/core';
-import { Sort } from '../util/sort';
+import { Sort } from '../utils/sort';
 
 @Directive({
   selector: '[appSort]'

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SupabaseClient, createClient } from '@supabase/supabase-js';
 import { AuthService } from '../shared/services/auth-service';
 import { SupabaseService } from '../shared/services/supabase-service';
 
@@ -9,9 +8,6 @@ import { SupabaseService } from '../shared/services/supabase-service';
   styleUrls: ['./pokemon-search.component.css', './../../styles.css']
 })
 export class PokemonSearchComponent implements OnInit {
-  // Create supabase.io database client
-  dbClient: SupabaseClient = createClient('https://kqyshvlibkoatazqavuc.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0Mzc0MTI3MSwiZXhwIjoxOTU5MzE3MjcxfQ.hMsQnDsKARs4OyTsIpUR2nPR86TQxbvn3hOoyuGEnA8');
-
   pkmnList = [];
   filterVals: any = {};
   shortList: any = [];
@@ -44,7 +40,7 @@ export class PokemonSearchComponent implements OnInit {
 
   // Listens for filterUpdate event fired from filter-menu component
   // Sets filterVals to filter selections and calls getPokemon() to query database
-  getFilterUpdate(filter_vals: any):void {
+  getFilterUpdate(filter_vals: any): void {
     this.filterVals = filter_vals;
     this.processFilters();
   }
@@ -54,43 +50,11 @@ export class PokemonSearchComponent implements OnInit {
     this.queryProcessing = true;  // Initiate start of query processing
     this.pkmnList = [];           // Reset pokemon list when new filters applied
 
-    let query = this.dbClient.from('pokemonInfo').select();
-
-    // Ability filters
-    if (this.filterVals.ability) 
-      query.or(`ability1.ilike.${this.filterVals.ability},ability2.ilike.${this.filterVals.ability},hiddenAbility.ilike.${this.filterVals.ability}`);
-    
-    // Available filter
-    if (this.filterVals.available) 
-      query.eq('available', this.filterVals.available);
-
-    // Tier filter
-    if (this.filterVals.tier) {
-      query.order('tier',  { ascending: true });
-      if ( this.filterVals.tier !== 'All') {
-        if (this.filterVals.tier === 'My Team') {
-          const team = this.authService.userSession.team;
-          if (team) query.ilike('team', team);
-        } else {
-          query.ilike('tier', this.filterVals.tier);  // ilike case insensitive match
-        }
-      }
-    }
-
-    // Type filters
-    if (this.filterVals.type1 || this.filterVals.type2) {
-      if (this.filterVals.dualTypeExclusive) {
-        // Dual-typing required
-        query.or(`and(type1.eq.${this.filterVals.type1},type2.eq.${this.filterVals.type2}),and(type1.eq.${this.filterVals.type2},type2.eq.${this.filterVals.type1})`);
-      } else {
-        // Dual-typing optional
-        query.or(`type1.eq.${this.filterVals.type1},type1.eq.${this.filterVals.type2},type2.eq.${this.filterVals.type1},type2.eq.${this.filterVals.type2}`);
-      }
-    }
-
-    this.getPokemon(query).then((data) => {
-      this.setPkmnList(data);
-    });
+    // TODO -- Make filters object and add team
+    this.filterVals.team = this.authService.userSession.team;
+    this.supabaseService.getPokemonFromFilters(this.filterVals)
+      .subscribe(filteredPkmn => this.setPkmnList(filteredPkmn)
+    );
   }
 
   // Assign pokemonList to database query results

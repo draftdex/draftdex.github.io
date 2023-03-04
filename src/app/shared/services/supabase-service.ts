@@ -45,7 +45,7 @@ export class SupabaseService {
         return newUser$;
     }
 
-    getPokemonForTeam(team: string | undefined) {
+    getPokemonForTeam(team: string | undefined): Observable<any> {
         const query = this.dbClient.from('pokemonInfo')
             .select('*')
             .or('tier.eq.1, tier.eq.2, tier.eq.3, tier.eq.4')
@@ -53,6 +53,49 @@ export class SupabaseService {
         if (team !== 'WW' && team !== undefined) query.eq('team', team);
         let pokemonForTeam$ = from(this.executeQuery(query)).pipe(first());
         return pokemonForTeam$;
+    }
+
+    getPokemonFromFilters(filters: any): Observable<any> {
+        let query = this.dbClient.from('pokemonInfo').select();
+        query = this.applyFiltersToQuery(query, filters);
+        let filteredPokemon$ = from(this.executeQuery(query)).pipe(first());
+        return filteredPokemon$;
+    }
+
+    private applyFiltersToQuery(query: any, filters: any): any {
+        // Ability filters
+        if (filters.ability) 
+            query.or(`ability1.ilike.${filters.ability},ability2.ilike.${filters.ability},hiddenAbility.ilike.${filters.ability}`);
+  
+        // Available filter
+        if (filters.available) 
+            query.eq('available', filters.available);
+
+        // Tier filter
+        if (filters.tier) {
+            query.order('tier',  { ascending: true });
+            if ( filters.tier !== 'All') {
+                if (filters.tier === 'My Team' && filters.team) {
+                    //TODO -- Ensure team is selected properly
+                    query.ilike('team', filters.team);
+                } else {
+                    query.ilike('tier', filters.tier);  // ilike case insensitive match
+                }
+            }
+        }
+
+        // Type filters
+        if (filters.type1 || filters.type2) {
+            if (filters.dualTypeExclusive) {
+            // Dual-typing required
+            query.or(`and(type1.eq.${filters.type1},type2.eq.${filters.type2}),and(type1.eq.${filters.type2},type2.eq.${filters.type1})`);
+            } else {
+            // Dual-typing optional
+            query.or(`type1.eq.${filters.type1},type1.eq.${filters.type2},type2.eq.${filters.type1},type2.eq.${filters.type2}`);
+            }
+        }
+
+        return query;
     }
 
     async executeQuery(query: any) {
