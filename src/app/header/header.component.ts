@@ -18,4 +18,8 @@ export class HeaderComponent {
   public navigateToHome(): void {
     this.router.navigate(['pokemon-search']).then();
   }
+
+  public navigateToRules(): void {
+    this.router.navigate(['ruleset']).then();
+  }
 }
