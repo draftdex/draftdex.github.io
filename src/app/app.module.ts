@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { QueryTableComponent } from './query-table/query-table.component';
 import { FilterMenuComponent } from './filter-menu/filter-menu.component';
-import { SortDirective } from './directive/sort.directive';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddEditComponent } from './add-edit/add-edit.component';
 import { PokemonSearchComponent } from './pokemon-search/pokemon-search.component';
@@ -20,7 +19,6 @@ import { CreditsComponent } from './credits/credits.component';
     HeaderComponent,
     QueryTableComponent,
     FilterMenuComponent,
-    SortDirective,
     AddEditComponent,
     PokemonSearchComponent,
     CreditsComponent

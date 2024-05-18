@@ -4,7 +4,7 @@
         <thead>
             <tr>
                 <th *ngFor="let attribute of tableHeaders" class="has-text-centered">
-                    <a [appSort]="{listToSort: pkmnList, headerMapping: tableHeaderMap}" (click)="flipIcon($event)" data-order="asc" data-name="attribute.value" class="remove-hyperlink">
+                    <a (click)="flipIcon($event)" data-order="asc" data-name="attribute.value" class="remove-hyperlink">
                         {{attribute}}
                         <span class="icon">
                             <fa-icon [icon]="faAngleUp"></fa-icon>
