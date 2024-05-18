@@ -1,11 +1,20 @@
 <!-- Table to Display Pokemon Matching Query -->
 <div class="border" *ngIf="pkmnList.length > 0">
-    <table class="table-with-filter-open has-text-centered is-bordered is-hoverable">
+    <table
+        class="table-with-filter-open has-text-centered is-bordered is-hoverable"
+    >
         <thead>
             <tr>
-                <th *ngFor="let attribute of tableHeaders" class="has-text-centered">
-                    <a (click)="flipIcon($event)" data-order="asc" data-name="attribute.value" class="remove-hyperlink">
-                        {{attribute}}
+                <th
+                    *ngFor="let attribute of tableHeaders"
+                    class="has-text-centered"
+                >
+                    <a
+                        data-order="asc"
+                        data-name="attribute.value"
+                        class="remove-hyperlink"
+                    >
+                        {{ attribute }}
                         <span class="icon">
                             <i class="pi pi-angle-up"></i>
                         </span>
@@ -14,32 +23,52 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let pkmn of pkmnList; index as i;" [ngClass]="{'table-row1': i % 2 == 0, 'table-row2': i % 2 != 0}">
+            <tr
+                *ngFor="let pkmn of pkmnList; index as i"
+                [ngClass]="{
+                    'table-row1': i % 2 == 0,
+                    'table-row2': i % 2 != 0
+                }"
+            >
                 <td id="name" class="has-text-left">
-                    <a (click)="editShortlist(pkmn)">
-                        <span class="icon">
-                            <!-- If pkmn not in shortList, show PLUS. Otherwise, show MINUS -->
-                            <i *ngIf="pkmn.inShortList" class="pi-minus-circle"></i>
-                        </span> 
-                    </a>
-                    <a href="https://pokemondb.net/pokedex/{{pkmn.name.toLowerCase()}}" target="_blank" rel="noopener noreferrer"><strong>
-                    {{pkmn.name}}
-                </strong></a></td>
-                <td id="form"><strong>{{pkmn.form}}</strong></td>
-                <td id="type1">{{pkmn.type1}}</td>
-                <td id="type2">{{pkmn.type2}}</td>
-                <td id="ability1">{{pkmn.ability1}}</td>
-                <td id="ability2">{{pkmn.ability2}}</td>
-                <td id="hiddenAbility">{{pkmn.hiddenAbility}}</td>
-                <td id="hp">{{pkmn.hp}}</td>
-                <td id="attack">{{pkmn.attack}}</td>
-                <td id="defense">{{pkmn.defense}}</td>
-                <td id="spAttack">{{pkmn.spAttack}}</td>
-                <td id="spDefense">{{pkmn.spDefense}}</td>
-                <td id="speed">{{pkmn.speed}}</td>
-                <td id="bst">{{pkmn.bst}}</td>
-                <td id="tier">{{pkmn.tier}}</td>
-                <td id="team">{{pkmn.team}}</td>
+                    <i
+                        (click)="editShortlist(pkmn)"
+                        *ngIf="pkmn.inShortList"
+                        class="pi pi-minus-circle"
+                    ></i>
+                    <i
+                        (click)="editShortlist(pkmn)"
+                        *ngIf="!pkmn.inShortList"
+                        class="pi pi-plus-circle"
+                    ></i>
+                    <a
+                        href="https://pokemondb.net/pokedex/{{
+                            pkmn.name.toLowerCase()
+                        }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><strong>
+                            {{ pkmn.name }}
+                        </strong></a
+                    >
+                </td>
+                <td id="form">
+                    <strong>{{ pkmn.form }}</strong>
+                </td>
+                <td id="type1">{{ pkmn.type1 }}</td>
+                <td id="type2">{{ pkmn.type2 }}</td>
+                <td id="ability1">{{ pkmn.ability1 }}</td>
+                <td id="ability2">{{ pkmn.ability2 }}</td>
+                <td id="hiddenAbility">{{ pkmn.hiddenAbility }}</td>
+                <td id="hp">{{ pkmn.hp }}</td>
+                <td id="attack">{{ pkmn.attack }}</td>
+                <td id="defense">{{ pkmn.defense }}</td>
+                <td id="spAttack">{{ pkmn.spAttack }}</td>
+                <td id="spDefense">{{ pkmn.spDefense }}</td>
+                <td id="speed">{{ pkmn.speed }}</td>
+                <td id="bst">{{ pkmn.bst }}</td>
+                <td id="tier">{{ pkmn.tier }}</td>
+                <td id="team">{{ pkmn.team }}</td>
             </tr>
         </tbody>
     </table>
