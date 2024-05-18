@@ -1,6 +1,6 @@
 {
   "name": "draft-dex",
-  "version": "0.0.0",
+  "version": "0.0.4",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --open",
@@ -24,7 +24,6 @@
     "@supabase/supabase-js": "^1.29.4",
     "@types/bcryptjs": "^2.4.2",
     "bcryptjs": "^2.4.3",
-    "better-sqlite3": "^7.4.5",
     "bulma": "^0.9.3",
     "md5": "^2.3.0",
     "rxjs": "~7.4.0",
