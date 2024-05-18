@@ -1,13 +1,13 @@
 <!-- Table to Display Pokemon Matching Query -->
 <div class="border" *ngIf="pkmnList.length > 0">
-    <table class="table-with-filter-open has-text-centered is-bordered is-hoverable" [ngClass]="{'table-with-filter-open': filterMenuOpen, 'table-with-filter-closed': !filterMenuOpen}">
+    <table class="table-with-filter-open has-text-centered is-bordered is-hoverable">
         <thead>
             <tr>
                 <th *ngFor="let attribute of tableHeaders" class="has-text-centered">
                     <a (click)="flipIcon($event)" data-order="asc" data-name="attribute.value" class="remove-hyperlink">
                         {{attribute}}
                         <span class="icon">
-                            <fa-icon [icon]="faAngleUp"></fa-icon>
+                            <i class="pi pi-angle-up"></i>
                         </span>
                     </a>
                 </th>
@@ -19,8 +19,7 @@
                     <a (click)="editShortlist(pkmn)">
                         <span class="icon">
                             <!-- If pkmn not in shortList, show PLUS. Otherwise, show MINUS -->
-                            <fa-icon *ngIf="!pkmn.inShortList" [icon]="faPlusSquare"></fa-icon>
-                            <fa-icon *ngIf="pkmn.inShortList" [icon]="faMinusCircle"></fa-icon>
+                            <i *ngIf="pkmn.inShortList" class="pi-minus-circle"></i>
                         </span> 
                     </a>
                     <a href="https://pokemondb.net/pokedex/{{pkmn.name.toLowerCase()}}" target="_blank" rel="noopener noreferrer"><strong>
