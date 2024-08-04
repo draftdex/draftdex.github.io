@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [ RouterModule ],
   templateUrl: './bottom-banner.component.html',
-  styleUrls: ['./bottom-banner.component.css', './../../styles.css']
+  styleUrls: ['./bottom-banner.component.css', './../../styles.scss']
 })
 export class BottomBannerComponent implements OnInit {
   /*

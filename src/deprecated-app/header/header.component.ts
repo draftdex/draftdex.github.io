@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css', './../../styles.css']
+  styleUrls: ['./header.component.css', './../../styles.scss']
 })
 export class HeaderComponent {
   public logoPath: string = "../assets/DraftDexTitle.png";

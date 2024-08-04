@@ -5,7 +5,7 @@ import { HostListener  } from "@angular/core";
 @Component({
   selector: 'app-filter-menu',
   templateUrl: './filter-menu.component.html',
-  styleUrls: ['./filter-menu.component.css', './../../styles.css']
+  styleUrls: ['./filter-menu.component.css', './../../styles.scss']
 })
 export class FilterMenuComponent implements OnInit {
 

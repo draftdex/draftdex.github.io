@@ -8,7 +8,7 @@ import { GlobalConstants } from '../global/global-constants';
 @Component({
   selector: 'app-add-edit',
   templateUrl: './add-edit.component.html',
-  styleUrls: ['./add-edit.component.css', '../../styles.css']
+  styleUrls: ['./add-edit.component.css', '../../styles.scss']
 })
 export class AddEditComponent implements OnInit {
   // Import table attributes from GlobalConstants

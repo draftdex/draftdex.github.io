@@ -11,7 +11,7 @@ import { StyleService } from 'src/deprecated-app/shared/services/style-service';
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css', './../../../styles.css'],
+  styleUrls: ['./login.component.css', './../../../styles.scss'],
   imports: [ReactiveFormsModule, CommonModule, BottomBannerComponent]
 })
 export class LoginComponent {

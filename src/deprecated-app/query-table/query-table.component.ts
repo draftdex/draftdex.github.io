@@ -4,7 +4,7 @@ import { GlobalConstants } from './../global/global-constants';
 @Component({
   selector: 'app-query-table',
   templateUrl: './query-table.component.html',
-  styleUrls: ['./query-table.component.css', './../../styles.css']
+  styleUrls: ['./query-table.component.css', './../../styles.scss']
 })
 export class QueryTableComponent implements OnInit {
 
