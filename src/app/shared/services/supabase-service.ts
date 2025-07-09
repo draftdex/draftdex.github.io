@@ -48,7 +48,7 @@ export class SupabaseService {
     getPokemonForTeam(team: string | undefined) {
         const query = this.dbClient.from('pokemonInfo')
             .select('*')
-            .or('tier.eq.1, tier.eq.2, tier.eq.3, tier.eq.4')
+            .eq('team', team)
             .order('tier',  { ascending: true });
         if (team !== 'WW' && team !== undefined) query.eq('team', team);
         let pokemonForTeam$ = from(this.executeQuery(query)).pipe(first());
