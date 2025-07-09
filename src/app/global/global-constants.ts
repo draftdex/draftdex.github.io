@@ -116,9 +116,9 @@ export class GlobalConstants {
     };
 
 
-    public static Ruleset = "docs.google.com/document/d/1WiwZXmJaPP-gyrqFR1u34oRQeBKGqeA9-4eUCaqQXJk/edit?usp=sharing";
-    public static MasterSheet = "docs.google.com/spreadsheets/d/11JnOJTLF6TlI3cwqGGdipUS_Fd3YywGIFIXlrbIiYzA/edit?usp=sharing";
+    public static Ruleset = "docs.google.com/document/d/1DNCwdh2vOMLpqROM5-PvL4UjJs98y9O5WddKyhabeeg/edit?usp=sharing";
+    public static MasterSheet = "docs.google.com/spreadsheets/d/1RD-wjBZBycJzhU6tJXRN3wrgHTVp38a1mWRgOfNTzwI/edit?usp=sharing";
     public static Help = "mailto:draftdex@gmail.com";
-    public static ScheduleLink = "docs.google.com/spreadsheets/d/1F2ZAI4Pm2Ux5LNHuOtnGmepyMapB9cg9J6OIaQcNjzI/edit?usp=sharing";
+    public static ScheduleLink = "docs.google.com/spreadsheets/d/1mqS-Rzpgds5xtuP9TwIGhWXQVTNeepHkTUTeIH4NmG0/edit?usp=sharing";
     public static Showdown = "play.pokemonshowdown.com/teambuilder";
 }   
