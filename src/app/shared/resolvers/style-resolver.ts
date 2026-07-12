@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
-import { Resolve } from "@angular/router";
+
 import { AuthService } from "../services/auth-service";
 import { Observable, first, map } from "rxjs";
 import { StyleService } from "../services/style-service";
 import { UserStyle } from "../models/UserStyles.model";
 
 @Injectable({ providedIn: 'root' })
-export class StyleResolver implements Resolve<any> {
+export class StyleResolver  {
     constructor(private authService: AuthService,
                 private styleService: StyleService) {}
 
