@@ -6,11 +6,10 @@ import { Router } from '@angular/router';
 import { Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
-  imports: [ReactiveFormsModule, CommonModule]
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.css'],
+    imports: [ReactiveFormsModule, CommonModule]
 })
 export class RegisterComponent {
   @Input() availableTeams: string[] = [];

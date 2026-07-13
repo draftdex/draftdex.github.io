@@ -7,11 +7,10 @@ import { RegisterComponent } from './register/register.component';
 import { SupabaseService } from '../shared/services/supabase-service';
 
 @Component({
-  selector: 'app-auth',
-  standalone: true,
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css'],
-  imports: [ReactiveFormsModule, CommonModule, BottomBannerComponent, LoginComponent, RegisterComponent]
+    selector: 'app-auth',
+    templateUrl: './auth.component.html',
+    styleUrls: ['./auth.component.css'],
+    imports: [ReactiveFormsModule, CommonModule, BottomBannerComponent, LoginComponent, RegisterComponent]
 })
 export class AuthComponent implements OnInit {
   loginForm = true;

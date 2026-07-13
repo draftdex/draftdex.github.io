@@ -3,9 +3,10 @@ import { faAngleUp, faSpinner, faPlusSquare, faMinusCircle } from '@fortawesome/
 import { GlobalConstants } from './../global/global-constants';
 
 @Component({
-  selector: 'app-query-table',
-  templateUrl: './query-table.component.html',
-  styleUrls: ['./query-table.component.css', './../../styles.css']
+    selector: 'app-query-table',
+    templateUrl: './query-table.component.html',
+    styleUrls: ['./query-table.component.css', './../../styles.css'],
+    standalone: false
 })
 export class QueryTableComponent implements OnInit {
 

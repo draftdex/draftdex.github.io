@@ -8,6 +8,7 @@ import { Pokemon } from '../shared/models/pokemon.model';
     selector: 'app-pokemon-search',
     templateUrl: './pokemon-search.component.html',
     styleUrls: ['./pokemon-search.component.css', './../../styles.css'],
+    standalone: false
 })
 export class PokemonSearchComponent implements OnInit {
     // Create supabase.io database client

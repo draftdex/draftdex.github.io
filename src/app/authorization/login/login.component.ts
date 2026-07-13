@@ -8,11 +8,10 @@ import { UserStyle } from 'src/app/shared/models/UserStyles.model';
 import { StyleService } from 'src/app/shared/services/style-service';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css', './../../../styles.css'],
-  imports: [ReactiveFormsModule, CommonModule, BottomBannerComponent]
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css', './../../../styles.css'],
+    imports: [ReactiveFormsModule, CommonModule, BottomBannerComponent]
 })
 export class LoginComponent {
   @Output() onRegister = new EventEmitter();

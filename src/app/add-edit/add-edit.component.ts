@@ -6,9 +6,10 @@ import { Pokemon } from '../shared/models/pokemon.model';
 import { GlobalConstants } from '../global/global-constants';
 
 @Component({
-  selector: 'app-add-edit',
-  templateUrl: './add-edit.component.html',
-  styleUrls: ['./add-edit.component.css', '../../styles.css']
+    selector: 'app-add-edit',
+    templateUrl: './add-edit.component.html',
+    styleUrls: ['./add-edit.component.css', '../../styles.css'],
+    standalone: false
 })
 export class AddEditComponent implements OnInit {
   // Import table attributes from GlobalConstants
