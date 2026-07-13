@@ -4,6 +4,7 @@ import { HostListener } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Pokemon } from '../shared/models/pokemon.model';
 import { GlobalConstants } from '../global/global-constants';
+import { AuthService } from '../shared/services/auth-service';
 
 @Component({
     selector: 'app-add-edit',
@@ -41,7 +42,8 @@ export class AddEditComponent implements OnInit {
   dbClient: SupabaseClient = createClient('https://kqyshvlibkoatazqavuc.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0Mzc0MTI3MSwiZXhwIjoxOTU5MzE3MjcxfQ.hMsQnDsKARs4OyTsIpUR2nPR86TQxbvn3hOoyuGEnA8');
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     let query = this.dbClient.from('pokemonInfo').select();
@@ -338,58 +340,57 @@ export class AddEditComponent implements OnInit {
 
   // Verify password and submit user input values
   submitNewVals() {
-    // Create supabase.io database client
-    const dbClient = createClient('https://kqyshvlibkoatazqavuc.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0Mzc0MTI3MSwiZXhwIjoxOTU5MzE3MjcxfQ.hMsQnDsKARs4OyTsIpUR2nPR86TQxbvn3hOoyuGEnA8');
-    let query: any;
-    let pwdCorrect = false;   // Flag to verify pwd
-
-    const pwd = dbClient.from('users').select().eq('username', 'Admin');
-    pwd.then(response => {
-      let md5 = require('md5');   // hashing function
-      let user;
-      response.body ? user = response.body[0] : null;
-      if (user) {
-        pwdCorrect = (<any>user).password == md5(this.password);
-      }
-
-      // Replace any unchanged values w/ original Pokemon vals
-      if (pwdCorrect) {
-        if (this.selectedPokemonName !== '') {
-          query = dbClient.from('pokemonInfo').update(this.newVals);
-          query.eq('name', this.selectedPokemonName);
-        } else if (this.newVals.name !== '') {
-          // Create new entry
-          let bst: number = this.newVals['hp'] + this.newVals['attack'] + this.newVals['defense'] + this.newVals['spAttack'] + this.newVals['spDefense'] + this.newVals['speed'];
-          let id: string = this.newVals.form + this.newVals.name;
-          let valsToInsert = { 
-            'id': id,
-            'bst': bst,
-            ...this.newVals 
-          };
-          query = dbClient.from('pokemonInfo').insert([valsToInsert]);
+    this.authService.verifyPassword('Admin', this.password).subscribe({
+      next: (pwdCorrect: boolean) => {
+        if (pwdCorrect) {
+          this.commitNewVals();
         } else {
-          alert('Please select a Pokemon to update or provide a new Pokemon name.');
+          alert('Password incorrect');
         }
-    
-        // Gather response from query and clear overlay
-        
-        if (query) {
-          let res = query.then((response: { error: null; }) => {
-            if (response.error === null) {
-              alert("Database Commit Successful")
-              this.pkmn = new Pokemon();
-              this.newVals = new Pokemon();
-              this.selectedPokemonName = '';
-              this.password = '';
-              this.router.navigateByUrl('/pokemon-search');
-            } else {
-              alert(`Error: ${response.error}`);
-            }
-          });
-        }
-      } else {
-        alert('Password incorrect');
+      },
+      error: error => {
+        console.error('Error verifying password', error);
+        alert('Error verifying password');
       }
     });
+  }
+
+  // Write the user input values to the database
+  private commitNewVals() {
+    let query: any;
+
+    // Replace any unchanged values w/ original Pokemon vals
+    if (this.selectedPokemonName !== '') {
+      query = this.dbClient.from('pokemonInfo').update(this.newVals);
+      query.eq('name', this.selectedPokemonName);
+    } else if (this.newVals.name !== '') {
+      // Create new entry
+      let bst: number = this.newVals['hp'] + this.newVals['attack'] + this.newVals['defense'] + this.newVals['spAttack'] + this.newVals['spDefense'] + this.newVals['speed'];
+      let id: string = this.newVals.form + this.newVals.name;
+      let valsToInsert = {
+        'id': id,
+        'bst': bst,
+        ...this.newVals
+      };
+      query = this.dbClient.from('pokemonInfo').insert([valsToInsert]);
+    } else {
+      alert('Please select a Pokemon to update or provide a new Pokemon name.');
+    }
+
+    // Gather response from query and clear overlay
+    if (query) {
+      query.then((response: { error: null; }) => {
+        if (response.error === null) {
+          alert("Database Commit Successful")
+          this.pkmn = new Pokemon();
+          this.newVals = new Pokemon();
+          this.selectedPokemonName = '';
+          this.password = '';
+          this.router.navigateByUrl('/pokemon-search');
+        } else {
+          alert(`Error: ${response.error}`);
+        }
+      });
+    }
   }
 }
