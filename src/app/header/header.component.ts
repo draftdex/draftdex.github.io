@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.css', './../../styles.css'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    standalone: true
 })
 export class HeaderComponent {
   public logoPath: string = "../assets/DraftDexTitle.png";

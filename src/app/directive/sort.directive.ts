@@ -3,13 +3,13 @@ import { Sort } from '../util/sort';
 
 @Directive({
     selector: '[appSort]',
-    standalone: false
+    standalone: true
 })
 export class SortDirective {
 
   @Input()
   // Stores list to be sorted and header mapping
-  appSort = {
+  appSort: { listToSort: any[], headerMapping: object } = {
     "listToSort" : [],
     "headerMapping" : {}
   };

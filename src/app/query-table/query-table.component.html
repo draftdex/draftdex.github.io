@@ -1,12 +1,12 @@
 <!-- Table to Display Pokemon Matching Query -->
-@if (pkmnList.length > 0) {
+@if (pkmnList().length > 0) {
   <div class="border">
-    <table class="table-with-filter-open has-text-centered is-bordered is-hoverable" [ngClass]="{'table-with-filter-open': filterMenuOpen, 'table-with-filter-closed': !filterMenuOpen}">
+    <table class="table-with-filter-open has-text-centered is-bordered is-hoverable" [ngClass]="{'table-with-filter-open': filterMenuOpen(), 'table-with-filter-closed': !filterMenuOpen()}">
       <thead>
         <tr>
           @for (attribute of tableHeaders; track attribute) {
             <th class="has-text-centered">
-              <a [appSort]="{listToSort: pkmnList, headerMapping: tableHeaderMap}" (click)="flipIcon($event)" data-order="asc" data-name="attribute.value" class="remove-hyperlink">
+              <a [appSort]="{listToSort: pkmnList(), headerMapping: tableHeaderMap}" (click)="flipIcon($event)" data-order="asc" data-name="attribute.value" class="remove-hyperlink">
                 {{attribute}}
                 <span class="icon">
                   <fa-icon [icon]="faAngleUp"></fa-icon>
@@ -17,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        @for (pkmn of pkmnList; track pkmn; let i = $index) {
+        @for (pkmn of pkmnList(); track pkmn; let i = $index) {
           <tr [ngClass]="{'table-row1': i % 2 == 0, 'table-row2': i % 2 != 0}">
             <td id="name" class="has-text-left">
               <a (click)="editShortlist(pkmn)">
