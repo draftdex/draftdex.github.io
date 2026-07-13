@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { faAngleUp, faSpinner, faPlusSquare, faMinusCircle } from '@fortawesome/free-solid-svg-icons'; 
 import { GlobalConstants } from './../global/global-constants';
 
@@ -6,6 +6,7 @@ import { GlobalConstants } from './../global/global-constants';
     selector: 'app-query-table',
     templateUrl: './query-table.component.html',
     styleUrls: ['./query-table.component.css', './../../styles.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class QueryTableComponent implements OnInit {

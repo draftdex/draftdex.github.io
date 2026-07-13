@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BottomBannerComponent } from 'src/app/bottom-banner/bottom-banner.component';
@@ -11,6 +11,7 @@ import { StyleService } from 'src/app/shared/services/style-service';
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css', './../../../styles.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [ReactiveFormsModule, CommonModule, BottomBannerComponent]
 })
 export class LoginComponent {

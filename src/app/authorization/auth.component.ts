@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 
 import { BottomBannerComponent } from '../bottom-banner/bottom-banner.component';
@@ -10,6 +10,7 @@ import { SupabaseService } from '../shared/services/supabase-service';
     selector: 'app-auth',
     templateUrl: './auth.component.html',
     styleUrls: ['./auth.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [ReactiveFormsModule, BottomBannerComponent, LoginComponent, RegisterComponent]
 })
 export class AuthComponent implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { GlobalConstants } from './../global/global-constants';
 import { RouterModule } from '@angular/router';
 
@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
     selector: 'app-bottom-banner',
     imports: [RouterModule],
     templateUrl: './bottom-banner.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./bottom-banner.component.css', './../../styles.css']
 })
 export class BottomBannerComponent implements OnInit {

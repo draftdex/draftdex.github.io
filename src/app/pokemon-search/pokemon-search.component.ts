@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { SupabaseClient, createClient } from '@supabase/supabase-js';
 import { AuthService } from '../shared/services/auth-service';
 import { SupabaseService } from '../shared/services/supabase-service';
@@ -8,6 +8,7 @@ import { Pokemon } from '../shared/models/pokemon.model';
     selector: 'app-pokemon-search',
     templateUrl: './pokemon-search.component.html',
     styleUrls: ['./pokemon-search.component.css', './../../styles.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PokemonSearchComponent implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { HostListener } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
@@ -9,6 +9,7 @@ import { GlobalConstants } from '../global/global-constants';
     selector: 'app-add-edit',
     templateUrl: './add-edit.component.html',
     styleUrls: ['./add-edit.component.css', '../../styles.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AddEditComponent implements OnInit {

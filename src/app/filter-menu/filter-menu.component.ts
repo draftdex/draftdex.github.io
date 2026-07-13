@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { GlobalConstants } from '../global/global-constants';
 import { HostListener } from '@angular/core';
 
@@ -6,6 +6,7 @@ import { HostListener } from '@angular/core';
     selector: 'app-filter-menu',
     templateUrl: './filter-menu.component.html',
     styleUrls: ['./filter-menu.component.css', './../../styles.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class FilterMenuComponent implements OnInit {
