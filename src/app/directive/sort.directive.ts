@@ -2,13 +2,14 @@ import { Directive, Input, ElementRef, Renderer2, HostListener } from '@angular/
 import { Sort } from '../util/sort';
 
 @Directive({
-  selector: '[appSort]'
+    selector: '[appSort]',
+    standalone: true
 })
 export class SortDirective {
 
   @Input()
   // Stores list to be sorted and header mapping
-  appSort = {
+  appSort: { listToSort: any[], headerMapping: object } = {
     "listToSort" : [],
     "headerMapping" : {}
   };

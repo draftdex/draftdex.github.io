@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { GlobalConstants } from './../global/global-constants';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { GlobalConstants } from './../global/global-constants';
 
 @Component({
   selector: 'app-bottom-banner',
-  standalone: true,
-  imports: [ RouterModule ],
+  imports: [RouterModule],
   templateUrl: './bottom-banner.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: true,
   styleUrls: ['./bottom-banner.component.css', './../../styles.css']
 })
 export class BottomBannerComponent implements OnInit {

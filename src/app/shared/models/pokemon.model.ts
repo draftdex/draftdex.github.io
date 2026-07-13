@@ -13,6 +13,7 @@ export class Pokemon {
     spAttack: number;
     spDefense: number;
     speed: number;
+    bst: number;
     tier: string;
     available: boolean;
     team: string;
@@ -33,8 +34,14 @@ export class Pokemon {
         this.spAttack = 0;
         this.spDefense = 0;
         this.speed = 0;
+        this.bst = 0;
         this.tier = '';
         this.available = false;
         this.team = '';
     }
+}
+
+// Pokemon as rendered in the query table: tracks shortlist membership client-side only
+export interface ShortlistPokemon extends Pokemon {
+    inShortList?: boolean;
 }

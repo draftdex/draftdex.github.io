@@ -1,18 +1,20 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { faAngleUp, faSpinner, faPlusSquare, faMinusCircle } from '@fortawesome/free-solid-svg-icons'; 
+import { NgClass } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faAngleUp, faMinusCircle, faPlusSquare, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { SortDirective } from '../directive/sort.directive';
+import { ShortlistPokemon } from '../shared/models/pokemon.model';
 import { GlobalConstants } from './../global/global-constants';
 
 @Component({
   selector: 'app-query-table',
   templateUrl: './query-table.component.html',
-  styleUrls: ['./query-table.component.css', './../../styles.css']
+  styleUrls: ['./query-table.component.css', './../../styles.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [NgClass, FontAwesomeModule, SortDirective],
+  standalone: true
 })
-export class QueryTableComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class QueryTableComponent {
 
   // Import table attributes from GlobalConstants
   tableHeaders = GlobalConstants.pokemonAttributesTableHeaders;
@@ -24,12 +26,12 @@ export class QueryTableComponent implements OnInit {
   faPlusSquare = faPlusSquare;
   faMinusCircle = faMinusCircle;
 
-  @Input() pkmnList: any;
-  @Input() filterMenuOpen: boolean = true;
+  readonly pkmnList = input.required<ShortlistPokemon[]>();
+  readonly filterMenuOpen = input(true);
 
   // Event listener to prompt addition to shortlist
-  @Output() onAddToShortlist = new EventEmitter<any>();
-  @Output() onRemoveFromShortList = new EventEmitter<any>();
+  readonly onAddToShortlist = output<ShortlistPokemon>();
+  readonly onRemoveFromShortList = output<ShortlistPokemon>();
 
   // Flip angle determining column sort direction
   flipIcon(event: MouseEvent) {
@@ -44,10 +46,10 @@ export class QueryTableComponent implements OnInit {
       let tableHeaderIcon = (<HTMLElement>event.target).querySelector('fa-icon')?.querySelector('svg');
       tableHeaderIcon?.classList.contains("fa-rotate-180") ? tableHeaderIcon?.classList.remove("fa-rotate-180") : tableHeaderIcon?.classList.add("fa-rotate-180");
     }
-}
+  }
 
   // Add pokemon to shortlist
-  editShortlist(pkmn: any) {
+  editShortlist(pkmn: ShortlistPokemon) {
     // Emit event to edit pkmn in shortlist
     pkmn.inShortList ? this.onRemoveFromShortList.emit(pkmn) : this.onAddToShortlist.emit(pkmn);
   }

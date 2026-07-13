@@ -1,32 +1,32 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { BottomBannerComponent } from 'src/app/bottom-banner/bottom-banner.component';
-import { AuthService } from '../../shared/services/auth-service';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserStyle } from 'src/app/shared/models/UserStyles.model';
-import { StyleService } from 'src/app/shared/services/style-service';
+import { UserStyle } from '../../shared/models/UserStyles.model';
+import { StyleService } from '../../shared/services/style-service';
+import { AuthService } from '../../shared/services/auth-service';
 
 @Component({
   selector: 'app-login',
-  standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css', './../../../styles.css'],
-  imports: [ReactiveFormsModule, CommonModule, BottomBannerComponent]
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [ReactiveFormsModule, CommonModule]
 })
 export class LoginComponent {
   @Output() onRegister = new EventEmitter();
 
   public authError: boolean = false;
-  public loading: boolean = false;    
+  public loading: boolean = false;
   public loginCreds: FormGroup = new FormGroup({
     username: new FormControl(''),
     password: new FormControl('')
   })
 
-  constructor(private authService: AuthService, 
-              private router: Router,
-              private styleService: StyleService) {
+  styleService: StyleService = inject(StyleService);
+
+  constructor(private authService: AuthService,
+    private router: Router) {
     this.setLoginListener();
   }
 
@@ -48,19 +48,19 @@ export class LoginComponent {
         this.loading = false;
         if (success) {
           this.styleService.fetchUserStyles(this.authService.userSession.id).subscribe({
-            next: (style: UserStyle | null) => { 
+            next: (style: UserStyle | null) => {
               if (style) this.styleService.setUserStyles(style);
-              this.router.navigate(['pokemon-search']); 
+              this.router.navigate(['pokemon-search']);
             },
-            error: error => {
+            error: (error: Error) => {
               console.error('Error getting user style', error);
-              this.router.navigate(['pokemon-search']); 
-            } 
+              this.router.navigate(['pokemon-search']);
+            }
           });
         } else {
           this.authError = true;
-        } 
-      }, error: (error) => console.error('Error authenticating user', error)
+        }
+      }, error: (error: Error) => console.error('Error authenticating user', error)
     });
   }
 }

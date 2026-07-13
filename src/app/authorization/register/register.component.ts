@@ -1,16 +1,16 @@
 import { AuthService } from '../../shared/services/auth-service';
-import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { Component, EventEmitter, Output, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
-  imports: [ReactiveFormsModule, CommonModule]
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    imports: [ReactiveFormsModule, CommonModule]
 })
 export class RegisterComponent {
   @Input() availableTeams: string[] = [];

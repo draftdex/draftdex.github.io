@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { SupabaseService } from "./supabase-service";
 import * as bcrypt from 'bcryptjs';
-import { Observable, Subject } from "rxjs";
+import { from, Observable, of, Subject, switchMap } from "rxjs";
 import { NewUser, User } from "../models/User.model";
 
 @Injectable({
@@ -64,6 +64,20 @@ export class AuthService {
                 this.authenticated$.error(err);
             }
         });
+    }
+
+    /**
+     * Verify a password against the stored hash for a user, without starting a session
+     * @param username
+     * @param inputPwd
+     */
+    public verifyPassword(username: string, inputPwd: string): Observable<boolean> {
+        return this.supabaseClient.getUserCreds(username).pipe(
+            switchMap((users: User[]) => {
+                if (users.length !== 1) return of(false);
+                return from(bcrypt.compare(inputPwd, users[0].password));
+            })
+        );
     }
 
     public registerUser(newUser: NewUser): Observable<any> {
