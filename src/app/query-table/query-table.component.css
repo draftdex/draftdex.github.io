@@ -6,7 +6,8 @@ a {
     color: var(--table-text) !important;
 }
 
-.table-with-filter-open, .table-with-filter-closed {
+.table-with-filter-open,
+.table-with-filter-closed {
     display: block;
     width: 100%;
     overflow-y: scroll;
@@ -17,7 +18,7 @@ a {
     max-height: 55vh;
 }
 
-.table-with-filter-closed { 
+.table-with-filter-closed {
     max-height: 67vh;
 }
 
@@ -29,9 +30,14 @@ th {
     border-left: none !important;
 }
 
-td, th {
+td,
+th {
     font-size: 14px;
     padding: 6px;
+}
+
+.header-text {
+    color: var(--header-text) !important;
 }
 
 tr {
